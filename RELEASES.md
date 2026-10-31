@@ -1,5 +1,8 @@
 # Releases
 
+## v1.3.6 - 2026-10-31
+- Background fish now lead with their heads in both directions (they were swimming tail-first).
+
 ## v1.3.5 - 2026-10-31
 - Header: badge and title sit on the same row as the menu button (header height unchanged).
 - Hero scene: four tiny shrimp drift on random paths and seven small, faint background fish cross at different speeds.
