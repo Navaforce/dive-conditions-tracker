@@ -1,5 +1,8 @@
 # Releases
 
+## v1.3.2 - 2026-10-31
+- Header: badge sits in line with the title; tagline removed; header height unchanged (219 px, 246 px on phones).
+
 ## v1.3.1 - 2026-10-31
 - Share Report text reorganised into Overall, Conditions and Timing sections (weather, current, tides, slack window, sunrise/sunset, link).
 - Share also attaches an animated GIF card: the happy crab waving next to the grade, place, date and key readings. Built in the browser after the report renders; if it is not ready or the device cannot share files, the text is shared alone.
