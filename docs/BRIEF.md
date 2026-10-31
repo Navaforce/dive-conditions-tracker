@@ -13,7 +13,7 @@ David (spearfishing / freediving), on iPhone via home-screen web app.
 - Repo: https://github.com/Navaforce/dive-conditions-tracker
 
 ## Out of scope (for now)
-- Data storage, Supabase sync, accounts. Search-only app; the only persistence is the last search form in localStorage (`dive-last`).
+- Data storage, Supabase sync, accounts. Search-only app; persistence is limited to the last search form (`dive-last`) and user settings (`dive-settings`: theme, scene, animations, remember, auto-search, default units and hours) in localStorage.
 
 ## Success criteria
 - Loads and fetches data on iPhone Safari; installs to home screen.
