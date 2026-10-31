@@ -294,7 +294,7 @@ html.no-scene footer.floor{height:96px}html.no-scene footer.floor .fscene{displa
 @keyframes shr4{0.0%{transform:translate(450px,150px) scaleX(1)}20.0%{transform:translate(520px,140px) scaleX(1)}40.0%{transform:translate(600px,155px) scaleX(-1)}60.0%{transform:translate(520px,160px) scaleX(-1)}80.0%{transform:translate(430px,135px) scaleX(1)}100.0%{transform:translate(450px,150px) scaleX(1)}}.shr4{animation:shr4 41s ease-in-out infinite}
 .sfi{opacity:.4}.sfL{animation:sfL linear infinite}.sfR{animation:sfR linear infinite}@keyframes sfL{from{transform:translateX(-80px)}to{transform:translateX(1300px)}}@keyframes sfR{from{transform:translateX(1300px)}to{transform:translateX(-80px)}}
 .impl{list-style:none;margin:var(--s3) 0 0;padding:0}.impl li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--rline);font-size:13.5px;line-height:1.5}.impl li:first-child{border-top:0}.impl i{flex:none;width:10px;height:10px;border-radius:50%;margin-top:6px}.impl b{display:block;font-size:14px}.impl span{display:block;color:var(--mut)}
-.fpg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fpg .wide{grid-column:1/-1}.fpg [hidden]{display:none}
+.fpg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}.fpg>div{min-width:0}.fpg input,.fpg select{width:100%;min-width:0;max-width:100%;box-sizing:border-box}.fpg label{display:block;margin-bottom:4px}.fpg .wide{grid-column:1/-1}.fpg [hidden]{display:none}
 .fpg textarea{font:inherit;font-size:16px;padding:9px 12px;border:1.5px solid var(--fline);border-radius:var(--r-md);background:var(--field);color:var(--ink);width:100%;min-height:64px;resize:vertical}
 .fpchk{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;margin:0;color:var(--ink)}.fpchk input{width:auto;min-height:0;margin:0}
 .fpprev{white-space:pre-wrap;word-break:break-word;font:12.5px/1.45 ui-monospace,Menlo,monospace;background:var(--row);border:1px solid var(--rline);border-radius:var(--r-md);padding:10px;margin:0 0 4px;max-height:200px;overflow:auto;color:var(--ink)}
@@ -1418,7 +1418,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.4.1';
+const VERSION='1.4.2';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}

@@ -1,5 +1,8 @@
 # Releases
 
+## v1.4.2 - 2026-10-31
+- Float Plan form: side-by-side fields are now equal width with even spacing (grid columns could not shrink below the time and date inputs).
+
 ## v1.4.1 - 2026-10-31
 - Menu button moved to the left of the header, with a smaller badge and menu tile so badge, title and menu fit on one line.
 - Saved Sites dropdown is always visible (above 7-Day Outlook), with an empty-state message when nothing is saved.
