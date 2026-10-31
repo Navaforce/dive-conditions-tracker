@@ -645,7 +645,8 @@ function render(R,C,h0,h1){
  <span class="pill bg-${gradeColor}">${o==null?'No data':Math.round(o)+' / 100'}</span>
  <div class="sub" style="margin-top:8px"><b>${esc(R.place.name)}</b><br>${R.place.lat.toFixed(4)}, ${R.place.lon.toFixed(4)}<br>${R.date} &middot; ${h0}:00–${h1}:00 local${R.tz?' ('+esc(R.tz)+')':''}</div>
  ${sunLine(R,h0,h1)}
- <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div></div>
+ <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
+ <button class="sec" type="button" id="share">Share report</button></div>
  <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C)}</div>
  ${C.capped?`<div class="warn"><b>Grade limited:</b> ${esc(C.capped)}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No grade given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
