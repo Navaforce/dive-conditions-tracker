@@ -721,7 +721,7 @@ function wkWx(C){const X=C.WXI;if(X.code==null&&X.air.value==null)return'<tr><td
  return`<tr><td><span class="dot" style="background:${{g:'#22a85f',y:'#f0b400',r:'#d63b3b',n:'#9aa7b3'}[band(C.M.weather.score)]}"></span>Weather</td><td style="text-align:right"><b>${ci[0]} ${esc(ci[1])}</b></td></tr><tr><td>Alerts</td><td style="text-align:right"><b>${!C.M.weather.alertsKnown?'not checked':C.M.weather.alertsOn.length?esc(C.M.weather.alertsOn.map(a=>a.event).join(', ')):'none'}</b></td></tr><tr><td>Air temp</td><td style="text-align:right"><b>${X.air.value!=null?fmtTemp(X.air.value).join(' '):'no data'}</b></td></tr><tr><td>Precipitation</td><td style="text-align:right"><b>${X.precip.value!=null?fmtPrecip(X.precip.value):'no data'}</b></td></tr>`}
 async function weekend(){
  LASTMODE='week';DIAG=[];const[q,units,h0,h1]=readInputs();UNITS=units;
- $('go').disabled=$('wk').disabled=true;$('out').innerHTML='';$('status').textContent='Looking up location…';
+ setBusy(true);$('out').innerHTML='';$('status').textContent='Looking up location…';
  try{
   const place=await geocode(q);const[sat,sun]=nextWeekend();
   $('status').textContent=`Fetching Saturday ${sat} and Sunday ${sun} for ${place.name}…`;
