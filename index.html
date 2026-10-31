@@ -732,9 +732,44 @@ async function weekend(){
   const verdict=a==null&&b==null?'No usable data for either day.':a==null||b==null?'Only one day returned data.':Math.abs(a-b)<3?'Saturday and Sunday score about the same.':(a>b?'Saturday':'Sunday')+' looks better ('+Math.round(Math.max(a,b))+' vs '+Math.round(Math.min(a,b))+').';
   $('out').innerHTML=`<h2>Weekend Outlook &mdash; ${esc(place.name)}</h2><div class="card" style="margin-bottom:12px"><b>${verdict}</b><div class="hint" style="margin:4px 0 0">Dive window ${h0}:00–${h1}:00 local. Same cross-checking and scoring as the single-day dashboard.</div></div><div class="two">${wkCard(A,CA,h0,h1)}${wkCard(B,CB,h0,h1)}</div>${cites(A,CA)}`;
   document.querySelectorAll('[data-open]').forEach(b=>b.onclick=()=>{$('date').value=b.dataset.open;$('f').requestSubmit()});
+  showOut();
  }catch(e){$('status').innerHTML=`<span class="err">${esc(e.message||e)}</span>`}
- $('go').disabled=$('wk').disabled=false;
+ setBusy(false);
 }
+function setBusy(on){
+ $('go').disabled=$('wk').disabled=$('loc').disabled=on;
+ $('status').classList.toggle('busy',on);
+ $('go').textContent=on?'Checking…':'Check the water';
+}
+// the form is tall on a phone, so bring the results into view once they render
+function showOut(){const r=matchMedia('(prefers-reduced-motion:reduce)').matches;$('out').scrollIntoView({behavior:r?'auto':'smooth',block:'start'})}
+function shareText(R,C,h0,h1){
+ const M=C.M,o=C.overall,L=o==null?'no grade':grade(o)+' ('+Math.round(o)+'/100)';
+ const v=(m,f)=>m.value!=null?f(m.value):'no data';
+ const ln=[`Dive report: ${R.place.name}`,`${R.date}, ${h0}:00-${h1}:00 local`,`Overall: ${L}`+(C.capped?' - '+C.capped:''),
+  `Wind ${v(M.wind,x=>fmtSpd(x).join(' '))}, gusts ${v(M.gust,x=>fmtSpd(x).join(' '))}`,
+  `Waves ${v(M.hs,x=>fmtLen(x).join(' '))}, swell ${v(M.swell,x=>fmtLen(x).join(' '))}`,
+  `Water ${v(M.sst,x=>fmtTemp(x).join(' '))}`];
+ if(C.best)ln.push(`Best window ${C.best.start}:00-${C.best.start+3}:00`);
+ return ln.join('\n');
+}
+$('out').addEventListener('click',async ev=>{
+ if(ev.target.id!=='share'||!CTX)return;
+ const text=shareText(CTX.R,compute(CTX.R,CTX.h0,CTX.h1),CTX.h0,CTX.h1),btn=ev.target;
+ try{
+  if(navigator.share)await navigator.share({title:"Spearo's Dive Report",text});
+  else{await navigator.clipboard.writeText(text);btn.textContent='Copied';setTimeout(()=>btn.textContent='Share report',1800)}
+ }catch(e){if(e&&e.name!=='AbortError')prompt('Copy this:',text)}
+});
+$('loc').addEventListener('click',()=>{
+ if(!navigator.geolocation){$('status').innerHTML='<span class="err">This browser has no location access. Type a place or "lat, lon".</span>';return}
+ $('loc').disabled=true;$('status').textContent='Getting your location…';
+ navigator.geolocation.getCurrentPosition(p=>{
+  $('place').value=p.coords.latitude.toFixed(4)+', '+p.coords.longitude.toFixed(4);$('status').textContent='Location set. Pick a date and tap Check the water.';$('loc').disabled=false;
+ },e=>{
+  $('status').innerHTML='<span class="err">'+(e.code===1?'Location permission denied. Allow it in Settings, or type a place.':'Could not get your location. Type a place or "lat, lon".')+'</span>';$('loc').disabled=false;
+ },{enableHighAccuracy:true,timeout:15000,maximumAge:60000});
+});
 function readInputs(){
  let h0=Math.max(0,Math.min(23,parseInt($('h0').value,10)||8)),h1=Math.max(0,Math.min(23,parseInt($('h1').value,10)||14));if(h1<h0)[h0,h1]=[h1,h0];
  return[$('place').value.trim(),$('units').value,h0,h1];
