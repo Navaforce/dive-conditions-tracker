@@ -278,7 +278,7 @@ footer b{color:var(--deep)}
 </header>
 <main>
 <form class="card inputs" id="f" autocomplete="off">
-<div><label for="place">Location (place name, or "lat, lon" for a specific dive site)</label><input id="place" placeholder="e.g. La Jolla Cove, CA   or   32.852, -117.272" required></div>
+<div><label for="place">Location (place name, or "lat, lon" for a specific dive site)</label><div class="loc"><input id="place" placeholder="e.g. La Jolla Cove, CA   or   32.852, -117.272" required enterkeyhint="search"><button id="loc" type="button" class="ghost" title="Use my current location" aria-label="Use my current location">&#128205;</button></div></div>
 <div><label for="date">Date</label><input id="date" type="date" required></div>
 <div><label for="h0">Dive from (hour)</label><input id="h0" type="number" min="0" max="23" value="8"></div>
 <div><label for="h1">to (hour)</label><input id="h1" type="number" min="0" max="23" value="14"></div>
