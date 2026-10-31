@@ -1,5 +1,8 @@
 # Releases
 
+## v1.4.3 - 2026-10-31
+- Saved sites are now mirrored to IndexedDB and restored automatically if the main storage is emptied; the app asks the browser for persistent storage.
+- New Back Up Sites (share or copy as text) and Restore Sites (paste) buttons under the Saved Sites list, so sites survive removing the app or switching phones.
 ## v1.4.2 - 2026-10-31
 - Float Plan form: side-by-side fields are now equal width with even spacing (grid columns could not shrink below the time and date inputs).
 
