@@ -1,5 +1,15 @@
 # Releases
 
+## v1.3.0 - 2026-10-31
+- Saved sites: Save Site on the grade card, tap a chip to search it, x to remove (`dive-sites`, up to 12).
+- 7-Day Outlook: strip of seven days with grade, best window and a Best Day badge; tap a day to open it.
+- Compare Sites: two places side by side for one date, better cells underlined.
+- Summary card: chips in even rows, plus Best 3-Hour Window, Slack-Tide Window, Sunrise and Sunset tiles.
+- Tides: larger chart with times, slack-window bar and dive window; text moved under a Tide Details caret.
+- Hour-by-hour best block bar is green; sources collapsed by default.
+- Title no longer wraps; bubbles added across the centre of the scene (they were off-screen on phones) and kept visible under Reduce Motion.
+- Footer is just "Good hunting, stay safe." over an animated ocean floor at the page bottom.
+
 ## v1.2.0 - 2026-10-31
 - Menu button (three bars, top right) opens a modal with Settings and About tabs.
 - Settings: Dark Mode (follows device until changed), Hero Scene, Animations, Remember Last Search, Search After Using My Location, Default Units, Default Dive Window, Reset All Settings.

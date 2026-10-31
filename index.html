@@ -27,7 +27,7 @@ html[data-theme=dark]{color-scheme:dark;--ink:#e4f1f5;--mut:#9db6c0;--bg:#0b1a24
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 a,button,input,select,summary{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 body{margin:0;font:15px/1.5 "Avenir Next","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;color:var(--ink);
- background:linear-gradient(180deg,var(--bg0) 0,var(--bg) 280px,var(--bg2) 100%) fixed;-webkit-font-smoothing:antialiased}
+ background:linear-gradient(180deg,var(--bg0) 0,var(--bg) 280px,var(--bg2) 100%) fixed;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 :focus-visible{outline:3px solid #ffb703;outline-offset:2px;border-radius:6px}
 
 /* hero */
@@ -35,14 +35,13 @@ header.hero{position:relative;overflow:hidden;color:#fff;padding:calc(var(--s6) 
  background:radial-gradient(1200px 400px at 85% -10%,#12a3a0 0,transparent 60%),linear-gradient(160deg,#031c2b 0,var(--deep) 35%,#0a5f80 100%)}
 header.hero .in{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:flex;gap:var(--s4);align-items:center}
 header.hero .logo{flex:none;width:64px;height:64px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
-header.hero h1{margin:0;font-size:clamp(26px,4vw,38px);line-height:1.1;letter-spacing:-.02em;font-weight:800}
+header.hero h1{margin:0;font-size:clamp(16px,4.9vw,38px);white-space:nowrap;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 header.hero h1 span{color:#ffb703}
 header.hero p{margin:var(--s2) 0 0;max-width:62ch;color:#cfe8ee;font-size:14px}
 header.hero .scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
 header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:2}
 .bub{animation:rise 9s linear infinite;opacity:0}
-.bub:nth-child(2){animation-delay:2s;animation-duration:11s}.bub:nth-child(3){animation-delay:4s}.bub:nth-child(4){animation-delay:6s;animation-duration:12s}.bub:nth-child(5){animation-delay:1s;animation-duration:10s}
-@keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.55}100%{transform:translateY(-190px);opacity:0}}
+@keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.7}100%{transform:translateY(-190px);opacity:0}}
 .fish{animation:fishL 120s linear infinite}
 @keyframes fishL{0%,22.5%{transform:translateX(1500px)}44.2%,100%{transform:translateX(-170px)}}
 .shark{animation:sharkL 120s linear infinite}
@@ -95,14 +94,43 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .turtle .flip{transform-box:fill-box;transform-origin:0 0;animation:flap 2.6s ease-in-out infinite}
 .turtle .flip.b{animation-delay:-1.3s}
 @keyframes flap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(24deg)}}
-@media(prefers-reduced-motion:reduce){.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .kick,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
 
+/* tools, sites, strip, compare */
+.tools{margin-top:var(--s3);padding:var(--s3) var(--s4)}
+.trow{display:flex;gap:8px;flex-wrap:wrap}
+.cmpf{margin-top:var(--s3)}.cmpf[hidden]{display:none}
+.sites{display:flex;flex-wrap:wrap;gap:8px;margin-top:var(--s3);align-items:center}.sites[hidden]{display:none}
+.sites .lab{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
+.site{display:inline-flex;align-items:stretch;border:1.5px solid var(--fline);border-radius:99px;overflow:hidden;background:var(--field)}
+.site button{min-height:34px;border-radius:0;background:none;color:var(--ink);box-shadow:none;padding:4px 12px;font-weight:600;font-size:13px}
+.site button:hover{background:var(--sec)}
+.site button.x{padding:4px 10px;color:var(--mut);border-left:1px solid var(--rline)}
+.strip{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+button.day{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;background:var(--card);color:var(--ink);border:1.5px solid var(--line);box-shadow:var(--sh);width:auto;font-weight:600;border-radius:var(--r-md)}
+button.day:hover{background:var(--row)}
+button.day.top1{border-color:var(--g);box-shadow:0 0 0 2px var(--g),var(--sh)}
+button.day .dn{font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
+button.day .dl{font-size:34px;font-weight:900;line-height:1.1}
+button.day .ds{font-size:12px;color:var(--mut)}
+button.day .db{font-size:12px;font-weight:700}
+button.day .badge{font-size:10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#fff;background:var(--g);border-radius:99px;padding:1px 8px}
+@media(max-width:900px){.strip{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:minmax(104px,1fr);overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:6px}button.day{scroll-snap-align:start}}
+table.cmp{width:100%;border-collapse:separate;border-spacing:0 3px;font-size:13px}
+table.cmp th{font-size:12px;text-align:center;color:var(--ink);padding:4px 6px;vertical-align:bottom}
+table.cmp th:first-child{text-align:left}
+table.cmp td{background:var(--row);padding:7px 8px;text-align:center}
+table.cmp td:first-child{text-align:left;font-weight:700;border-radius:8px 0 0 8px;color:var(--mut)}
+table.cmp td:last-child{border-radius:0 8px 8px 0}
+table.cmp td.win{font-weight:800;box-shadow:inset 0 -3px 0 var(--g)}
+table.cmp .cl{font-size:34px;font-weight:900;line-height:1}
+.wrap{overflow-x:auto}
 /* theme, menu, modal, switches */
 .wave path{fill:var(--bg)}
 .needle{stroke:var(--needle)}.hub{fill:var(--needle)}
-.t-win{fill:var(--t-win)}.t-wint{fill:var(--t-wint)}.t-grid{stroke:var(--t-grid)}.t-tick{fill:var(--t-tick)}.t-line{stroke:var(--t-line)}.t-lbl{fill:var(--t-lbl)}.t-hi{fill:var(--t-hi)}.t-lo{fill:#e8a900}
+svg.tide{display:block;width:100%;max-width:760px;height:auto;margin:6px auto 0}.t-fill{fill:var(--t-line);opacity:.14}.t-win{fill:var(--t-win)}.t-wint{fill:var(--t-wint)}.t-grid{stroke:var(--t-grid)}.t-tick{fill:var(--t-tick)}.t-line{stroke:var(--t-line)}.t-lbl{fill:var(--t-lbl)}.t-hi{fill:var(--t-hi)}.t-lo{fill:#e8a900}
 html.no-scene header.hero .scene{display:none}
-header.hero .in{padding-right:56px}
+header.hero .in{padding-right:56px}header.hero .in>div{min-width:0}
 .menu-btn{position:absolute;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:5;width:44px;height:44px;min-height:44px;padding:0;border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);box-shadow:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .menu-btn:hover{background:rgba(255,255,255,.26)}
 .menu-btn i{display:block;width:22px;height:2.5px;border-radius:2px;background:#fff}
@@ -155,11 +183,11 @@ button.ghost:hover{background:var(--sec-h)}
 .btns{display:flex;gap:6px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tw table.h{min-width:560px}
-.grade button{margin-top:10px}
+.grade button{margin-top:10px}.gbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.gbtns button{margin-top:10px}
 input,select{font-size:16px}
 @media(prefers-reduced-motion:reduce){.top>.card,.two>.card,#out>h2,#out>.card,.gcard,.grade .letter,.needle,#status.busy::before{animation:none!important}}
 
-main{max-width:1180px;margin:-44px auto 0;padding:0 var(--s4) var(--s6);position:relative;z-index:3}
+main{width:100%;max-width:1180px;margin:-44px auto 0;padding:0 var(--s4) var(--s6);position:relative;z-index:3;flex:1 0 auto}
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s4) var(--s5);box-shadow:var(--sh)}
 
 /* form */
@@ -187,6 +215,14 @@ button:disabled{opacity:.6;cursor:wait}
 .grade::before{content:"CATCH RATING";display:block;font-size:11px;font-weight:800;letter-spacing:.14em;color:var(--ocean);margin-bottom:2px}
 .grade .letter{font-size:104px;font-weight:900;line-height:1;margin:2px 0 6px;letter-spacing:-.04em;text-shadow:0 2px 0 rgba(5,39,58,.08)}
 .grade .sub{font-size:12.5px;color:var(--mut)}
+.chips{display:grid;grid-template-columns:repeat(var(--cols,4),1fr);gap:10px}
+.chips .pill{text-align:center;padding:5px 8px}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.fact{background:var(--row);border:1px solid var(--rline);border-radius:var(--r-md);padding:8px 12px}
+.fact small{display:block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
+.fact b{display:block;font-size:15px;margin-top:1px}
+.fact span{display:block;font-size:12px;color:var(--mut)}
+@media(max-width:520px){.chips{grid-template-columns:repeat(2,1fr)!important}.facts{grid-template-columns:1fr}}
 .pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12px;font-weight:700;color:#fff;letter-spacing:.01em}
 .bg-g{background:var(--g)}.bg-y{background:var(--y);color:#2a1d00}.bg-r{background:var(--r)}.bg-n{background:#6f8591}
 .tc-g{color:var(--gt)}.tc-y{color:var(--tcy)}.tc-r{color:var(--errc)}.tc-n{color:#6f8591}
@@ -225,7 +261,7 @@ table.h th{background:transparent;color:var(--mut);font-weight:800;font-size:11p
 table.h td{background:var(--row);font-variant-numeric:tabular-nums}
 table.h td:first-child{border-radius:8px 0 0 8px;font-weight:700;text-align:left}table.h td:last-child{border-radius:0 8px 8px 0}
 td.sg{background:var(--sg)!important}td.sy{background:var(--sy)!important}td.sr{background:var(--sr)!important}td.sn{background:var(--sn)!important;color:var(--snt)}
-tr.best td:first-child{box-shadow:inset 5px 0 0 var(--spear)}
+tr.best td:first-child{box-shadow:inset 5px 0 0 var(--g)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:var(--s4)}
 ul.cites{margin:0;padding-left:20px;font-size:13px}ul.cites li{margin:5px 0}
 a{color:var(--ocean);text-underline-offset:2px}a:hover{color:var(--spear)}
@@ -233,12 +269,28 @@ a{color:var(--ocean);text-underline-offset:2px}a:hover{color:var(--spear)}
 .diag td{font-size:12px;padding:3px 8px;border-bottom:1px solid var(--rline);word-break:break-word}
 
 /* footer */
-footer{max-width:1180px;margin:0 auto;padding:var(--s5) var(--s4) calc(var(--s6) + env(safe-area-inset-bottom));text-align:center;color:var(--mut);font-size:12.5px}
-footer b{color:var(--head)}
+footer.floor{position:relative;flex:none;margin-top:auto;height:230px;overflow:hidden;background:linear-gradient(180deg,transparent 0,#0b6a8a 70px,#04283a 100%);color:#e8f6f8}
+footer.floor .fmsg{position:absolute;left:0;right:0;top:46px;margin:0;text-align:center;font-size:15px;font-weight:700;letter-spacing:.02em;text-shadow:0 1px 3px rgba(0,0,0,.45);z-index:2}
+footer.floor .fscene{position:absolute;left:0;bottom:0;width:100%;height:170px;pointer-events:none}
+footer.floor .sand1{fill:#d9b877}footer.floor .sand2{fill:#c19a55}footer.floor .sand3{fill:#a98342}
+html[data-theme=dark] footer.floor .sand1{fill:#7a6a46}html[data-theme=dark] footer.floor .sand2{fill:#625436}html[data-theme=dark] footer.floor .sand3{fill:#4a3f28}
+.sw{transform-box:fill-box;transform-origin:50% 100%;animation:sway 4s ease-in-out infinite alternate}
+@keyframes sway{from{transform:rotate(-7deg)}to{transform:rotate(7deg)}}
+.fb{animation:fbub 5s linear infinite;opacity:0}
+@keyframes fbub{0%{transform:translate(0,0);opacity:0}15%{opacity:.7}100%{transform:translate(6px,-110px);opacity:0}}
+.sch{animation:schl 50s linear infinite}
+@keyframes schl{from{transform:translateX(1300px)}to{transform:translateX(-160px)}}
+.sfin{transform-box:fill-box;transform-origin:0 50%;animation:finw .5s ease-in-out infinite alternate}
+@keyframes finw{from{transform:scaleX(.7)}to{transform:scaleX(1.1)}}
+.pulse{transform-box:fill-box;transform-origin:50% 100%;animation:cpulse 3.5s ease-in-out infinite alternate}
+@keyframes cpulse{from{transform:scale(1,.96)}to{transform:scale(1.03,1.03)}}
+html.no-scene footer.floor{height:96px}html.no-scene footer.floor .fscene{display:none}html.no-scene footer.floor .fmsg{top:34px}
 
 @media(max-width:900px){form.inputs{grid-template-columns:1fr 1fr}.top,.two{grid-template-columns:1fr}header.hero .logo{width:48px;height:48px}.grade .letter{font-size:88px}}
 @media(max-width:520px){main{padding:0 var(--s3) var(--s5)}.card{padding:var(--s3) var(--s4)}form.inputs{grid-template-columns:1fr 1fr}form.inputs>div:nth-child(-n+2),form.inputs>div:nth-child(5),form.inputs>div:last-child{grid-column:1/-1}.btns button{flex:1}}
-@media print{header.hero .scene,header.hero .wave,button{display:none}body{background:#fff}.card{box-shadow:none}}
+@media print{header.hero .scene,header.hero .wave,footer.floor .fscene,button{display:none}body{background:#fff}.card{box-shadow:none}}
+@media(prefers-reduced-motion:reduce){.bub{opacity:.45!important}.fb{opacity:.45!important}.corgi .cbub circle{opacity:.6!important}}
+html.no-anim .sw,html.no-anim .fb,html.no-anim .sch,html.no-anim .sfin,html.no-anim .pulse{animation:none!important}html.no-anim .fb{opacity:.45}
 </style>
 </head>
 <body>
@@ -247,7 +299,7 @@ footer b{color:var(--head)}
 <svg class="scene" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
  <defs><linearGradient id="ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
  <polygon points="760,0 820,0 700,220 560,220" fill="url(#ray)"/><polygon points="940,0 1000,0 930,220 820,220" fill="url(#ray)"/>
- <g fill="none" stroke="#9fe3e6" stroke-width="2"><circle class="bub" cx="860" cy="200" r="5"/><circle class="bub" cx="900" cy="210" r="8"/><circle class="bub" cx="1010" cy="205" r="4"/><circle class="bub" cx="1080" cy="215" r="7"/><circle class="bub" cx="780" cy="215" r="3"/></g>
+ <g fill="none" stroke="#9fe3e6" stroke-width="2"><circle class="bub" cx="420" cy="199" r="4" style="animation-duration:8s;animation-delay:-3.2s"/><circle class="bub" cx="455" cy="216" r="2.5" style="animation-duration:11s;animation-delay:-1.0s"/><circle class="bub" cx="490" cy="200" r="2.5" style="animation-duration:11s;animation-delay:-2.4s"/><circle class="bub" cx="520" cy="200" r="5" style="animation-duration:10s;animation-delay:-0.7s"/><circle class="bub" cx="552" cy="216" r="6" style="animation-duration:10s;animation-delay:-0.6s"/><circle class="bub" cx="585" cy="216" r="2.5" style="animation-duration:8s;animation-delay:-5.0s"/><circle class="bub" cx="615" cy="199" r="2.5" style="animation-duration:11s;animation-delay:-6.4s"/><circle class="bub" cx="648" cy="202" r="3" style="animation-duration:7s;animation-delay:-3.9s"/><circle class="bub" cx="680" cy="201" r="4" style="animation-duration:10s;animation-delay:-1.4s"/><circle class="bub" cx="712" cy="203" r="6" style="animation-duration:9s;animation-delay:-5.0s"/><circle class="bub" cx="745" cy="204" r="2.5" style="animation-duration:11s;animation-delay:-6.3s"/><circle class="bub" cx="780" cy="200" r="4" style="animation-duration:7s;animation-delay:-3.8s"/><circle class="bub" cx="860" cy="213" r="6" style="animation-duration:7s;animation-delay:-4.3s"/><circle class="bub" cx="900" cy="208" r="7" style="animation-duration:11s;animation-delay:-4.7s"/><circle class="bub" cx="1010" cy="209" r="5" style="animation-duration:11s;animation-delay:-10.2s"/><circle class="bub" cx="1080" cy="205" r="4" style="animation-duration:8s;animation-delay:-6.4s"/><circle class="bub" cx="300" cy="213" r="2.5" style="animation-duration:11s;animation-delay:-3.3s"/><circle class="bub" cx="200" cy="200" r="4" style="animation-duration:12s;animation-delay:-5.4s"/><circle class="bub" cx="120" cy="208" r="2.5" style="animation-duration:11s;animation-delay:-4.6s"/></g>
 <g class="crab"><g transform="translate(0,134)"><g class="hop">
   <g class="leg" ><path d="M-20 8L-34 16L-38 28" stroke="#b83e2b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
   <g class="leg b"><path d="M-14 11L-24 22L-26 32" stroke="#b83e2b" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/></g>
@@ -335,12 +387,34 @@ footer b{color:var(--head)}
 <div><label for="units">Units</label><select id="units"><option value="imperial">Imperial (ft, &deg;F, mph)</option><option value="metric">Metric (m, &deg;C, kn)</option></select></div>
 <div class="btns"><button id="go" type="submit">Check the Water</button><button id="wk" type="button">Weekend Outlook</button></div>
 </form>
+<div class="card tools" id="tools">
+ <div class="trow"><button id="d7" type="button" class="sec">7-Day Outlook</button><button id="cmp" type="button" class="sec" aria-expanded="false" aria-controls="cmpForm">Compare Sites</button></div>
+ <form id="cmpForm" class="cmpf" hidden autocomplete="off"><label for="place2">Compare With (Place Or Lat, Lon)</label><div class="loc"><input id="place2" placeholder="e.g. Catalina Island, CA" enterkeyhint="search"><button id="cmpGo" type="submit">Compare</button></div><div class="hint" style="margin-top:6px">Compares this site with the one above for the date and dive window selected.</div></form>
+ <div id="sites" class="sites" hidden></div>
+</div>
 <div class="hint">Forecast data covers about 16 days ahead; past dates use model hindcasts, and tide/water-temp observations come from NOAA (US stations only). Times are local to the site.</div>
 <div id="candBox"></div>
 <div id="status" role="status" aria-live="polite"></div>
 <div id="out"></div>
 </main>
-<footer><b>Good hunting, stay safe.</b> Never dive alone, always fly a dive flag, and check local spearfishing rules and regulations. This report is a planning aid, not a safety clearance.</footer>
+<footer class="floor">
+<p class="fmsg"><b>Good hunting, stay safe.</b></p>
+<svg class="fscene" viewBox="0 0 1200 170" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+ <path class="sand3" d="M0 135C140 118 280 146 460 130S800 112 980 136 1140 126 1200 130V170H0Z"/>
+ <path class="sand2" d="M0 146C180 128 320 154 520 140S860 124 1040 146 1160 140 1200 142V170H0Z"/>
+ <path class="sand1" d="M0 156C200 142 360 164 560 152S900 140 1100 158 1170 154 1200 156V170H0Z"/>
+ <ellipse cx="240" cy="148" rx="26" ry="14" fill="#6b7a82"/><ellipse cx="268" cy="152" rx="16" ry="9" fill="#7d8c94"/><ellipse cx="930" cy="146" rx="30" ry="15" fill="#6b7a82"/><ellipse cx="905" cy="152" rx="14" ry="8" fill="#7d8c94"/>
+ <g transform="translate(60,150)"><path class="sw" style="animation-delay:-2.3s;animation-duration:3.7s" d="M0 0C-10 -27 10 -58 0 -90" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(75,150)"><path class="sw" style="animation-delay:-1.2s;animation-duration:4.2s" d="M0 0C-10 -34 10 -74 0 -115" stroke="#238a5a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(150,150)"><path class="sw" style="animation-delay:-0.3s;animation-duration:3.5s" d="M0 0C10 -24 -10 -52 0 -80" stroke="#3bb27a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(330,150)"><path class="sw" style="animation-delay:-2.3s;animation-duration:4.1s" d="M0 0C10 -30 -10 -65 0 -100" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(345,150)"><path class="sw" style="animation-delay:-1.4s;animation-duration:4.3s" d="M0 0C10 -22 -10 -48 0 -75" stroke="#3bb27a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(410,150)"><path class="sw" style="animation-delay:-2.5s;animation-duration:4.7s" d="M0 0C-10 -28 10 -61 0 -95" stroke="#238a5a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(425,150)"><path class="sw" style="animation-delay:-1.4s;animation-duration:4.3s" d="M0 0C-10 -36 10 -78 0 -120" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(470,150)"><path class="sw" style="animation-delay:-2.8s;animation-duration:3.6s" d="M0 0C-10 -21 10 -45 0 -70" stroke="#3bb27a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(730,150)"><path class="sw" style="animation-delay:-2.9s;animation-duration:3.9s" d="M0 0C10 -31 -10 -68 0 -105" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(748,150)"><path class="sw" style="animation-delay:-0.8s;animation-duration:4.4s" d="M0 0C10 -24 -10 -52 0 -80" stroke="#238a5a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(790,150)"><path class="sw" style="animation-delay:-0.2s;animation-duration:4.5s" d="M0 0C10 -34 -10 -74 0 -115" stroke="#3bb27a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(805,150)"><path class="sw" style="animation-delay:-1.3s;animation-duration:4.8s" d="M0 0C-10 -25 10 -55 0 -85" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(1000,150)"><path class="sw" style="animation-delay:-2.7s;animation-duration:4.0s" d="M0 0C-10 -28 10 -61 0 -95" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(1015,150)"><path class="sw" style="animation-delay:-2.2s;animation-duration:4.6s" d="M0 0C10 -36 -10 -78 0 -120" stroke="#238a5a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(1100,150)"><path class="sw" style="animation-delay:-0.4s;animation-duration:4.0s" d="M0 0C10 -25 -10 -55 0 -85" stroke="#3bb27a" stroke-width="6" fill="none" stroke-linecap="round"/></g><g transform="translate(1130,150)"><path class="sw" style="animation-delay:-1.8s;animation-duration:4.1s" d="M0 0C10 -31 -10 -68 0 -105" stroke="#2f9e6b" stroke-width="6" fill="none" stroke-linecap="round"/></g>
+ <g transform="translate(560,150)"><path class="pulse" style="animation-delay:-1s" d="M0 0V-26M0 -14L-12 -30M0 -18L12 -34M-12 -30L-14 -42M12 -34L16 -46M-12 -30L-6 -42" stroke="#ff7a8a" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+ <g transform="translate(640,152)"><path class="pulse" d="M0 0V-20M0 -10L-10 -24M0 -14L10 -26" stroke="#ffa34d" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+ <g transform="translate(860,150)"><path class="pulse" style="animation-delay:-2s" d="M0 0V-24M0 -12L-11 -28M0 -16L11 -32M-11 -28L-13 -38M11 -32L15 -42" stroke="#ff7a8a" stroke-width="5" stroke-linecap="round" fill="none"/></g>
+ <g transform="translate(500,154) rotate(-14)"><path d="M0 -9L2.5 -3L9 -3L4 1L6 8L0 4L-6 8L-4 1L-9 -3L-2.5 -3Z" fill="#f08a3c"/></g>
+ <g transform="translate(700,158) rotate(20)"><path d="M0 -7L2 -2L7 -2L3 1L5 6L0 3L-5 6L-3 1L-7 -2L-2 -2Z" fill="#ffb703"/></g>
+ <path d="M770 156c4-8 14-8 18 0z" fill="#f3e3c6"/><path d="M300 158c4-7 12-7 16 0z" fill="#f3e3c6"/>
+ <g fill="none" stroke="#bfeff2" stroke-width="1.6"><circle class="fb" cx="600" cy="150" r="3" style="animation-delay:0s"/><circle class="fb" cx="604" cy="150" r="2.2" style="animation-delay:-1.2s"/><circle class="fb" cx="598" cy="150" r="3.6" style="animation-delay:-2.4s"/><circle class="fb" cx="602" cy="150" r="2" style="animation-delay:-3.6s"/><circle class="fb" cx="884" cy="146" r="2.6" style="animation-delay:-.6s;animation-duration:6s"/><circle class="fb" cx="888" cy="146" r="3.2" style="animation-delay:-3s;animation-duration:6s"/><circle class="fb" cx="200" cy="148" r="2.6" style="animation-delay:-1.8s;animation-duration:6s"/></g>
+ <g transform="translate(0,52)"><g class="sch"><g fill="#7fd6d9"><path d="M0 0c8-8 20-8 28 0c-8 8-20 8-28 0z"/><path class="sfin" d="M28 0l8-6v12z"/></g><g fill="#7fd6d9" transform="translate(-34,14)"><path d="M0 0c8-8 20-8 28 0c-8 8-20 8-28 0z"/><path class="sfin" d="M28 0l8-6v12z"/></g><g fill="#7fd6d9" transform="translate(-60,-12)"><path d="M0 0c8-8 20-8 28 0c-8 8-20 8-28 0z"/><path class="sfin" d="M28 0l8-6v12z"/></g></g></g>
+</svg>
+</footer>
 
 <div id="modal" class="modal" hidden>
 <div class="mback"></div>
@@ -349,7 +423,7 @@ footer b{color:var(--head)}
  <div class="tabs" role="tablist"><button role="tab" id="tab-set" aria-controls="pane-set" aria-selected="true" type="button">Settings</button><button role="tab" id="tab-about" aria-controls="pane-about" aria-selected="false" tabindex="-1" type="button">About</button></div>
  <div class="pane" id="pane-set" role="tabpanel" aria-labelledby="tab-set">
   <label class="srow"><span><b>Dark Mode</b><small>Follows your device until you change it here.</small></span><span class="sw"><input type="checkbox" id="s-dark" role="switch"><i></i></span></label>
-  <label class="srow"><span><b>Hero Scene</b><small>The animated underwater scene in the header.</small></span><span class="sw"><input type="checkbox" id="s-scene" role="switch"><i></i></span></label>
+  <label class="srow"><span><b>Hero Scene</b><small>The animated underwater scene in the header and ocean floor.</small></span><span class="sw"><input type="checkbox" id="s-scene" role="switch"><i></i></span></label>
   <label class="srow"><span><b>Gauge &amp; Card Animations</b><small>Needle sweeps and fade-ins. Turn off to save battery.</small></span><span class="sw"><input type="checkbox" id="s-anim" role="switch"><i></i></span></label>
   <label class="srow"><span><b>Remember Last Search</b><small>Pre-fills your last place, hours and units next time.</small></span><span class="sw"><input type="checkbox" id="s-remember" role="switch"><i></i></span></label>
   <label class="srow"><span><b>Search After Using My Location</b><small>Runs the report as soon as the pin finds you.</small></span><span class="sw"><input type="checkbox" id="s-auto" role="switch"><i></i></span></label>
@@ -414,6 +488,8 @@ function circMean(a){a=a.filter(ok);if(!a.length)return null;let x=0,y=0;a.forEa
 
 /* ---------- units ---------- */
 let UNITS='imperial';
+let SITES=[];try{SITES=JSON.parse(localStorage.getItem('dive-sites')||'[]').filter(s=>s&&s.name&&isFinite(s.lat)&&isFinite(s.lon))}catch(e){}
+
 const fmtPrecip=mm=>UNITS==='imperial'?(mm/25.4).toFixed(2)+' in':mm.toFixed(1)+' mm';
 const WMO={0:['\u2600\uFE0F','Clear'],1:['\uD83C\uDF24\uFE0F','Mainly clear'],2:['\u26C5','Partly cloudy'],3:['\u2601\uFE0F','Overcast'],45:['\uD83C\uDF2B\uFE0F','Fog'],48:['\uD83C\uDF2B\uFE0F','Freezing fog'],51:['\uD83C\uDF26\uFE0F','Light drizzle'],53:['\uD83C\uDF26\uFE0F','Drizzle'],55:['\uD83C\uDF26\uFE0F','Heavy drizzle'],56:['\uD83C\uDF27\uFE0F','Freezing drizzle'],57:['\uD83C\uDF27\uFE0F','Freezing drizzle'],61:['\uD83C\uDF27\uFE0F','Light rain'],63:['\uD83C\uDF27\uFE0F','Rain'],65:['\uD83C\uDF27\uFE0F','Heavy rain'],66:['\uD83C\uDF27\uFE0F','Freezing rain'],67:['\uD83C\uDF27\uFE0F','Freezing rain'],71:['\uD83C\uDF28\uFE0F','Light snow'],73:['\uD83C\uDF28\uFE0F','Snow'],75:['\uD83C\uDF28\uFE0F','Heavy snow'],77:['\uD83C\uDF28\uFE0F','Snow grains'],80:['\uD83C\uDF26\uFE0F','Light showers'],81:['\uD83C\uDF27\uFE0F','Showers'],82:['\u26C8\uFE0F','Violent showers'],85:['\uD83C\uDF28\uFE0F','Snow showers'],86:['\uD83C\uDF28\uFE0F','Heavy snow showers'],95:['\u26C8\uFE0F','Thunderstorm'],96:['\u26C8\uFE0F','Thunderstorm, hail'],99:['\u26C8\uFE0F','Severe thunderstorm, hail']};
 const codeInfo=c=>WMO[c]||['','Weather code '+c];
@@ -442,9 +518,12 @@ function haversine(a,b,c,d){const R=6371,r=Math.PI/180,x=(c-a)*r,y=(d-b)*r;const
 
 const US_ST={alabama:'al',alaska:'ak',arizona:'az',arkansas:'ar',california:'ca',colorado:'co',connecticut:'ct',delaware:'de',florida:'fl',georgia:'ga',hawaii:'hi',idaho:'id',illinois:'il',indiana:'in',iowa:'ia',kansas:'ks',kentucky:'ky',louisiana:'la',maine:'me',maryland:'md',massachusetts:'ma',michigan:'mi',minnesota:'mn',mississippi:'ms',missouri:'mo',montana:'mt',nebraska:'ne',nevada:'nv','new hampshire':'nh','new jersey':'nj','new mexico':'nm','new york':'ny','north carolina':'nc','north dakota':'nd',ohio:'oh',oklahoma:'ok',oregon:'or',pennsylvania:'pa','rhode island':'ri','south carolina':'sc','south dakota':'sd',tennessee:'tn',texas:'tx',utah:'ut',vermont:'vt',virginia:'va',washington:'wa','west virginia':'wv',wisconsin:'wi',wyoming:'wy','puerto rico':'pr'};
 async function geocodeAll(q){
+ const sv=SITES.find(s=>s.name.toLowerCase()===q.trim().toLowerCase());
+ if(sv)return[{name:sv.name,lat:sv.lat,lon:sv.lon,src:'saved site'}];
  const m=q.match(/^\s*(-?\d+(?:\.\d+)?)\s*[, ]\s*(-?\d+(?:\.\d+)?)\s*$/);
  if(m){
   const lat=+m[1],lon=+m[2],cs=`${lat.toFixed(4)}, ${lon.toFixed(4)}`;
+  const hit=SITES.find(s=>Math.abs(s.lat-lat)<5e-5&&Math.abs(s.lon-lon)<5e-5);if(hit)return[{name:hit.name,lat,lon,src:'saved site'}];
   const rv=await getJSON('Geocoding: Reverse Lookup (OpenStreetMap Nominatim)',`https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2&zoom=10&addressdetails=1`);
   const a=(rv&&rv.address)||{},city=a.city||a.town||a.village||a.hamlet||a.municipality||a.suburb||a.county;
   const nm=[city,a.state||a.region,a.country].filter(Boolean).join(', ');
@@ -472,10 +551,11 @@ async function geocodeAll(q){
  return ded;
 }
 let GEO={q:null,cands:[],idx:0},LASTMODE='day';
+function rerun(){LASTMODE==='week'?weekend():LASTMODE==='days'?weekAhead():$('f').requestSubmit()}
 async function geocode(q){
  if(GEO.q!==q||!GEO.cands.length){GEO={q,cands:await geocodeAll(q),idx:0}}
  const box=$('candBox');
- if(box)box.innerHTML=GEO.cands.length>1?`<div class="hint">Matched Place: <select style="width:auto;max-width:100%" onchange="GEO.idx=+this.value;(LASTMODE==='week'?weekend():$('f').requestSubmit())">${GEO.cands.map((c,i)=>`<option value="${i}" ${i===GEO.idx?'selected':''}>${esc(c.name)} (${c.lat.toFixed(3)}, ${c.lon.toFixed(3)})</option>`).join('')}</select> &ndash; pick another if this is the wrong place.</div>`:'';
+ if(box)box.innerHTML=GEO.cands.length>1?`<div class="hint">Matched Place: <select style="width:auto;max-width:100%" onchange="GEO.idx=+this.value;rerun()">${GEO.cands.map((c,i)=>`<option value="${i}" ${i===GEO.idx?'selected':''}>${esc(c.name)} (${c.lat.toFixed(3)}, ${c.lon.toFixed(3)})</option>`).join('')}</select> &ndash; pick another if this is the wrong place.</div>`:'';
  return GEO.cands[GEO.idx];
 }
 
@@ -724,10 +804,10 @@ function render(R,C,h0,h1){
  let h=`<div class="top"><div class="card grade"><div class="sub">Overall Dive Conditions</div><div class="letter tc-${gradeColor}">${L}</div>
  <span class="pill bg-${gradeColor}">${o==null?'No data':Math.round(o)+' / 100'}</span>
  <div class="sub" style="margin-top:8px">${placeLine(R.place)}${R.date} &middot; ${h0}:00–${h1}:00 local${R.tz?' ('+esc(R.tz)+')':''}</div>
- ${sunLine(R,h0,h1)}
+
  <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
- <button class="sec" type="button" id="share">Share Report</button></div>
- <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C)}</div>
+ <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
+ <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C,R,h0,h1)}</div>
  ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No Grade Given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
  ${C.missing.length?`<div class="warn">No data for: ${C.missing.map(esc).join(', ')}. These are excluded from the grade, not guessed.</div>`:''}
@@ -772,12 +852,6 @@ function placeLine(p){
  const cs=p.lat.toFixed(4)+', '+p.lon.toFixed(4);
  return p.name===cs?`<b>${cs}</b><br>`:`<b>${esc(p.name)}</b><br>${cs}<br>`;
 }
-function sunLine(R,h0,h1){
- if(!R.sun)return'<div class="sub" style="margin-top:6px">Sunrise/sunset: no data</div>';
- const m=t=>+t.slice(0,2)*60+ +t.slice(3,5);
- const out=h0*60<m(R.sun.rise)||(h1+1)*60>m(R.sun.set);
- return`<div class="sub" style="margin-top:6px">☀️ Sunrise <b>${R.sun.rise}</b> &middot; Sunset <b>${R.sun.set}</b>${out?'<br><span class="tc-y">Dive window extends outside daylight</span>':''}<br><span style="font-size:11px">Open-Meteo</span></div>`;
-}
 
 /* ---------- weekend outlook ---------- */
 function nextWeekend(){
@@ -821,7 +895,7 @@ async function weekend(){
  setBusy(false);
 }
 function setBusy(on){
- $('go').disabled=$('wk').disabled=$('loc').disabled=on;
+ $('go').disabled=$('wk').disabled=$('loc').disabled=$('d7').disabled=$('cmpGo').disabled=on;
  $('status').classList.toggle('busy',on);
  $('go').textContent=on?'Checking…':'Check the Water';
 }
@@ -837,7 +911,12 @@ function shareText(R,C,h0,h1){
  if(C.best)ln.push(`Best window ${C.best.start}:00-${C.best.start+3}:00`);
  return ln.join('\n');
 }
+$('out').addEventListener('click',ev=>{
+ const b=ev.target.closest('[data-open-site]');if(!b||!CMP)return;
+ const p=CMP[+b.dataset.openSite];$('place').value=p.name;GEO={q:p.name,cands:[p],idx:0};$('f').requestSubmit();
+});
 $('out').addEventListener('click',async ev=>{
+ if(ev.target.id==='save'&&CTX){toggleSite(CTX.R.place);ev.target.textContent=isSaved(CTX.R.place)?'★ Saved':'☆ Save Site';return}
  if(ev.target.id!=='share'||!CTX)return;
  const text=shareText(CTX.R,compute(CTX.R,CTX.h0,CTX.h1),CTX.h0,CTX.h1),btn=ev.target;
  try{
@@ -858,32 +937,59 @@ function readInputs(){
  let h0=Math.max(0,Math.min(23,parseInt($('h0').value,10)||8)),h1=Math.max(0,Math.min(23,parseInt($('h1').value,10)||14));if(h1<h0)[h0,h1]=[h1,h0];
  return[$('place').value.trim(),$('units').value,h0,h1];
 }
-function summary(C){
+function fmtHr(h){const hh=Math.floor(h),mi=Math.round((h-hh)*60);return String(mi===60?hh+1:hh).padStart(2,'0')+':'+String(mi===60?0:mi).padStart(2,'0')}
+function tideWindow(R,C,h0,h1){
+ const T=C.M.tide;if(!T.events||!T.events.length)return null;
+ const m=t=>(+t.slice(0,2)*60+ +t.slice(3,5))/60;
+ const lo=Math.max(h0,R.sun?m(R.sun.rise):0),hi=Math.min(h1+1,R.sun?m(R.sun.set):24);
+ let best=null;
+ T.events.forEach(e=>{
+  const a=Math.max(lo,e.hr-1),b=Math.min(hi,e.hr+1);if(b-a<.5)return;
+  const sc=[];for(let i=Math.floor(a);i<Math.ceil(b);i++)if(ok(C.H.score[i]))sc.push(C.H.score[i]);
+  const s=sc.length?sc.reduce((x,y)=>x+y,0)/sc.length:null;
+  if(!best||(s!=null&&(best.score==null||s>best.score)))best={ev:e,a,b,score:s};
+ });
+ return best;
+}
+function summary(C,R,h0,h1){
  const{M}=C,bits=[];const f=(k,t)=>M[k].score!=null&&bits.push(`<span class="pill bg-${band(M[k].score)}">${t}</span>`);
  f('weather','Weather');f('wind','Wind');f('gust','Gusts');f('hs','Sea State');f('swell','Swell');f('tide','Tide');f('sst','Temp');f('cur','Current');
- let t=bits.join(' ');
- if(C.best)t+=`<div style="margin-top:8px">Best 3-hour window by wind/waves/swell: <b>${C.best.start}:00–${C.best.start+3}:00</b> (score ${Math.round(C.best.score)}).</div>`;
+ const n=bits.length,cols=n<=4?Math.max(n,1):n%4===0?4:n%3===0?3:4;
+ let t=n?`<div class="chips" style="--cols:${cols}">${bits.join('')}</div>`:'';
+ if(n){
+  const fact=(k,v,s)=>`<div class="fact"><small>${k}</small><b>${v}</b>${s?`<span>${s}</span>`:''}</div>`;
+  const tw=tideWindow(R,C,h0,h1);
+  const out=R.sun&&(h0*60<+R.sun.rise.slice(0,2)*60+ +R.sun.rise.slice(3,5)||(h1+1)*60>+R.sun.set.slice(0,2)*60+ +R.sun.set.slice(3,5));
+  t+=`<div class="facts">`+
+   fact('Best 3-Hour Window',C.best?`${C.best.start}:00–${C.best.start+3}:00`:'No data',C.best?`Wind, waves and swell score ${Math.round(C.best.score)}`:'')+
+   fact('Slack-Tide Window',tw?`${fmtHr(tw.a)}–${fmtHr(tw.b)}`:'No tide data',tw?`Around ${tw.ev.type==='H'?'high':'low'} tide at ${fmtHr(tw.ev.hr)}${tw.score!=null?', hourly score '+Math.round(tw.score):''}`:'Needs NOAA tide predictions')+
+   fact('Sunrise',R.sun?R.sun.rise:'No data','Open-Meteo')+
+   fact('Sunset',R.sun?R.sun.set:'No data',out?'<span class="tc-y">Dive window runs outside daylight</span>':'')+`</div>`;
+ }
  if(C.thunder)t+=`<div class="warn tc-r">At least one model forecasts thunderstorms during the dive window.</div>`;
  return t||'No usable data was returned for this location and date.';
 }
 
 function tidePanel(R,C,h0,h1){
  const T=C.M.tide;if(!T.events||!T.events.length)return`<h2>Tides</h2><div class="card">No tide data available for this location (NOAA predictions cover US stations within 60 km; the model sea-level series was also empty).</div>`;
- const ev=T.events.slice().sort((a,b)=>a.hr-b.hr);const hs=ev.map(e=>e.h),mn=Math.min(...hs),mx=Math.max(...hs),pad=(mx-mn||1)*.15;
- const W_=640,H_=170,X=h=>40+h/24*(W_-60),Y=v=>10+(1-(v-(mn-pad))/((mx-mn)+2*pad))*(H_-40);
- let path='';
- for(let i=0;i<ev.length-1;i++){const a=ev[i],b=ev[i+1];for(let k=0;k<=24;k++){const f=k/24,h=a.hr+(b.hr-a.hr)*f,v=a.h+(b.h-a.h)*(1-Math.cos(Math.PI*f))/2;path+=(path?'L':'M')+X(h).toFixed(1)+' '+Y(v).toFixed(1)}}
- let svg=`<svg viewBox="0 0 ${W_} ${H_}" style="width:100%"><rect class="t-win" x="${X(h0)}" y="10" width="${X(h1+1)-X(h0)}" height="${H_-40}" fill="#cfe8f7"/><text class="t-wint" x="${X(h0)+4}" y="24" font-size="11" fill="#0b5c8a">Dive Window</text>`;
- for(let h=0;h<=24;h+=3)svg+=`<text class="t-tick" x="${X(h)}" y="${H_-8}" font-size="11" text-anchor="middle" fill="#5d6b78">${h}:00</text><line class="t-grid" x1="${X(h)}" x2="${X(h)}" y1="10" y2="${H_-30}" stroke="#e5ebf0"/>`;
- svg+=`<path class="t-line" d="${path}" fill="none" stroke="#0b7ab0" stroke-width="2.5"/>`;
- ev.forEach(e=>{svg+=`<circle class="${e.type==='H'?'t-hi':'t-lo'}" cx="${X(e.hr)}" cy="${Y(e.h)}" r="4" fill="${e.type==='H'?'#0b5c8a':'#e8a900'}"/><text class="t-lbl" x="${X(e.hr)}" y="${Y(e.h)+(e.type==='H'?-8:16)}" font-size="11" text-anchor="middle" fill="#13202b">${e.type==='H'?'High':'Low'} ${fmtLen(e.h).join(' ')}</text>`});
+ const ev=T.events.slice().sort((a,b)=>a.hr-b.hr);const hs=ev.map(e=>e.h),mn=Math.min(...hs),mx=Math.max(...hs),pad=(mx-mn||1)*.22;
+ const W_=480,H_=320,L_=14,R_=14,X=h=>L_+h/24*(W_-L_-R_),Y=v=>76+(1-(v-(mn-pad))/((mx-mn)+2*pad))*(H_-76-44-44);
+ let path='',area='';
+ for(let i=0;i<ev.length-1;i++){const a=ev[i],b=ev[i+1];for(let k=0;k<=24;k++){const f=k/24,hh=a.hr+(b.hr-a.hr)*f,v=a.h+(b.h-a.h)*(1-Math.cos(Math.PI*f))/2;path+=(path?'L':'M')+X(hh).toFixed(1)+' '+Y(v).toFixed(1)}}
+ const fx=ev[0],lx=ev[ev.length-1];
+ area=path+`L${X(lx.hr).toFixed(1)} ${H_-44}L${X(fx.hr).toFixed(1)} ${H_-44}Z`;
+ const tw=tideWindow(R,C,h0,h1);
+ let svg=`<svg class="tide" viewBox="0 0 ${W_} ${H_}" role="img" aria-label="Tide curve with highs and lows and your dive window"><rect class="t-win" x="${X(h0)}" y="26" width="${X(h1+1)-X(h0)}" height="${H_-70}" rx="4"/><text class="t-wint" x="${X(h0)+6}" y="42" font-size="14" font-weight="700">Dive Window</text>`;
+ if(tw)svg+=`<rect x="${X(tw.a)}" y="${H_-44-8}" width="${X(tw.b)-X(tw.a)}" height="8" rx="4" fill="#22a85f"/><text class="t-lbl" x="${(X(tw.a)+X(tw.b))/2}" y="${H_-44-14}" font-size="12" text-anchor="middle" font-weight="700">Slack</text>`;
+ for(let hh=0;hh<=24;hh+=3)svg+=`<line class="t-grid" x1="${X(hh)}" x2="${X(hh)}" y1="26" y2="${H_-44}" stroke-width="1"/><text class="t-tick" x="${X(hh)}" y="${H_-22}" font-size="13" text-anchor="${hh===0?'start':hh===24?'end':'middle'}">${hh}:00</text>`;
+ svg+=`<path class="t-fill" d="${area}"/><path class="t-line" d="${path}" fill="none" stroke-width="3.5" stroke-linejoin="round"/>`;
+ ev.forEach(e=>{const hi=e.type==='H';svg+=`<circle class="${hi?'t-hi':'t-lo'}" cx="${X(e.hr)}" cy="${Y(e.h)}" r="6" stroke="#fff" stroke-width="2"/><text class="t-lbl" x="${Math.min(W_-34,Math.max(34,X(e.hr)))}" y="${Y(e.h)+(hi?-12:24)}" font-size="14" font-weight="700" text-anchor="middle">${hi?'High':'Low'} ${fmtLen(e.h).join(' ')}</text><text class="t-tick" x="${Math.min(W_-34,Math.max(34,X(e.hr)))}" y="${Y(e.h)+(hi?-26:38)}" font-size="12" text-anchor="middle">${fmtHr(e.hr)}</text>`});
  svg+='</svg>';
- const tm=h=>{const hh=Math.floor(h),mi=Math.round((h-hh)*60);return String(mi===60?hh+1:hh).padStart(2,'0')+':'+String(mi===60?0:mi).padStart(2,'0')};
- const list=ev.map(e=>`<b>${e.type==='H'?'High':'Low'}</b> ${tm(e.hr)} (${fmtLen(e.h).join(' ')})`).join(' &nbsp;|&nbsp; ');
+ const list=ev.map(e=>`<b>${e.type==='H'?'High':'Low'}</b> ${fmtHr(e.hr)} (${fmtLen(e.h).join(' ')})`).join(' &nbsp;|&nbsp; ');
  let cross='';
  if(R.tide&&T.modelEvents.length){cross='Model cross-check (Open-Meteo sea level, hourly): '+T.modelEvents.map(e=>`${e.type==='H'?'High':'Low'} ~${String(e.hr).padStart(2,'0')}:00`).join(', ')+'. Used only as a sanity check; NOAA predictions are authoritative.'}
- const sel=R.tideCands&&R.tideCands.length>1?`<div class="hint" style="margin:0 0 8px">Tide Station: <select style="width:auto" onchange="pickTide(this.value)">${R.tideCands.map((c,i)=>`<option value="${i}" ${c.st===R.tide.st?'selected':''}>${esc(c.st.name)} \u2013 ${c.st.km.toFixed(0)} km, range ${fmtLen(c.range).join(' ')}</option>`).join('')}</select><br>Default is the nearby station with the largest range: open-coast stations show the full tide, while lagoon/river stations are damped and delayed. Pick another if you dive inside the inlet or lagoon.</div>`:'';
- return`<h2>Tides</h2><div class="card">${sel}${svg}<div style="margin-top:6px">${list}</div><div class="hint">Curve is a cosine interpolation between predicted highs/lows (heights relative to MLLW for NOAA data). ${esc(T.tsrc)}. ${cross}<br>Slack water often falls near high/low tide on open coasts but varies by site; confirm with local current tables and your dive operator.</div></div>`;
+ const sel=R.tideCands&&R.tideCands.length>1?`<div class="hint" style="margin:0 0 8px">Tide Station: <select style="width:auto;max-width:100%" onchange="pickTide(this.value)">${R.tideCands.map((c,i)=>`<option value="${i}" ${c.st===R.tide.st?'selected':''}>${esc(c.st.name)} \u2013 ${c.st.km.toFixed(0)} km, range ${fmtLen(c.range).join(' ')}</option>`).join('')}</select></div>`:'';
+ return`<h2>Tides</h2><div class="card">${sel}${svg}<details class="tdet"><summary>Tide Details &amp; Notes</summary><div class="hint" style="margin-top:4px">${list}</div>${R.tideCands&&R.tideCands.length>1?'<div class="hint">Default station is the nearby one with the largest range: open-coast stations show the full tide, while lagoon or river stations are damped and delayed. Pick another if you dive inside the inlet or lagoon.</div>':''}<div class="hint">The green bar marks the slack-tide window: an hour either side of the high or low with the best hourly score, inside your dive window and daylight. The curve is a cosine interpolation between predicted highs and lows (heights relative to MLLW for NOAA data). ${esc(T.tsrc)}. ${cross}</div><div class="hint">Slack water often falls near high or low tide on open coasts but varies by site; confirm with local current tables and your dive operator.</div></details></div>`;
 }
 
 function hourly(R,C,h0,h1){
@@ -899,7 +1005,7 @@ function hourly(R,C,h0,h1){
   <td>${ok(H.temp[i])?fmtTemp(H.temp[i])[0]+'\u00B0':'\u2013'}</td><td>${ok(H.precip[i])&&H.precip[i]>0.05?fmtPrecip(H.precip[i]):'\u2013'}</td>
   ${cell(H.score[i],ok(H.score[i])?Math.round(H.score[i]):'–')}</tr>`;
  }
- return`<h2>Hour by Hour (Blended)</h2><div class="card"><div class="tw"><table class="h"><tr><th>Local Time</th><th>Wind (${fmtSpd(1)[1]})</th><th>Gust (${fmtSpd(1)[1]})</th><th>Waves</th><th>Swell</th><th>Air</th><th>Precip</th><th>Score</th></tr>${rows}</table></div><div class="hint">● = within your dive window. Orange bar marks the best 3-hour block. Each row averages every model that returned data for that hour.</div></div>`;
+ return`<h2>Hour by Hour (Blended)</h2><div class="card"><div class="tw"><table class="h"><tr><th>Local Time</th><th>Wind (${fmtSpd(1)[1]})</th><th>Gust (${fmtSpd(1)[1]})</th><th>Waves</th><th>Swell</th><th>Air</th><th>Precip</th><th>Score</th></tr>${rows}</table></div><div class="hint">● = within your dive window. Green bar marks the best 3-hour block. Each row averages every model that returned data for that hour.</div></div>`;
 }
 
 
@@ -912,8 +1018,8 @@ if(R.alerts)L.push(`<li>Weather alerts: <a href="https://www.weather.gov/documen
  if(R.tide)L.push(`<li>Tide predictions: <a href="https://tidesandcurrents.noaa.gov/noaatidepredictions.html?id=${R.tide.st.id}" target="_blank" rel="noopener noreferrer">NOAA CO-OPS station ${esc(R.tide.st.id)} – ${esc(R.tide.st.name)}</a> (${R.tide.st.km.toFixed(0)} km from site).</li>`);
  if(R.wtemp)L.push(`<li>${R.wtemp.persist?'Latest measured water temperature':'Observed water temperature'}: <a href="https://tidesandcurrents.noaa.gov/stationhome.html?id=${R.wtemp.st.id}" target="_blank" rel="noopener noreferrer">NOAA CO-OPS station ${esc(R.wtemp.st.id)} – ${esc(R.wtemp.st.name)}</a> (${R.wtemp.st.km.toFixed(0)} km from site).</li>`);
  const diag=DIAG.map(d=>`<tr><td>${d.ok?'✅':'❌'}</td><td>${esc(d.name)}</td><td>${esc(d.msg)}</td></tr>`).join('');
- return`<h2>Sources &amp; Citations</h2><div class="card"><ul class="cites">${L.join('')}</ul>
- <div class="hint">Retrieved ${new Date().toLocaleString()}. Model data are forecasts (or hindcasts for past dates) on grids of roughly 2–30 km, so nearshore and site-specific conditions (reefs, bays, headlands) can differ. Only sources that returned data are listed. This is a planning aid, not a safety clearance: confirm with your dive operator, local lifeguards or harbor authority.</div>
+ return`<h2>Sources &amp; Citations</h2><div class="card"><details class="src"><summary>Show Sources (${L.length})</summary><ul class="cites">${L.join('')}</ul>
+ <div class="hint">Retrieved ${new Date().toLocaleString()}. Model data are forecasts (or hindcasts for past dates) on grids of roughly 2–30 km, so nearshore and site-specific conditions (reefs, bays, headlands) can differ. Only sources that returned data are listed. This is a planning aid, not a safety clearance: confirm with your dive operator, local lifeguards or harbor authority.</div></details>
  <details ${DIAG.some(d=>!d.ok)?'open':''}><summary>Request Log (What Loaded, What Failed)</summary><table class="diag">${diag}</table><button class="sec" type="button" onclick="copyDiag()" style="margin-top:6px">Copy Diagnostics</button></details></div>`;
 }
 
@@ -949,8 +1055,96 @@ $('f').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 $('wk').addEventListener('click',weekend);
+
+/* ---------- saved sites ---------- */
+const sameSite=(a,b)=>Math.abs(a.lat-b.lat)<5e-4&&Math.abs(a.lon-b.lon)<5e-4;
+const isSaved=p=>SITES.some(s=>sameSite(s,p));
+function shortName(n){return n.split(',')[0].trim()||n}
+function toggleSite(p){
+ if(isSaved(p))SITES=SITES.filter(s=>!sameSite(s,p));
+ else{if(SITES.length>=12)SITES.shift();SITES.push({name:p.name,lat:p.lat,lon:p.lon})}
+ safeLS.set('dive-sites',JSON.stringify(SITES));renderSites();
+}
+function renderSites(){
+ const b=$('sites');b.hidden=!SITES.length;
+ b.innerHTML=SITES.length?'<span class="lab">Saved Sites</span>'+SITES.map((s,i)=>`<span class="site"><button type="button" data-site="${i}" title="${esc(s.name)}">${esc(shortName(s.name))}</button><button type="button" class="x" data-del="${i}" aria-label="Remove ${esc(shortName(s.name))}">&times;</button></span>`).join(''):'';
+}
+$('sites').addEventListener('click',ev=>{
+ const d=ev.target.closest('[data-del]');if(d){SITES.splice(+d.dataset.del,1);safeLS.set('dive-sites',JSON.stringify(SITES));renderSites();return}
+ const s=ev.target.closest('[data-site]');if(!s)return;
+ const site=SITES[+s.dataset.site];$('place').value=site.name;GEO={q:site.name,cands:[{...site,src:'saved site'}],idx:0};$('f').requestSubmit();
+});
+renderSites();
+
+/* ---------- 7-day outlook ---------- */
+function isoPlus(iso,n){const d=new Date(iso+'T12:00:00');d.setDate(d.getDate()+n);return new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10)}
+async function weekAhead(){
+ LASTMODE='days';DIAG=[];const[q,units,h0,h1]=readInputs();UNITS=units;
+ setBusy(true);$('out').innerHTML='';$('status').textContent='Looking up location…';
+ try{
+  const place=await geocode(q);
+  const start=$('date').value||isoPlus(new Date().toISOString().slice(0,10),0);
+  const dates=[0,1,2,3,4,5,6].map(i=>isoPlus(start,i)).filter(d=>daysFromToday(d)<=16);
+  if(!dates.length)throw new Error('Pick a date within the 16-day forecast.');
+  $('status').textContent=`Fetching ${dates.length} days for ${place.name}…`;
+  const Rs=await Promise.all(dates.map(d=>loadAll(place,d)));
+  if(!Rs.some(R=>R.wx.length||R.mar.length||R.tide))throw new Error('No data sources responded. See the request log.');
+  const Cs=Rs.map(R=>compute(R,h0,h1));$('status').innerHTML=failBanner();
+  let bi=-1;Cs.forEach((C,i)=>{if(C.overall!=null&&(bi<0||C.overall>Cs[bi].overall))bi=i});
+  const lt=C=>C.overall==null?'?':grade(C.overall),gcl=C=>({A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[lt(C)]);
+  const dn=d=>new Date(d+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'});
+  const tiles=Cs.map((C,i)=>{const ci=C.WXI&&C.WXI.code!=null?codeInfo(C.WXI.code)[0]:'';
+   return`<button type="button" class="day${i===bi?' top1':''}" data-day="${Rs[i].date}" aria-label="Open ${dn(Rs[i].date)}"><span class="dn">${dn(Rs[i].date)}</span><span class="dl tc-${gcl(C)}">${lt(C)}</span><span class="ds">${C.overall==null?'No data':Math.round(C.overall)+' / 100'} ${ci}</span><span class="db">${C.best?C.best.start+':00–'+(C.best.start+3)+':00':'No window'}</span>${i===bi?'<span class="badge">Best Day</span>':''}</button>`}).join('');
+  const verdict=bi<0?'No usable data for any day.':`Best day: <b>${dn(Rs[bi].date)}</b> &mdash; grade ${lt(Cs[bi])} (${Math.round(Cs[bi].overall)} / 100)${Cs[bi].best?`, best window ${Cs[bi].best.start}:00–${Cs[bi].best.start+3}:00`:''}.`;
+  $('out').innerHTML=`<h2>7-Day Outlook &mdash; ${esc(place.name)}</h2><div class="card" style="margin-bottom:12px">${verdict}<div class="hint" style="margin:4px 0 0">Dive window ${h0}:00–${h1}:00 local. Tap a day to open its full dashboard.</div></div><div class="strip">${tiles}</div>${cites(Rs[0],Cs[0])}`;
+  document.querySelectorAll('[data-day]').forEach(b=>b.onclick=()=>{$('date').value=b.dataset.day;$('f').requestSubmit()});
+  showOut();
+ }catch(e){$('status').innerHTML=`<span class="err">${esc(e.message||e)}</span>`}
+ setBusy(false);
+}
+$('d7').addEventListener('click',weekAhead);
+
+/* ---------- compare sites ---------- */
+let CMP=null;
+$('cmp').addEventListener('click',()=>{
+ const f=$('cmpForm'),open=f.hidden;f.hidden=!open;$('cmp').setAttribute('aria-expanded',open);
+ if(open)$('place2').focus();
+});
+function factRows(C){
+ const M=C.M,X=C.WXI,fl=m=>m.value!=null?fmtLen(m.value).join(' '):'no data',ci=X&&X.code!=null?codeInfo(X.code):null;
+ const sw=M.swell.value!=null?fmtLen(M.swell.value).join(' ')+(ok(M.swell.period)?' @ '+M.swell.period.toFixed(0)+'s':''):'no data';
+ return[['Weather',M.weather,ci?ci[0]+' '+ci[1]:'no data'],['Wind',M.wind,M.wind.value!=null?fmtSpd(M.wind.value).join(' '):'no data'],['Gusts',M.gust,M.gust.value!=null?fmtSpd(M.gust.value).join(' '):'no data'],['Waves',M.hs,fl(M.hs)],['Swell',M.swell,sw],['Water Temp',M.sst,M.sst.value!=null?fmtTemp(M.sst.value).join(' '):'no data'],['Tide Range',M.tide,fl(M.tide)],['Current',M.cur,M.cur.value!=null?fmtSpd(M.cur.value).join(' '):'no data']];
+}
+$('cmpForm').addEventListener('submit',async ev=>{
+ ev.preventDefault();LASTMODE='cmp';DIAG=[];
+ const q1=$('place').value.trim(),q2=$('place2').value.trim(),date=$('date').value,[,units,h0,h1]=readInputs();UNITS=units;
+ if(!q1||!q2){$('status').innerHTML='<span class="err">Enter a place in both location fields to compare.</span>';return}
+ setBusy(true);$('out').innerHTML='';$('status').textContent='Looking up both locations…';
+ try{
+  const[pa,pb]=[(await geocodeAll(q1))[0],(await geocodeAll(q2))[0]];
+  $('status').textContent=`Fetching ${pa.name} and ${pb.name}…`;
+  const[A,B]=await Promise.all([loadAll(pa,date),loadAll(pb,date)]);
+  if(![A,B].some(R=>R.wx.length||R.mar.length||R.tide))throw new Error('No data sources responded. See the request log.');
+  const CA=compute(A,h0,h1),CB=compute(B,h0,h1);$('status').innerHTML=failBanner();CMP=[pa,pb];
+  const a=CA.overall,b=CB.overall,na=shortName(pa.name),nb=shortName(pb.name);
+  const verdict=a==null&&b==null?'No usable data for either site.':a==null||b==null?'Only one site returned data.':Math.abs(a-b)<3?`${esc(na)} and ${esc(nb)} score about the same.`:`<b>${esc(a>b?na:nb)}</b> looks better (${Math.round(Math.max(a,b))} vs ${Math.round(Math.min(a,b))}).`;
+  const lt=C=>C.overall==null?'?':grade(C.overall),gcl=C=>({A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[lt(C)]);
+  const dot=m=>`<span class="dot" style="background:${{g:'#22a85f',y:'#f0b400',r:'#d63b3b',n:'#9aa7b3'}[band(m.score)]}"></span>`;
+  const ra=factRows(CA),rb=factRows(CB);
+  const rows=ra.map((r,i)=>{const sa=r[1].score,sb=rb[i][1].score,wa=sa!=null&&sb!=null&&sa-sb>=5,wb=sa!=null&&sb!=null&&sb-sa>=5;
+   return`<tr><td>${r[0]}</td><td class="${wa?'win':''}">${dot(r[1])}${esc(r[2])}</td><td class="${wb?'win':''}">${dot(rb[i][1])}${esc(rb[i][2])}</td></tr>`}).join('');
+  const bw=C=>C.best?`${C.best.start}:00–${C.best.start+3}:00`:'no data';
+  $('out').innerHTML=`<h2>Site Comparison</h2><div class="card"><div style="margin-bottom:8px">${verdict}<div class="hint" style="margin:4px 0 0">${esc(date)} &middot; dive window ${h0}:00–${h1}:00 local. Underlined cells score at least 5 points better.</div></div>
+  <div class="wrap"><table class="cmp"><tr><th></th><th>${esc(na)}</th><th>${esc(nb)}</th></tr>
+  <tr><td>Overall</td><td class="${a!=null&&b!=null&&a-b>=3?'win':''}"><span class="cl tc-${gcl(CA)}">${lt(CA)}</span><br>${a==null?'No data':Math.round(a)+' / 100'}</td><td class="${a!=null&&b!=null&&b-a>=3?'win':''}"><span class="cl tc-${gcl(CB)}">${lt(CB)}</span><br>${b==null?'No data':Math.round(b)+' / 100'}</td></tr>
+  ${rows}<tr><td>Best Window</td><td>${bw(CA)}</td><td>${bw(CB)}</td></tr></table></div>
+  <div class="trow" style="margin-top:10px"><button class="sec" type="button" data-open-site="0">Open ${esc(na)}</button><button class="sec" type="button" data-open-site="1">Open ${esc(nb)}</button></div></div>`;
+  showOut();
+ }catch(e){$('status').innerHTML=`<span class="err">${esc(e.message||e)}</span>`}
+ setBusy(false);
+});
 /* ---------- settings + menu ---------- */
-const VERSION='1.2.0';
+const VERSION='1.3.0';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
