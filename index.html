@@ -782,7 +782,7 @@ function hourly(R,C,h0,h1){
   <td>${ok(H.temp[i])?fmtTemp(H.temp[i])[0]+'\u00B0':'\u2013'}</td><td>${ok(H.precip[i])&&H.precip[i]>0.05?fmtPrecip(H.precip[i]):'\u2013'}</td>
   ${cell(H.score[i],ok(H.score[i])?Math.round(H.score[i]):'–')}</tr>`;
  }
- return`<h2>Hour by hour (blended)</h2><div class="card"><table class="h"><tr><th>Local time</th><th>Wind (${fmtSpd(1)[1]})</th><th>Gust (${fmtSpd(1)[1]})</th><th>Waves</th><th>Swell</th><th>Air</th><th>Precip</th><th>Score</th></tr>${rows}</table><div class="hint">● = within your dive window. Blue bar marks the best 3-hour block. Each row averages every model that returned data for that hour.</div></div>`;
+ return`<h2>Hour by hour (blended)</h2><div class="card"><div class="tw"><table class="h"><tr><th>Local time</th><th>Wind (${fmtSpd(1)[1]})</th><th>Gust (${fmtSpd(1)[1]})</th><th>Waves</th><th>Swell</th><th>Air</th><th>Precip</th><th>Score</th></tr>${rows}</table></div><div class="hint">● = within your dive window. Orange bar marks the best 3-hour block. Each row averages every model that returned data for that hour.</div></div>`;
 }
 
 
