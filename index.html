@@ -707,7 +707,6 @@ function wkCard(R,C,h0,h1){
  const M=C.M,o=C.overall,L=o==null?'?':grade(o),gc={A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[L];
  const dn=new Date(R.date+'T12:00:00').toLocaleDateString(undefined,{weekday:'long',month:'short',day:'numeric'});
  const row=(m,txt)=>`<tr><td><span class="dot" style="background:${{g:'#22a85f',y:'#f0b400',r:'#d63b3b',n:'#9aa7b3'}[band(m.score)]}"></span>${m.name}</td><td style="text-align:right"><b>${txt}</b></td></tr>`;
- const f1=(m,u)=>m.value!=null?m.value.toFixed(1)+' '+u:'no data';
  const fl=m=>m.value!=null?fmtLen(m.value).join(' '):'no data';
  const sw=M.swell.value!=null?fmtLen(M.swell.value).join(' ')+(ok(M.swell.period)?' @ '+M.swell.period.toFixed(0)+'s':'')+(ok(M.swell.dir)?' '+compass(M.swell.dir):''):'no data';
  const tide=(M.tide.events&&M.tide.events.length)?M.tide.events.slice().sort((a,b)=>a.hr-b.hr).map(e=>`${e.type==='H'?'H':'L'} ${String(Math.floor(e.hr)).padStart(2,'0')}:${String(Math.round((e.hr%1)*60)%60).padStart(2,'0')}`).join(' &middot; '):'no data';
