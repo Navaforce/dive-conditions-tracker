@@ -1,5 +1,12 @@
 # Releases
 
+## v1.4.0 - 2026-10-31
+- Visibility Estimate gauge and summary chip: rough clear/fair/poor with an approximate range, from the last 3 days of rain (Open-Meteo), sea state, swell, wind chop and tide range. Advisory only, not part of the grade.
+- New Dive Type (Shore/Boat) and Site Faces (N-NW) fields in the search form; Dive Type default in Settings; Site Faces is saved with saved sites and remembered with the last search.
+- Site Notes card: what the wind, swell, current, slack tide and moon mean for a shore or boat dive at that facing (onshore/offshore/cross-shore wind, exposed/wrapping/sheltered swell, seaward/landward/along-shore current).
+- Moon and Tide Strength tiles (phase, % lit, spring/neap) and advice on flow and slack. Moon and visibility are also in Share Report.
+- Float Plan button: editable form (site, coordinates, date, dive window, expected out, no-check-in alert time, entry or launch, vessel, depth, buddy, emergency contact, notes) with live preview, shared as text. Buddy and contact are remembered on the device.
+
 ## v1.3.6 - 2026-10-31
 - Background fish now lead with their heads in both directions (they were swimming tail-first).
 

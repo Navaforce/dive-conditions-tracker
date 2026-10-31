@@ -176,7 +176,7 @@ html.no-anim .top>.card,html.no-anim .two>.card,html.no-anim #out>h2,html.no-ani
 .loc{display:flex;gap:6px}.loc input{flex:1;min-width:0}
 button.ghost{background:var(--sec);color:var(--ink);box-shadow:none;padding:9px 12px}
 button.ghost:hover{background:var(--sec-h)}
-.btns{display:flex;gap:6px}
+.btns{grid-column:1/-1;display:flex;gap:6px}
 .tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .tw table.h{min-width:560px}
 .grade button{margin-top:10px}.gbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}.gbtns button{margin-top:10px}
@@ -187,7 +187,7 @@ main{width:100%;max-width:1180px;margin:-44px auto 0;padding:0 var(--s4) var(--s
 .card{background:var(--card);border:1px solid var(--line);border-radius:var(--r-lg);padding:var(--s4) var(--s5);box-shadow:var(--sh)}
 
 /* form */
-form.inputs{display:grid;grid-template-columns:2.2fr 1.1fr .7fr .7fr 1.2fr auto;gap:var(--s3);align-items:end;padding:var(--s5)}
+form.inputs{display:grid;grid-template-columns:1.9fr 1.1fr .6fr .6fr 1.4fr 1fr 1.1fr;gap:var(--s3);align-items:end;padding:var(--s5)}
 label{font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--mut);display:block;margin-bottom:6px}
 input,select,button{font:inherit;min-height:44px;padding:9px 12px;border:1.5px solid var(--fline);border-radius:var(--r-md);background:var(--field);color:var(--ink);width:100%;transition:border-color .15s,box-shadow .15s,transform .05s,background .15s}
 input:hover,select:hover{border-color:var(--ocean)}
@@ -218,7 +218,7 @@ button:disabled{opacity:.6;cursor:wait}
 .fact small{display:block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
 .fact b{display:block;font-size:15px;margin-top:1px}
 .fact span{display:block;font-size:12px;color:var(--mut)}
-@media(max-width:520px){.chips{grid-template-columns:repeat(2,1fr)!important}.facts{grid-template-columns:1fr}}
+@media(max-width:520px){.chips{grid-template-columns:repeat(2,1fr)!important}.chips .pill:last-child:nth-child(odd){grid-column:1/-1}.facts{grid-template-columns:1fr}}
 .pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12px;font-weight:700;color:#fff;letter-spacing:.01em}
 .bg-g{background:var(--g)}.bg-y{background:var(--y);color:#2a1d00}.bg-r{background:var(--r)}.bg-n{background:#6f8591}
 .tc-g{color:var(--gt)}.tc-y{color:var(--tcy)}.tc-r{color:var(--errc)}.tc-n{color:#6f8591}
@@ -289,6 +289,11 @@ html.no-scene footer.floor{height:96px}html.no-scene footer.floor .fscene{displa
 @keyframes shr3{0.0%{transform:translate(500px,90px) scaleX(1)}16.7%{transform:translate(580px,105px) scaleX(1)}33.3%{transform:translate(660px,95px) scaleX(1)}50.0%{transform:translate(720px,130px) scaleX(-1)}66.7%{transform:translate(640px,145px) scaleX(-1)}83.3%{transform:translate(540px,120px) scaleX(-1)}100.0%{transform:translate(500px,90px) scaleX(1)}}.shr3{animation:shr3 33s ease-in-out infinite}
 @keyframes shr4{0.0%{transform:translate(450px,150px) scaleX(1)}20.0%{transform:translate(520px,140px) scaleX(1)}40.0%{transform:translate(600px,155px) scaleX(-1)}60.0%{transform:translate(520px,160px) scaleX(-1)}80.0%{transform:translate(430px,135px) scaleX(1)}100.0%{transform:translate(450px,150px) scaleX(1)}}.shr4{animation:shr4 41s ease-in-out infinite}
 .sfi{opacity:.4}.sfL{animation:sfL linear infinite}.sfR{animation:sfR linear infinite}@keyframes sfL{from{transform:translateX(-80px)}to{transform:translateX(1300px)}}@keyframes sfR{from{transform:translateX(1300px)}to{transform:translateX(-80px)}}
+.impl{list-style:none;margin:var(--s3) 0 0;padding:0}.impl li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--rline);font-size:13.5px;line-height:1.5}.impl li:first-child{border-top:0}.impl i{flex:none;width:10px;height:10px;border-radius:50%;margin-top:6px}.impl b{display:block;font-size:14px}.impl span{display:block;color:var(--mut)}
+.fpg{display:grid;grid-template-columns:1fr 1fr;gap:10px}.fpg .wide{grid-column:1/-1}.fpg [hidden]{display:none}
+.fpg textarea{font:inherit;font-size:16px;padding:9px 12px;border:1.5px solid var(--fline);border-radius:var(--r-md);background:var(--field);color:var(--ink);width:100%;min-height:64px;resize:vertical}
+.fpchk{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;margin:0;color:var(--ink)}.fpchk input{width:auto;min-height:0;margin:0}
+.fpprev{white-space:pre-wrap;word-break:break-word;font:12.5px/1.45 ui-monospace,Menlo,monospace;background:var(--row);border:1px solid var(--rline);border-radius:var(--r-md);padding:10px;margin:0 0 4px;max-height:200px;overflow:auto;color:var(--ink)}
 @media(max-width:700px){header.hero{min-height:246px}}
 @media(max-width:900px){form.inputs{grid-template-columns:1fr 1fr}.top,.two{grid-template-columns:1fr}header.hero .logo{width:48px;height:48px}header.hero{padding-top:calc(10px + env(safe-area-inset-top))}.grade .letter{font-size:88px}}
 @media(max-width:520px){main{padding:0 var(--s3) var(--s5)}.card{padding:var(--s3) var(--s4)}form.inputs{grid-template-columns:1fr 1fr}form.inputs>div:nth-child(-n+2),form.inputs>div:nth-child(5),form.inputs>div:last-child{grid-column:1/-1}.btns button{flex:1}}
@@ -390,6 +395,8 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
 <div><label for="h0">Dive from (hour)</label><input id="h0" type="number" min="0" max="23" value="8"></div>
 <div><label for="h1">to (hour)</label><input id="h1" type="number" min="0" max="23" value="14"></div>
 <div><label for="units">Units</label><select id="units"><option value="imperial">Imperial (ft, &deg;F, mph)</option><option value="metric">Metric (m, &deg;C, kn)</option></select></div>
+<div><label for="mode">Dive Type</label><select id="mode"><option value="shore">Shore</option><option value="boat">Boat</option></select></div>
+<div><label for="face">Site Faces</label><select id="face" title="Direction the open water lies from this site"><option value="">Not Set</option><option value="0">North</option><option value="45">Northeast</option><option value="90">East</option><option value="135">Southeast</option><option value="180">South</option><option value="225">Southwest</option><option value="270">West</option><option value="315">Northwest</option></select></div>
 <div class="btns"><button id="go" type="submit">Check the Water</button><button id="wk" type="button">Weekend Outlook</button></div>
 </form>
 <div class="card tools" id="tools">
@@ -433,6 +440,7 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
   <label class="srow"><span><b>Remember Last Search</b><small>Pre-fills your last place, hours and units next time.</small></span><span class="tgl"><input type="checkbox" id="s-remember" role="switch"><i></i></span></label>
   <label class="srow"><span><b>Search After Using My Location</b><small>Runs the report as soon as the pin finds you.</small></span><span class="tgl"><input type="checkbox" id="s-auto" role="switch"><i></i></span></label>
   <div class="srow" style="cursor:default"><span><b>Default Units</b><small>Used when the app opens.</small></span><select id="s-units" aria-label="Default Units"><option value="imperial">Imperial</option><option value="metric">Metric</option></select></div>
+  <div class="srow" style="cursor:default"><span><b>Default Dive Type</b><small>Shore or boat. Shapes the notes on wind, swell and current.</small></span><select id="s-mode" aria-label="Default Dive Type"><option value="shore">Shore</option><option value="boat">Boat</option></select></div>
   <div class="srow" style="cursor:default"><span><b>Default Dive Window</b><small>Start and end hour, 0 to 23.</small></span><span class="hrs"><input type="number" id="s-h0" min="0" max="23" aria-label="Default Start Hour"><span aria-hidden="true">to</span><input type="number" id="s-h1" min="0" max="23" aria-label="Default End Hour"></span></div>
   <div class="actions"><button id="s-reset" class="sec" type="button">Reset All Settings</button><button id="s-refresh" class="sec" type="button">Refresh to Latest Version</button></div>
  </div>
@@ -442,6 +450,35 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
   <p>Data sources:</p>
   <ul><li>Open-Meteo: forecast, marine and geocoding</li><li>NOAA CO-OPS: tides and water temperature (US)</li><li>National Weather Service: alerts (US)</li><li>OpenStreetMap Nominatim: place lookup</li></ul>
   <p>This is a planning aid, not a safety clearance. Never dive alone, always fly a dive flag, and check local rules.</p>
+ </div>
+</div>
+</div>
+<div id="fpModal" class="modal" hidden>
+<div class="mback"></div>
+<div class="mpanel" role="dialog" aria-modal="true" aria-labelledby="fptitle">
+ <div class="mhead"><div class="mtitle" id="fptitle">Float Plan</div><button id="fpclose" class="ghost" type="button" aria-label="Close Float Plan">&times;</button></div>
+ <div class="pane">
+  <div class="hint" style="margin:0 0 10px">Edit anything before you send it. Your buddy and emergency contact are remembered on this device.</div>
+  <div id="fpfields" class="fpg">
+  <div class="wide" id="fp-site-w"><label for="fp-site">Site</label><input id="fp-site" type="text"></div>
+  <div class="wide" id="fp-coords-w"><label for="fp-coords">Coordinates</label><input id="fp-coords" type="text"></div>
+  <div class="" id="fp-date-w"><label for="fp-date">Date</label><input id="fp-date" type="date"></div>
+  <div class="" id="fp-type-w"><label for="fp-type">Dive Type</label><select id="fp-type"><option value="shore">Shore</option><option value="boat">Boat</option></select></div>
+  <div class="" id="fp-start-w"><label for="fp-start">Dive Window Start</label><input id="fp-start" type="time"></div>
+  <div class="" id="fp-end-w"><label for="fp-end">Dive Window End</label><input id="fp-end" type="time"></div>
+  <div class="" id="fp-out-w"><label for="fp-out">Expected Out Of Water</label><input id="fp-out" type="time"></div>
+  <div class="" id="fp-late-w"><label for="fp-late">No Check-In Alert Time</label><input id="fp-late" type="time"></div>
+  <div class="wide" id="fp-entry-w"><label for="fp-entry">Entry, Exit Or Launch Ramp</label><input id="fp-entry" type="text"></div>
+  <div class="wide" id="fp-vessel-w"><label for="fp-vessel">Vessel And Flag Description</label><input id="fp-vessel" type="text"></div>
+  <div class="" id="fp-depth-w"><label for="fp-depth">Max Planned Depth</label><input id="fp-depth" type="text" placeholder="e.g. 60 ft"></div>
+  <div class="" id="fp-buddy-w"><label for="fp-buddy">Buddy Or Dive Team</label><input id="fp-buddy" type="text"></div>
+  <div class="wide" id="fp-contact-w"><label for="fp-contact">Emergency Contact (Name And Phone)</label><input id="fp-contact" type="text"></div>
+  <div class="wide" id="fp-notes-w"><label for="fp-notes">Notes</label><textarea id="fp-notes" rows="2"></textarea></div>
+  <label class="wide fpchk"><input type="checkbox" id="fp-cond" checked> Include forecast conditions</label>
+  </div>
+  <label style="margin-top:12px">Preview</label>
+  <pre id="fp-prev" class="fpprev"></pre>
+  <div class="actions"><button id="fp-share" type="button">Share Float Plan</button><button id="fp-copy" class="sec" type="button">Copy</button></div>
  </div>
 </div>
 </div>
@@ -588,7 +625,7 @@ async function loadAll(place,date){
  const{lat,lon}=place;const d=daysFromToday(date);
  if(d>16)throw new Error('Forecast data only extends about 16 days ahead.');
  const wxBase=d<-90?OM_HFC:OM_FC;
- const R={place,date,wx:[],mar:[],tide:null,wtemp:null,tz:null};
+ const R={place,date,wx:[],mar:[],tide:null,wtemp:null,tz:null,rain:null,mode:$('mode').value==='boat'?'boat':'shore',face:$('face').value===''?null:+$('face').value};
  const wxVars='wind_speed_10m,wind_gusts_10m,wind_direction_10m,temperature_2m,weather_code,precipitation';
  const wxP=WX_MODELS.map(async([m,label])=>{
   const j=await getJSON('Weather: '+label,`${wxBase}?latitude=${lat}&longitude=${lon}&hourly=${wxVars}&daily=sunrise,sunset&models=${m}&wind_speed_unit=kn&timezone=auto&start_date=${date}&end_date=${date}`);
@@ -610,6 +647,10 @@ async function loadAll(place,date){
   const s={hs:g('wave_height'),tp:g('wave_period'),hd:g('wave_direction'),sh:g('swell_wave_height'),sp:g('swell_wave_period'),sd:g('swell_wave_direction'),sst:g('sea_surface_temperature'),cur:g('ocean_current_velocity'),curd:g('ocean_current_direction'),sl:g('sea_level_height_msl')};
   if(hasData(s.hs)||hasData(s.sh)||hasData(s.sst))R.mar.push({id:m||'best_match',label,url:'https://open-meteo.com/en/docs/marine-weather-api',s});
  });
+ const rainP=(async()=>{
+  const j=await getJSON('Rainfall (previous 3 days)',`${wxBase}?latitude=${lat}&longitude=${lon}&daily=precipitation_sum&timezone=auto&start_date=${isoPlus(date,-3)}&end_date=${date}`);
+  const a=j&&j.daily&&j.daily.precipitation_sum;if(Array.isArray(a)&&a.some(ok))R.rain=a.map(v=>ok(v)?v:0);
+ })();
  const ymd=date.replace(/-/g,'');
  const tideP=(async()=>{
   const sts=(await nearestStations('tidepredictions',lat,lon,50)).slice(0,5);if(!sts.length)return;
@@ -646,7 +687,7 @@ const alP=(async()=>{
   res.filter(Boolean).forEach(r=>(r.features||[]).forEach(f=>{const p=f.properties||{},id=p.id||f.id;if(seen[id])return;seen[id]=1;list.push({id,event:p.event||'Alert',headline:p.headline||'',onset:p.onset||p.effective,ends:p.ends||p.expires,area:p.areaDesc||'',url:f.id||''})}));
   R.alerts=list;
  })();
- await Promise.all([...wxP,...marP,tideP,tempP,alP]);
+ await Promise.all([...wxP,...marP,tideP,tempP,alP,rainP]);
  return R;
 }
 
@@ -744,7 +785,116 @@ function compute(R,h0,h1){
  if(cdS.length){const cnt={};cdS.forEach(c=>cnt[c.val]=(cnt[c.val]||0)+1);WXI.code=+Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||b-a)[0];WXI.worst=Math.max(...cdS.map(c=>c.val))}
  const tw=H.temp.slice(h0,h1+1).filter(ok);WXI.airMin=tw.length?Math.min(...tw):null;WXI.airMax=tw.length?Math.max(...tw):null;
  const pw=H.precip.slice(h0,h1+1);WXI.peak=pw.filter(ok).length?Math.max(...pw.filter(ok)):null;
- return{M,WXI,overall,capped,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length};
+ const wdir=circMean(R.wx.map(s=>circMean(win(s.s.wdir)))),moon=moonInfo(R.date),V=visibility(R,M,wdir,moon);
+ return{M,WXI,overall,capped,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length,wdir,moon,V};
+}
+
+/* ---------- v1.4 : moon, visibility estimate, site notes ---------- */
+const FACE_NAMES={0:'North',45:'Northeast',90:'East',135:'Southeast',180:'South',225:'Southwest',270:'West',315:'Northwest'};
+const angDiff=(a,b)=>Math.abs(((a-b+540)%360)-180);
+function moonInfo(iso){
+ const syn=29.530588853,t=Date.parse(iso+'T12:00:00Z'),ref=Date.UTC(2000,0,6,18,14);
+ let age=((t-ref)/864e5)%syn;if(age<0)age+=syn;
+ const pct=Math.round((1-Math.cos(2*Math.PI*age/syn))/2*100);
+ const ph=[[1.85,'New Moon','🌑'],[5.54,'Waxing Crescent','🌒'],[9.23,'First Quarter','🌓'],[12.92,'Waxing Gibbous','🌔'],[16.61,'Full Moon','🌕'],[20.3,'Waning Gibbous','🌖'],[23.99,'Last Quarter','🌗'],[27.68,'Waning Crescent','🌘'],[99,'New Moon','🌑']].find(p=>age<p[0]);
+ const toFull=(syn/2-age+syn)%syn,toNew=(syn-age)%syn,nx=toFull<toNew?['Full moon',toFull]:['New moon',toNew],dn=Math.round(nx[1]);
+ const next=dn<=0?nx[0]+' today':nx[0]+' in '+dn+' day'+(dn===1?'':'s');
+ const dS=Math.min(age,syn-age,Math.abs(age-syn/2)),dN=Math.min(Math.abs(age-syn/4),Math.abs(age-3*syn/4));
+ const strength=dS<=2.2?'Spring':dN<=2.2?'Neap':'Moderate';
+ const short=strength==='Spring'?'bigger swing, stronger flow, shorter slack':strength==='Neap'?'smaller swing, gentler flow, longer slack':'mid-cycle flow';
+ return{age,pct,name:ph[1],emoji:ph[2],next,strength,short};
+}
+const RAIN_PEN=[[0,0],[2,4],[6,14],[15,32],[30,52],[60,70]];
+const VIS_FT=[[0,3],[40,10],[60,25],[80,50],[92,80]];
+function visRange(s){
+ const ft=interp(VIS_FT,s),lo=ft*.75,hi=ft*1.35;
+ if(UNITS==='imperial'){const r=x=>x<20?Math.max(1,Math.round(x)):Math.round(x/5)*5;return r(lo)+'–'+r(hi)+' ft'}
+ const m=x=>Math.max(1,Math.round(x*.3048)),a=m(lo),b=m(hi);return a===b?'~'+a+' m':a+'–'+b+' m';
+}
+function visibility(R,M,wdir,moon){
+ const shore=R.mode!=='boat',face=R.face;
+ if(M.hs.value==null&&M.wind.value==null&&!R.rain)return{score:null};
+ const bad=[],good=[];let pen=0;
+ const add=(p,b,g)=>{pen+=p;if(p>=3)bad.push({p,t:b});else good.push(g)};
+ const swEx=face==null||!ok(M.swell.dir)?1:(d=>d<=60?1.3:d<=120?1:.55)(angDiff(M.swell.dir,face));
+ const wEx=face==null||!ok(wdir)?1:(d=>d<=60?1.3:d<=120?1:.5)(angDiff(wdir,face));
+ if(R.rain&&R.rain.length){
+  const w=[.3,.6,1,1].slice(-R.rain.length),eff=R.rain.reduce((a,v,i)=>a+v*w[i],0),tot=R.rain.reduce((a,v)=>a+v,0);
+  add(interp(RAIN_PEN,eff)*(shore?1:.6),`Rain: ${fmtPrecip(tot)} over the dive day and the days before. Runoff clouds the water${shore?', worst near the beach and river mouths':', mostly close to shore'}`,'little recent rain');
+ }
+ if(M.hs.value!=null){
+  const sh=M.swell.value,sp=M.swell.period;
+  let p=interp([[.3,0],[.6,8],[1,20],[1.5,34],[2.5,52]],M.hs.value)*(shore?1.15:.7)*swEx;
+  const longSw=sh!=null&&sh>=.8&&ok(sp)&&sp>=11;
+  if(longSw)p+=6*(shore?1:.7)*swEx;
+  add(p,`Seas ${fmtLen(M.hs.value).join(' ')}${longSw?' with long-period swell':''}: waves and surge stir up sediment${shore?' in the surf zone':' on the bottom'}${swEx>1?' (this site is open to the swell)':swEx<1?'':''}`,'small seas');
+ }
+ if(M.wind.value!=null){
+  const p=interp([[8,0],[14,6],[20,16],[28,28]],M.wind.value)*(shore?1:.85)*wEx;
+  add(p,`Wind ${fmtSpd(M.wind.value).join(' ')}: chop mixes the surface layer${wEx>1?' (blowing onshore at this site)':''}`,'light wind');
+ }
+ if(M.tide.value!=null){
+  const p=interp([[.6,0],[1.5,5],[3,12]],M.tide.value)*(shore?1:.5)*(moon&&moon.strength==='Spring'?1.25:1);
+  add(p,`Tide range ${fmtLen(M.tide.value).join(' ')}${moon&&moon.strength==='Spring'?' (spring tides)':''}: strong tidal flow pulls turbid water through inlets and channels`,'gentle tides');
+ }
+ const score=Math.max(5,Math.min(92,92-Math.round(pen)));
+ return{score,label:score>=80?'Excellent':score>=60?'Good':score>=40?'Fair':'Poor',range:visRange(score),bad:bad.sort((a,b)=>b.p-a.p).map(x=>x.t),good};
+}
+function siteCard(R,C,h0,h1){
+ const M=C.M,shore=R.mode!=='boat',face=R.face,hasF=face!=null,fd=hasF?(FACE_NAMES[face]||compass(face)):'';
+ const items=[],add=(tone,head,txt)=>items.push({tone,head,txt});
+ if(!hasF)add('n','Site Faces: Not Set','Choose the direction the open water lies from this site (for example West for a west-facing coast) in the search form to get notes on exposure to wind, swell and current.');
+ if(M.wind.value!=null){
+  const w=M.wind.value,g=M.gust.value,lvl=w<8?0:w<15?1:2,tone=['g','y','r'][lvl],from=ok(C.wdir)?' from '+compass(C.wdir):'';
+  const rel=hasF&&ok(C.wdir)?(d=>d<=60?'on':d>=120?'off':'cross')(angDiff(C.wdir,face)):null;
+  const head=`Wind ${fmtSpd(w).join(' ')}${from}${ok(g)&&g>=15&&g>w*1.4?', gusts '+fmtSpd(g).join(' '):''}`;
+  let txt;
+  if(lvl===0)txt=shore?'Light wind keeps the surface calm: easy entries and an easy swim out and back.':'Light wind: a comfortable ride, and the dive flag and divers are easy to spot.';
+  else if(rel==='on')txt=shore?`Onshore (blowing into the ${fd.toLowerCase()}-facing shore): chop and shore break build at your entry and exit, and stirred-up sand cuts visibility. The wind does push a tired swimmer back toward the beach.`:`Onshore (blowing toward the ${fd.toLowerCase()}-facing coast): the sea builds against the shore and the boat sits on a lee shore, so keep someone on the helm or a long anchor scope and a plan if the anchor drags. Expect whitecaps and spray on the ride.`;
+  else if(rel==='off')txt=shore?`Offshore (blowing away from the ${fd.toLowerCase()}-facing shore): the water near the beach stays flat, but the wind pushes you out to sea. The swim back is against the wind, so stay within easy swimming distance, use a float and flag, and save energy for the return.`:`Offshore (blowing away from the ${fd.toLowerCase()}-facing coast): the site close to shore is sheltered and flat, but the sea gets rougher farther out and the boat and any diver on the surface are blown away from land. Anchor or drift upwind of the site so the drift carries you back, keep the boat close to the divers, and keep a surface watch.`;
+  else if(rel==='cross')txt=shore?`Cross-shore (along the ${fd.toLowerCase()}-facing beach): the surface drifts you along the coast, so you can end up away from your exit. Pick an exit you can reach either way and check your position often.`:`Cross-shore: the boat swings broadside and divers drift sideways on the surface. Fly the flag on the downwind side and keep the boat placed so drift carries divers toward it.`;
+  else txt=shore?'Wind direction relative to the beach matters: onshore builds surf and chop at your entry, offshore flattens the beach but pushes you out to sea. Set Site Faces for direction-specific notes.':'Fresh wind builds chop, makes the ride wetter and makes divers harder to spot at the surface. Set Site Faces to see whether the site is sheltered or exposed.';
+  add(rel==='off'&&lvl===1?'y':tone,head,txt);
+ }
+ const sh=M.swell.value!=null?M.swell.value:M.hs.value;
+ if(sh!=null){
+  const sp=M.swell.period,sd=M.swell.dir,big=sh>=.9,med=sh>=.5;
+  const rel=hasF&&ok(sd)&&M.swell.value!=null?(d=>d<=60?'ex':d<=120?'wrap':'sheltered')(angDiff(sd,face)):null;
+  const head=`${M.swell.value!=null?'Swell':'Waves'} ${fmtLen(sh).join(' ')}${ok(sp)?' @ '+sp.toFixed(0)+' s':''}${ok(sd)&&M.swell.value!=null?' from '+compass(sd):''}`;
+  let tone='g',txt;
+  if(rel==='ex'){
+   tone=big?'r':med?'y':'g';
+   txt=shore?(big?`Swell is coming straight at this ${fd.toLowerCase()}-facing shore: expect surf at the entry, hard exits over rock or reef, strong surge in shallow water and poor visibility. Consider a protected site.`:`Swell faces this coast head-on but is small: entries should be manageable, though sets can arrive without warning. Watch the waves for a few minutes before you go in.`)
+    :(big?`The ${fd.toLowerCase()}-facing site is open to this swell: the boat will roll at anchor, there is surge at depth and re-boarding by the ladder gets hard. Expect seasickness and consider a more sheltered anchorage.`:`Open to the swell, but it is small: some roll at anchor and mild surge, fine for most divers.`);
+  }else if(rel==='wrap'){
+   tone=big?'r':'y';
+   txt=shore?`Swell meets this ${fd.toLowerCase()}-facing coast at an angle and wraps around points: expect moderate surf and cross-currents near the entry. Coves are calmer than headlands.`:`Swell arrives at an angle, so expect some roll at anchor. Tuck into a cove or the lee of a point for a calmer anchorage.`;
+  }else if(rel==='sheltered'){
+   txt=shore?`This ${fd.toLowerCase()}-facing coast blocks swell from ${compass(sd)}: the water here should be calmer than the open-ocean numbers suggest. Watch for wrap-around swell near points.`:`The land shelters this ${fd.toLowerCase()}-facing site from ${compass(sd)} swell: a calm anchorage and a comfortable time at the site, though the crossing may still be rough.`;
+  }else{
+   tone=big?'y':'g';
+   txt=big?(shore?'Swell this size makes surf at most open-coast entries. Set Site Faces to see whether this site is exposed.':'Swell this size rolls boats at anchor and surges at depth. Set Site Faces to see whether this site is exposed.'):'Swell is small.';
+  }
+  if(ok(sp)&&sp>=12&&sh>=.5)txt+=` Long period (${sp.toFixed(0)} s) swell carries power: surge reaches deeper and sneaker sets can break even when the surface looks calm.`;
+  add(tone,head,txt);
+ }
+ if(M.cur.value!=null&&M.cur.value>=.3){
+  const c=M.cur.value,cd=M.cur.dir,strong=c>=.8;
+  const rel=hasF&&ok(cd)?(d=>d<=60?'out':d>=120?'in':'along')(angDiff(cd,face)):null;
+  const head=`Current ${fmtSpd(c).join(' ')}${ok(cd)?' toward '+compass(cd):''}`;
+  let tone=strong?'r':'y',txt;
+  if(rel==='out')txt=shore?`Sets seaward from this ${fd.toLowerCase()}-facing shore: a diver can be carried offshore faster than they can swim back. Dive near the exit, keep a float and flag, and avoid headlands where the flow concentrates.`:`Flows away from the ${fd.toLowerCase()} coast: run it as a drift dive with the boat following the bubbles, carry a surface marker and signal, and start at the up-current end.`;
+  else if(rel==='in')txt=shore?`Pushes toward this shore: it helps you back in, but pushes you onto rocks and the surf zone at the exit. Time and place your exit with care.`:`Pushes toward the coast, so a drifting boat moves toward shore. Keep the engine ready and watch the distance to the rocks.`;
+  else if(rel==='along')txt=shore?`Runs along the coast: you will drift away from your entry, so swim up-current first, or plan a drift dive with a different exit point.`:`Runs along the coast: set up a drift dive, drop divers up-current of the target and let the boat follow the bubbles.`;
+  else txt='Swim up-current first so the return is easy, and keep the dive close to your exit or boat.';
+  add(tone,head,txt+' The current is a coarse model, so check local current tables.');
+ }
+ const tw=tideWindow(R,C,h0,h1);
+ if(tw)add('g',`Slack Tide ${fmtHr(tw.a)}–${fmtHr(tw.b)}`,shore?'Flow is weakest around the tide turn: the easiest time for entries, exits and swimming back.':'Current is weakest around the tide turn: the best time to put divers in and pick them up.');
+ const mo=C.moon;
+ add(mo.strength==='Spring'?'y':mo.strength==='Neap'?'g':'n',`${mo.emoji} ${mo.name} · ${mo.strength} Tides`,mo.strength==='Spring'?'Bigger tidal swing and stronger flow: slack windows are shorter, and channels, inlets and points run harder. Moving water also tends to switch fish on, so work the edges of slack.':mo.strength==='Neap'?'Smaller tidal swing and gentler flow: longer, more forgiving slack windows and usually clearer water around inlets.':'Mid-cycle tides: moderate flow, with no strong spring or neap effect.');
+ const dot={g:'#22a85f',y:'#f0b400',r:'#d63b3b',n:'#9aa7b3'};
+ return`<h2>Site Notes</h2><div class="card"><b>${hasF?esc(fd)+'-Facing ':''}${shore?'Shore':'Boat'} Dive</b><div class="hint" style="margin:2px 0 0">What the wind, swell, current and tide mean for this dive, from the forecast and the site direction you set. Local knowledge outranks this.</div><ul class="impl">${items.map(i=>`<li><i style="background:${dot[i.tone]}"></i><div><b>${esc(i.head)}</b><span>${esc(i.txt)}</span></div></li>`).join('')}</ul></div>`;
 }
 
 /* ---------- rendering ---------- */
@@ -804,6 +954,11 @@ function render(R,C,h0,h1){
  mm(M.cur,v=>fmtSpd(v).join(' '));
  G.push(gcard(M.cur,M.cur.value!=null?vnum(...fmtSpd(M.cur.value)):'&mdash;',M.cur.value!=null?'Modelled surface current'+(ok(M.cur.dir)?' toward '+compass(M.cur.dir):'')+' (coarse; check local current tables)':'No current data returned'));
 
+ if(C.V&&C.V.score!=null){
+  const V=C.V;
+  G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'about '+V.range),'Estimated from recent rain, sea state, wind and tides. Not a measurement, and not part of the grade.',
+   V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')).replace('Cross-Check &amp; Sources','What Drives This'));
+ }
  const o=C.overall,L=o==null?'?':grade(o),ob=band(o);
  const gradeColor={A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[L];
  let h=`<div class="top"><div class="card grade"><div class="sub">Overall Dive Conditions</div><div class="letter tc-${gradeColor}">${L}</div>
@@ -811,12 +966,13 @@ function render(R,C,h0,h1){
  <div class="sub" style="margin-top:8px">${placeLine(R.place)}${R.date} &middot; ${h0}:00–${h1}:00 local${R.tz?' ('+esc(R.tz)+')':''}</div>
 
  <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
- <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
+ <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="fplan">Float Plan</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
  <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C,R,h0,h1)}</div>
  ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No Grade Given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
  ${C.missing.length?`<div class="warn">No data for: ${C.missing.map(esc).join(', ')}. These are excluded from the grade, not guessed.</div>`:''}
- <details class="how"><summary>How Grades Work</summary><div class="hint" style="margin-top:6px">Stoplight: green = good (score 70+), yellow = marginal (40–69), red = poor (&lt;40). Grade: A 90+, B 80+, C 70+, D 60+, F below 60. Weights: weather, sea state and swell 1.5; wind and gusts 1; tide, temperature and current 0.75. Weather scores model conditions and rain totals, and drops sharply for thunderstorms. Active NWS alerts (US) override it: warnings such as flash flood, storm surge, tornado, hurricane/tropical storm or special marine warning limit the grade to F (45); watches, flood or coastal-flood warnings, gale and high-surf alerts limit it to D (65); advisories such as small craft, rip current, dense fog or wind limit it to C (79). Any red wind, gust, sea-state, swell or weather reading, or a forecast thunderstorm, also caps the grade at D.</div></details></div></div>`;
+ <details class="how"><summary>How Grades Work</summary><div class="hint" style="margin-top:6px">Stoplight: green = good (score 70+), yellow = marginal (40–69), red = poor (&lt;40). Grade: A 90+, B 80+, C 70+, D 60+, F below 60. Weights: weather, sea state and swell 1.5; wind and gusts 1; tide, temperature and current 0.75. Weather scores model conditions and rain totals, and drops sharply for thunderstorms. Active NWS alerts (US) override it: warnings such as flash flood, storm surge, tornado, hurricane/tropical storm or special marine warning limit the grade to F (45); watches, flood or coastal-flood warnings, gale and high-surf alerts limit it to D (65); advisories such as small craft, rip current, dense fog or wind limit it to C (79). Any red wind, gust, sea-state, swell or weather reading, or a forecast thunderstorm, also caps the grade at D. The visibility estimate and moon/tide-strength notes are advisory and do not change the grade.</div></details></div></div>`;
+ h+=siteCard(R,C,h0,h1);
  h+=`<div class="gauges">${G.join('')}</div>`;
  h+=tidePanel(R,C,h0,h1)+hourly(R,C,h0,h1)+cites(R,C);
  $('out').innerHTML=h;
@@ -914,7 +1070,7 @@ function shareText(R,C,h0,h1){
  const cs=R.place.lat.toFixed(4)+', '+R.place.lon.toFixed(4);
  const ln=["🦀 Spearo's Dive Report",R.place.name];
  if(R.place.name!==cs)ln.push(cs);
- ln.push(`${dn} · ${h0}:00–${h1}:00 local`,'',
+ ln.push(`${dn} · ${h0}:00–${h1}:00 local`,`Dive type: ${R.mode==='boat'?'Boat':'Shore'}${R.face!=null?', '+(FACE_NAMES[R.face]||compass(R.face)).toLowerCase()+'-facing':''}`,'',
   o==null?'Overall: no grade':`Overall: ${L} (${Math.round(o)}/100), ${GRADE_WORD[L]}`);
  if(C.capped)ln.push('Limited by: '+C.capped);
  ln.push('','CONDITIONS',
@@ -922,6 +1078,7 @@ function shareText(R,C,h0,h1){
   `Waves: ${v(M.hs,x=>fmtLen(x).join(' '))}`,
   `Swell: ${v(M.swell,x=>fmtLen(x).join(' '))}`+(M.swell.value!=null&&ok(M.swell.period)?` @ ${M.swell.period.toFixed(0)} s`:'')+(M.swell.value!=null&&ok(M.swell.dir)?` from ${compass(M.swell.dir)}`:''),
   `Water: ${v(M.sst,x=>fmtTemp(x).join(' '))}`);
+ if(C.V&&C.V.score!=null)ln.push(`Visibility (estimate): ${C.V.label}, about ${C.V.range}`);
  if(X.code!=null)ln.push(`Weather: ${codeInfo(X.code)[1]}`+(X.air&&X.air.value!=null?`, ${fmtTemp(X.air.value).join(' ')}`:''));
  if(M.cur.value!=null)ln.push(`Current: ${fmtSpd(M.cur.value).join(' ')}`+(ok(M.cur.dir)?` toward ${compass(M.cur.dir)}`:''));
  if(M.tide.events&&M.tide.events.length)ln.push('Tide: '+M.tide.events.slice().sort((a,b)=>a.hr-b.hr).map(e=>`${e.type==='H'?'High':'Low'} ${fmtHr(e.hr)} (${fmtLen(e.h).join(' ')})`).join(' · '));
@@ -929,6 +1086,7 @@ function shareText(R,C,h0,h1){
  if(C.best)timing.push(`Best 3-hour window: ${C.best.start}:00–${C.best.start+3}:00`);
  if(tw)timing.push(`Slack tide: ${fmtHr(tw.a)}–${fmtHr(tw.b)} (around ${tw.ev.type==='H'?'high':'low'} tide ${fmtHr(tw.ev.hr)})`);
  if(R.sun)timing.push(`Sunrise ${R.sun.rise} · Sunset ${R.sun.set}`);
+ timing.push(`Moon: ${C.moon.name} (${C.moon.pct}% lit), ${C.moon.strength.toLowerCase()} tides`);
  if(timing.length)ln.push('','TIMING',...timing);
  ln.push('','Planning aid only. Never dive alone.','https://navaforce.github.io/dive-conditions-tracker/');
  return ln.join('\n');
@@ -1012,6 +1170,7 @@ $('out').addEventListener('click',ev=>{
 });
 $('out').addEventListener('click',async ev=>{
  if(ev.target.id==='save'&&CTX){toggleSite(CTX.R.place);ev.target.textContent=isSaved(CTX.R.place)?'★ Saved':'☆ Save Site';return}
+ if(ev.target.id==='fplan'&&CTX){fpOpen();return}
  if(ev.target.id!=='share'||!CTX)return;
  const text=shareText(CTX.R,compute(CTX.R,CTX.h0,CTX.h1),CTX.h0,CTX.h1),btn=ev.target;
  try{
@@ -1050,7 +1209,7 @@ function tideWindow(R,C,h0,h1){
 }
 function summary(C,R,h0,h1){
  const{M}=C,bits=[];const f=(k,t)=>M[k].score!=null&&bits.push(`<span class="pill bg-${band(M[k].score)}">${t}</span>`);
- f('weather','Weather');f('wind','Wind');f('gust','Gusts');f('hs','Sea State');f('swell','Swell');f('tide','Tide');f('sst','Temp');f('cur','Current');
+ f('weather','Weather');f('wind','Wind');f('gust','Gusts');f('hs','Sea State');f('swell','Swell');f('tide','Tide');f('sst','Temp');f('cur','Current');if(C.V&&C.V.score!=null)bits.push(`<span class="pill bg-${band(C.V.score)}">Visibility</span>`);
  const n=bits.length,cols=n<=4?Math.max(n,1):n%4===0?4:n%3===0?3:4;
  let t=n?`<div class="chips" style="--cols:${cols}">${bits.join('')}</div>`:'';
  if(n){
@@ -1061,7 +1220,9 @@ function summary(C,R,h0,h1){
    fact('Best 3-Hour Window',C.best?`${C.best.start}:00–${C.best.start+3}:00`:'No data',C.best?`Wind, waves and swell score ${Math.round(C.best.score)}`:'')+
    fact('Slack-Tide Window',tw?`${fmtHr(tw.a)}–${fmtHr(tw.b)}`:'No tide data',tw?`Around ${tw.ev.type==='H'?'high':'low'} tide at ${fmtHr(tw.ev.hr)}${tw.score!=null?', hourly score '+Math.round(tw.score):''}`:'Needs NOAA tide predictions')+
    fact('Sunrise',R.sun?R.sun.rise:'No data','Open-Meteo')+
-   fact('Sunset',R.sun?R.sun.set:'No data',out?'<span class="tc-y">Dive window runs outside daylight</span>':'')+`</div>`;
+   fact('Sunset',R.sun?R.sun.set:'No data',out?'<span class="tc-y">Dive window runs outside daylight</span>':'')+
+   fact('Moon',C.moon.emoji+' '+C.moon.name,C.moon.pct+'% lit · '+C.moon.next)+
+   fact('Tide Strength',C.moon.strength+' Tides',(M.tide.value!=null?'Range '+fmtLen(M.tide.value).join(' ')+' · ':'')+C.moon.short)+`</div>`;
  }
  if(C.thunder)t+=`<div class="warn tc-r">At least one model forecasts thunderstorms during the dive window.</div>`;
  return t||'No usable data was returned for this location and date.';
@@ -1142,7 +1303,7 @@ $('f').addEventListener('submit',async ev=>{
  ev.preventDefault();LASTMODE='day';DIAG=[];
  const q=$('place').value.trim(),date=$('date').value;UNITS=$('units').value;
  let h0=Math.max(0,Math.min(23,parseInt($('h0').value,10)||8)),h1=Math.max(0,Math.min(23,parseInt($('h1').value,10)||14));if(h1<h0)[h0,h1]=[h1,h0];
- if(S.remember)safeLS.set('dive-last',JSON.stringify({q,date,h0,h1,UNITS}));
+ if(S.remember)safeLS.set('dive-last',JSON.stringify({q,date,h0,h1,UNITS,mode:$('mode').value,face:$('face').value}));
  setBusy(true);$('out').innerHTML='';$('status').textContent='Looking up location…';
  try{
   const place=await geocode(q);
@@ -1162,7 +1323,7 @@ const isSaved=p=>SITES.some(s=>sameSite(s,p));
 function shortName(n){return n.split(',')[0].trim()||n}
 function toggleSite(p){
  if(isSaved(p))SITES=SITES.filter(s=>!sameSite(s,p));
- else{if(SITES.length>=12)SITES.shift();SITES.push({name:p.name,lat:p.lat,lon:p.lon})}
+ else{if(SITES.length>=12)SITES.shift();SITES.push({name:p.name,lat:p.lat,lon:p.lon,face:$('face').value})}
  safeLS.set('dive-sites',JSON.stringify(SITES));renderSites();
 }
 function renderSites(){
@@ -1173,7 +1334,7 @@ $('sites').addEventListener('change',ev=>{
  if(ev.target.id!=='siteSel')return;
  $('siteDel').disabled=ev.target.value==='';
  if(ev.target.value==='')return;
- const site=SITES[+ev.target.value];$('place').value=site.name;GEO={q:site.name,cands:[{...site,src:'saved site'}],idx:0};$('f').requestSubmit();
+ const site=SITES[+ev.target.value];$('place').value=site.name;$('face').value=site.face||'';GEO={q:site.name,cands:[{...site,src:'saved site'}],idx:0};$('f').requestSubmit();
 });
 $('sites').addEventListener('click',ev=>{
  if(ev.target.id!=='siteDel')return;
@@ -1250,8 +1411,8 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.3.6';
-const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',h0:8,h1:14,auto:false};
+const VERSION='1.4.0';
+const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
 const sysMQ=matchMedia('(prefers-color-scheme:dark)');
@@ -1262,7 +1423,7 @@ function applyS(){
  el.dataset.theme=isDark()?'dark':'light';
  el.classList.toggle('no-scene',!S.scene);el.classList.toggle('no-anim',!S.anim);
  $('s-dark').checked=isDark();$('s-scene').checked=S.scene;$('s-anim').checked=S.anim;$('s-remember').checked=S.remember;$('s-auto').checked=S.auto;
- $('s-units').value=S.units;$('s-h0').value=S.h0;$('s-h1').value=S.h1;
+ $('s-units').value=S.units;$('s-mode').value=S.mode;$('s-h0').value=S.h0;$('s-h1').value=S.h1;
 }
 function setS(k,v){S[k]=v;safeLS.set(SKEY,JSON.stringify(S));applyS()}
 if(sysMQ.addEventListener)sysMQ.addEventListener('change',()=>{if(S.dark==null)applyS()});
@@ -1271,9 +1432,10 @@ $('s-scene').onchange=e=>setS('scene',e.target.checked);
 $('s-anim').onchange=e=>setS('anim',e.target.checked);
 $('s-auto').onchange=e=>setS('auto',e.target.checked);
 $('s-remember').onchange=e=>{setS('remember',e.target.checked);if(!e.target.checked)safeLS.del('dive-last')};
+$('s-mode').onchange=e=>{setS('mode',e.target.value);$('mode').value=e.target.value};
 $('s-units').onchange=e=>{setS('units',e.target.value);$('units').value=e.target.value};
 ['h0','h1'].forEach(k=>$('s-'+k).onchange=e=>{setS(k,clampH(e.target.value,DEF[k]));$(k).value=S[k]});
-$('s-reset').onclick=()=>{safeLS.del(SKEY);safeLS.del('dive-last');S={...DEF};applyS();$('units').value=S.units;$('h0').value=S.h0;$('h1').value=S.h1};
+$('s-reset').onclick=()=>{safeLS.del(SKEY);safeLS.del('dive-last');S={...DEF};applyS();$('units').value=S.units;$('mode').value=S.mode;$('face').value='';$('h0').value=S.h0;$('h1').value=S.h1};
 $('s-refresh').onclick=async e=>{const b=e.target;b.disabled=true;b.textContent='Refreshing…';try{await fetch(location.pathname,{cache:'reload'})}catch(x){}location.replace(location.pathname+'?r='+Date.now())};
 $('ver').textContent='v'+VERSION;
 const MODAL=$('modal');let _lastFocus=null;
@@ -1293,12 +1455,73 @@ document.addEventListener('keydown',e=>{
   else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
  }
 });
+/* ---------- float plan ---------- */
+const FP=$('fpModal');let _fpFocus=null;
+const pad2=n=>String(n).padStart(2,'0');
+function fpOpen(){
+ if(!CTX)return;
+ const{R,h0,h1}=CTX;let saved={};try{saved=JSON.parse(safeLS.get('dive-fp')||'{}')}catch(e){}
+ const set=(id,v)=>$(id).value=v;
+ set('fp-site',R.place.name);set('fp-coords',R.place.lat.toFixed(5)+', '+R.place.lon.toFixed(5));set('fp-date',R.date);set('fp-type',R.mode==='boat'?'boat':'shore');
+ set('fp-start',pad2(h0)+':00');set('fp-end',pad2(h1)+':00');set('fp-out',pad2(h1)+':00');set('fp-late',h1+1>23?'23:59':pad2(h1+1)+':00');
+ set('fp-entry','');set('fp-vessel','');set('fp-depth','');set('fp-buddy',saved.buddy||'');set('fp-contact',saved.contact||'');set('fp-notes','');
+ $('fp-cond').checked=true;
+ _fpFocus=document.activeElement;FP.hidden=false;document.body.classList.add('mopen');fpRefresh();$('fpclose').focus();
+}
+function fpClose(){FP.hidden=true;document.body.classList.remove('mopen');if(_fpFocus&&_fpFocus.focus)_fpFocus.focus()}
+function fpText(){
+ const v=id=>$(id).value.trim(),boat=v('fp-type')==='boat',L=['🤿 FLOAT PLAN',''];
+ const row=(k,x)=>{if(x)L.push(k+': '+x)};
+ const dn=v('fp-date')?new Date(v('fp-date')+'T12:00:00').toLocaleDateString(undefined,{weekday:'short',month:'short',day:'numeric'}):'';
+ row('Site',v('fp-site'));row('Coordinates',v('fp-coords'));
+ const m=v('fp-coords').match(/(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)/);
+ if(m)L.push('Map: https://www.google.com/maps?q='+m[1]+','+m[2]);
+ row('Date',dn);
+ const R=CTX&&CTX.R;
+ row('Dive type',(boat?'Boat':'Shore')+(R&&R.face!=null?', '+(FACE_NAMES[R.face]||compass(R.face)).toLowerCase()+'-facing site':''));
+ row(boat?'Launch / anchorage':'Entry / exit',v('fp-entry'));
+ if(boat)row('Vessel',v('fp-vessel'));
+ if(v('fp-start')||v('fp-end'))L.push('Dive window: '+(v('fp-start')||'?')+' to '+(v('fp-end')||'?')+' local');
+ row('Expected out of the water',v('fp-out'));row('Max depth',v('fp-depth'));row('Buddy / team',v('fp-buddy'));row('Emergency contact',v('fp-contact'));
+ if(v('fp-late'))L.push('','If you have not heard from me by '+v('fp-late')+', call 911 or the Coast Guard (VHF 16) and give them this plan.');
+ if(v('fp-notes'))L.push('','Notes: '+v('fp-notes'));
+ if($('fp-cond').checked&&CTX){
+  const C=compute(CTX.R,CTX.h0,CTX.h1),M=C.M,o=C.overall,vv=(mm,f)=>mm.value!=null?f(mm.value):'no data',tw=tideWindow(CTX.R,C,CTX.h0,CTX.h1);
+  L.push('','FORECAST (for the original '+CTX.h0+':00–'+CTX.h1+':00 window)',
+   o==null?'Overall: no grade':`Overall: ${grade(o)} (${Math.round(o)}/100)`);
+  if(C.V&&C.V.score!=null)L.push(`Visibility (estimate): ${C.V.label}, about ${C.V.range}`);
+  L.push(`Wind: ${vv(M.wind,x=>fmtSpd(x).join(' '))}, gusts ${vv(M.gust,x=>fmtSpd(x).join(' '))}`,`Waves: ${vv(M.hs,x=>fmtLen(x).join(' '))}`,`Water: ${vv(M.sst,x=>fmtTemp(x).join(' '))}`);
+  if(tw)L.push(`Slack tide: ${fmtHr(tw.a)}–${fmtHr(tw.b)}`);
+  if(CTX.R.sun)L.push(`Sunset: ${CTX.R.sun.set}`);
+ }
+ L.push('','Sent from Spearo\'s Dive Report');
+ return L.join('\n');
+}
+function fpRefresh(){
+ $('fp-vessel-w').hidden=$('fp-type').value!=='boat';
+ $('fp-prev').textContent=fpText();
+ safeLS.set('dive-fp',JSON.stringify({buddy:$('fp-buddy').value.trim(),contact:$('fp-contact').value.trim()}));
+}
+$('fpfields').addEventListener('input',fpRefresh);$('fpfields').addEventListener('change',fpRefresh);
+$('fpclose').onclick=fpClose;FP.querySelector('.mback').onclick=fpClose;
+$('fp-copy').onclick=async()=>{const t=fpText(),b=$('fp-copy');try{await navigator.clipboard.writeText(t);b.textContent='Copied';setTimeout(()=>b.textContent='Copy',1800)}catch(e){prompt('Copy this:',t)}};
+$('fp-share').onclick=async()=>{const text=fpText();try{if(navigator.share)await navigator.share({title:'Float Plan',text});else{await navigator.clipboard.writeText(text);$('fp-share').textContent='Copied';setTimeout(()=>$('fp-share').textContent='Share Float Plan',1800)}}catch(e){if(e&&e.name!=='AbortError')prompt('Copy this:',text)}};
+document.addEventListener('keydown',e=>{
+ if(FP.hidden)return;
+ if(e.key==='Escape'){fpClose();return}
+ if(e.key==='Tab'){
+  const f=[...FP.querySelectorAll('button,input,select,textarea')].filter(x=>!x.disabled&&!x.closest('[hidden]'));
+  if(!f.length)return;const a=f[0],z=f[f.length-1];
+  if(e.shiftKey&&document.activeElement===a){e.preventDefault();z.focus()}
+  else if(!e.shiftKey&&document.activeElement===z){e.preventDefault();a.focus()}
+ }
+});
 applyS();
 (function init(){
  const t=new Date(),iso=new Date(t.getTime()-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);
  $('date').value=iso;$('date').max=new Date(t.getTime()-t.getTimezoneOffset()*6e4+16*864e5).toISOString().slice(0,10);
- $('units').value=S.units;$('h0').value=S.h0;$('h1').value=S.h1;
- if(S.remember)try{const l=JSON.parse(safeLS.get('dive-last')||'null');if(l){$('place').value=l.q||'';$('h0').value=l.h0;$('h1').value=l.h1;$('units').value=l.UNITS==='metric'?'metric':'imperial'}}catch(e){}
+ $('units').value=S.units;$('mode').value=S.mode;$('h0').value=S.h0;$('h1').value=S.h1;
+ if(S.remember)try{const l=JSON.parse(safeLS.get('dive-last')||'null');if(l){$('place').value=l.q||'';$('h0').value=l.h0;$('h1').value=l.h1;$('units').value=l.UNITS==='metric'?'metric':'imperial';if(l.mode==='boat')$('mode').value='boat';if(l.face!=null&&$('face').querySelector('option[value="'+l.face+'"]'))$('face').value=l.face}}catch(e){}
 })();
 </script>
 </body>
