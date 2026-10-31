@@ -763,7 +763,6 @@ function tidePanel(R,C,h0,h1){
  const list=ev.map(e=>`<b>${e.type==='H'?'High':'Low'}</b> ${tm(e.hr)} (${fmtLen(e.h).join(' ')})`).join(' &nbsp;|&nbsp; ');
  let cross='';
  if(R.tide&&T.modelEvents.length){cross='Model cross-check (Open-Meteo sea level, hourly): '+T.modelEvents.map(e=>`${e.type==='H'?'High':'Low'} ~${String(e.hr).padStart(2,'0')}:00`).join(', ')+'. Used only as a sanity check; NOAA predictions are authoritative.'}
- const tm0=h=>{const hh=Math.floor(h),mi=Math.round((h-hh)*60);return String(mi===60?hh+1:hh).padStart(2,'0')+':'+String(mi===60?0:mi).padStart(2,'0')};
  const sel=R.tideCands&&R.tideCands.length>1?`<div class="hint" style="margin:0 0 8px">Tide station: <select style="width:auto" onchange="pickTide(this.value)">${R.tideCands.map((c,i)=>`<option value="${i}" ${c.st===R.tide.st?'selected':''}>${esc(c.st.name)} \u2013 ${c.st.km.toFixed(0)} km, range ${fmtLen(c.range).join(' ')}</option>`).join('')}</select><br>Default is the nearby station with the largest range: open-coast stations show the full tide, while lagoon/river stations are damped and delayed. Pick another if you dive inside the inlet or lagoon.</div>`:'';
  return`<h2>Tides</h2><div class="card">${sel}${svg}<div style="margin-top:6px">${list}</div><div class="hint">Curve is a cosine interpolation between predicted highs/lows (heights relative to MLLW for NOAA data). ${esc(T.tsrc)}. ${cross}<br>Slack water often falls near high/low tide on open coasts but varies by site; confirm with local current tables and your dive operator.</div></div>`;
 }
