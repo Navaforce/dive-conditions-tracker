@@ -533,7 +533,7 @@ function circMean(a){a=a.filter(ok);if(!a.length)return null;let x=0,y=0;a.forEa
 let UNITS='imperial';
 let SITES=[];try{SITES=JSON.parse(localStorage.getItem('dive-sites')||'[]').filter(s=>s&&s.name&&isFinite(s.lat)&&isFinite(s.lon))}catch(e){}
 
-const CHL_URL='';
+const CHL_URL='https://dive-chl.navaforce-dive.workers.dev/';
 const fmtPrecip=mm=>UNITS==='imperial'?(mm/25.4).toFixed(2)+' in':mm.toFixed(1)+' mm';
 const WMO={0:['\u2600\uFE0F','Clear'],1:['\uD83C\uDF24\uFE0F','Mainly clear'],2:['\u26C5','Partly cloudy'],3:['\u2601\uFE0F','Overcast'],45:['\uD83C\uDF2B\uFE0F','Fog'],48:['\uD83C\uDF2B\uFE0F','Freezing fog'],51:['\uD83C\uDF26\uFE0F','Light drizzle'],53:['\uD83C\uDF26\uFE0F','Drizzle'],55:['\uD83C\uDF26\uFE0F','Heavy drizzle'],56:['\uD83C\uDF27\uFE0F','Freezing drizzle'],57:['\uD83C\uDF27\uFE0F','Freezing drizzle'],61:['\uD83C\uDF27\uFE0F','Light rain'],63:['\uD83C\uDF27\uFE0F','Rain'],65:['\uD83C\uDF27\uFE0F','Heavy rain'],66:['\uD83C\uDF27\uFE0F','Freezing rain'],67:['\uD83C\uDF27\uFE0F','Freezing rain'],71:['\uD83C\uDF28\uFE0F','Light snow'],73:['\uD83C\uDF28\uFE0F','Snow'],75:['\uD83C\uDF28\uFE0F','Heavy snow'],77:['\uD83C\uDF28\uFE0F','Snow grains'],80:['\uD83C\uDF26\uFE0F','Light showers'],81:['\uD83C\uDF27\uFE0F','Showers'],82:['\u26C8\uFE0F','Violent showers'],85:['\uD83C\uDF28\uFE0F','Snow showers'],86:['\uD83C\uDF28\uFE0F','Heavy snow showers'],95:['\u26C8\uFE0F','Thunderstorm'],96:['\u26C8\uFE0F','Thunderstorm, hail'],99:['\u26C8\uFE0F','Severe thunderstorm, hail']};
 const codeInfo=c=>WMO[c]||['','Weather code '+c];
@@ -1442,7 +1442,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.5.0';
+const VERSION='1.5.1';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}

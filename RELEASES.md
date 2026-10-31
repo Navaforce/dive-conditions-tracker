@@ -1,5 +1,8 @@
 # Releases
 
+## v1.5.1 - 2026-10-31
+- Plankton gauge and visibility factor are live: Worker deployed at dive-chl.navaforce-dive.workers.dev and `CHL_URL` set.
+
 ## v1.5.0 - 2026-10-31
 - Plankton (Chlorophyll) gauge and a plankton factor in the Visibility Estimate, from NOAA CoastWatch VIIRS chlorophyll-a (gap-filled, 2 km), median of the pixels within about 0.06 degrees of the site.
 - Uses a small Cloudflare Worker proxy (`worker/chl.js`) because NOAA does not allow browser requests from other sites. The feature stays off until `CHL_URL` in `index.html` is set to the deployed Worker address.
