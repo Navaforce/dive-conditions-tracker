@@ -1,5 +1,8 @@
 # Releases
 
+## v1.3.3 - 2026-10-31
+- Saved sites are a dropdown with a Remove button instead of chips, so the list no longer grows the page.
+
 ## v1.3.2 - 2026-10-31
 - Header: badge sits in line with the title; tagline removed; header height unchanged (219 px, 246 px on phones).
 
@@ -8,7 +11,7 @@
 - Share also attaches an animated GIF card: the happy crab waving next to the grade, place, date and key readings. Built in the browser after the report renders; if it is not ready or the device cannot share files, the text is shared alone.
 
 ## v1.3.0 - 2026-10-31
-- Saved sites: Save Site on the grade card, tap a chip to search it, x to remove (`dive-sites`, up to 12).
+- Saved sites: Save Site on the grade card, pick from the dropdown to search it, Remove to delete (`dive-sites`, up to 12).
 - 7-Day Outlook: strip of seven days with grade, best window and a Best Day badge; tap a day to open it.
 - Compare Sites: two places side by side for one date, better cells underlined.
 - Summary card: chips in even rows, plus Best 3-Hour Window, Slack-Tide Window, Sunrise and Sunset tiles.
