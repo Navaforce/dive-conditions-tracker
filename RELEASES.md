@@ -1,5 +1,9 @@
 # Releases
 
+## v1.3.1 - 2026-10-31
+- Share Report text reorganised into Overall, Conditions and Timing sections (weather, current, tides, slack window, sunrise/sunset, link).
+- Share also attaches an animated GIF card: the happy crab waving next to the grade, place, date and key readings. Built in the browser after the report renders; if it is not ready or the device cannot share files, the text is shared alone.
+
 ## v1.3.0 - 2026-10-31
 - Saved sites: Save Site on the grade card, tap a chip to search it, x to remove (`dive-sites`, up to 12).
 - 7-Day Outlook: strip of seven days with grade, best window and a Best Day badge; tap a day to open it.
