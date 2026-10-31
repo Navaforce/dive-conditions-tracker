@@ -127,9 +127,7 @@ table.cmp .cl{font-size:34px;font-weight:900;line-height:1}
 svg.tide{display:block;width:100%;max-width:760px;height:auto;margin:6px auto 0}.t-fill{fill:var(--t-line);opacity:.14}.t-win{fill:var(--t-win)}.t-wint{fill:var(--t-wint)}.t-grid{stroke:var(--t-grid)}.t-tick{fill:var(--t-tick)}.t-line{stroke:var(--t-line)}.t-lbl{fill:var(--t-lbl)}.t-hi{fill:var(--t-hi)}.t-lo{fill:#e8a900}
 html.no-scene header.hero .scene{display:none}
 header.hero .in>div{min-width:0}
-.menu-btn{position:relative;flex:none;z-index:5;width:38px;height:38px;min-height:38px;padding:0;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);box-shadow:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.menu-btn:hover{background:rgba(255,255,255,.26)}
-.menu-btn i{display:block;width:18px;height:2.5px;border-radius:2px;background:#fff}
+.logo-btn{flex:none;position:relative;z-index:5;width:auto;min-height:0;padding:0;border:0;border-radius:50%;background:none;box-shadow:none;display:block;line-height:0;cursor:pointer}.logo-btn:active{transform:scale(.94)}.logo-btn:focus-visible{outline:3px solid #ffb703;outline-offset:2px}
 @keyframes fadeIn{from{opacity:0}}
 @keyframes slideIn{from{opacity:0;transform:translateY(-12px) scale(.98)}}
 .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:calc(16px + env(safe-area-inset-top)) 12px 16px}
@@ -294,7 +292,7 @@ html.no-scene footer.floor{height:96px}html.no-scene footer.floor .fscene{displa
 @keyframes shr4{0.0%{transform:translate(450px,150px) scaleX(1)}20.0%{transform:translate(520px,140px) scaleX(1)}40.0%{transform:translate(600px,155px) scaleX(-1)}60.0%{transform:translate(520px,160px) scaleX(-1)}80.0%{transform:translate(430px,135px) scaleX(1)}100.0%{transform:translate(450px,150px) scaleX(1)}}.shr4{animation:shr4 41s ease-in-out infinite}
 .sfi{opacity:.4}.sfL{animation:sfL linear infinite}.sfR{animation:sfR linear infinite}@keyframes sfL{from{transform:translateX(-80px)}to{transform:translateX(1300px)}}@keyframes sfR{from{transform:translateX(1300px)}to{transform:translateX(-80px)}}
 .impl{list-style:none;margin:var(--s3) 0 0;padding:0}.impl li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--rline);font-size:13.5px;line-height:1.5}.impl li:first-child{border-top:0}.impl i{flex:none;width:10px;height:10px;border-radius:50%;margin-top:6px}.impl b{display:block;font-size:14px}.impl span{display:block;color:var(--mut)}
-.fpg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}.fpg>div{min-width:0}.fpg input,.fpg select{width:100%;min-width:0;max-width:100%;box-sizing:border-box}.fpg label{display:block;margin-bottom:4px}.fpg .wide{grid-column:1/-1}.fpg [hidden]{display:none}
+.fpg{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 14px}.fpg>div{min-width:0}.fpg input,.fpg select{width:100%;min-width:0;max-width:100%;box-sizing:border-box}.fpg label{display:block;margin-bottom:4px}.fpg input,.fpg select{height:44px;display:block;-webkit-appearance:none;appearance:none;text-align:left}.fpg input::-webkit-date-and-time-value{text-align:left;min-width:0}.fpg input::-webkit-calendar-picker-indicator{margin:0}.fpg select{background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);background-position:calc(100% - 18px) 19px,calc(100% - 13px) 19px;background-size:5px 5px;background-repeat:no-repeat;padding-right:32px}.fpg .wide{grid-column:1/-1}.fpg [hidden]{display:none}
 .fpg textarea{font:inherit;font-size:16px;padding:9px 12px;border:1.5px solid var(--fline);border-radius:var(--r-md);background:var(--field);color:var(--ink);width:100%;min-height:64px;resize:vertical}
 .fpchk{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;margin:0;color:var(--ink)}.fpchk input{width:auto;min-height:0;margin:0}
 .fpprev{white-space:pre-wrap;word-break:break-word;font:12.5px/1.45 ui-monospace,Menlo,monospace;background:var(--row);border:1px solid var(--rline);border-radius:var(--r-md);padding:10px;margin:0 0 4px;max-height:200px;overflow:auto;color:var(--ink)}
@@ -385,8 +383,7 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
  <g opacity=".18" fill="#9fe3e6"><path d="M1130 220c-6-60 8-110 0-160c18 50 14 110 6 160z"/><path d="M1160 220c0-50 14-90 8-130c12 40 8 90-2 130z"/></g>
 </svg>
 <div class="in">
- <button id="menu" class="menu-btn" type="button" aria-label="Open Menu" aria-haspopup="dialog"><i></i><i></i><i></i></button>
- <svg class="logo" viewBox="0 0 64 64" role="img" aria-label="Spear and fish logo"><circle cx="32" cy="32" r="30" fill="#0a6e8e" stroke="#ffb703" stroke-width="3"/><path d="M10 46L48 14" stroke="#e8f6f8" stroke-width="3.5" stroke-linecap="round"/><path d="M48 14l-3 11-8-8z" fill="#ffb703"/><path d="M42 20l-4 6M45 17l-4 6" stroke="#ffb703" stroke-width="2"/><path d="M20 40c6-8 16-8 22 0c-6 8-16 8-22 0z M42 40l7-6v12z" fill="#7fd6d9"/><circle cx="26" cy="38.5" r="1.6" fill="#05273a"/></svg>
+ <button id="menu" class="logo-btn" type="button" aria-label="Open Menu" aria-haspopup="dialog"><svg class="logo" viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#0a6e8e" stroke="#ffb703" stroke-width="3"/><path d="M10 46L48 14" stroke="#e8f6f8" stroke-width="3.5" stroke-linecap="round"/><path d="M48 14l-3 11-8-8z" fill="#ffb703"/><path d="M42 20l-4 6M45 17l-4 6" stroke="#ffb703" stroke-width="2"/><path d="M20 40c6-8 16-8 22 0c-6 8-16 8-22 0z M42 40l7-6v12z" fill="#7fd6d9"/><circle cx="26" cy="38.5" r="1.6" fill="#05273a"/></svg></button>
  <div><h1>Spearo's <span>Dive Report</span></h1>
  </div>
 </div>
@@ -1334,7 +1331,7 @@ function toggleSite(p){
 }
 function renderSites(){
  const b=$('sites'),has=SITES.length>0;
- b.innerHTML=`<label for="siteSel" class="lab">Saved Sites</label><div class="srow2"><select id="siteSel" aria-label="Saved Sites"${has?'':' disabled'}><option value="">${has?'Choose a Saved Site…':'No saved sites yet. Tap Save Site on a report.'}</option>${SITES.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button type="button" class="sec" id="siteDel" disabled>Remove</button></div><div class="trow" style="margin-top:8px"><button type="button" class="sec" id="siteBak"${has?'':' disabled'}>Back Up Sites</button><button type="button" class="sec" id="siteRes">Restore Sites</button></div>`;
+ b.innerHTML=`<label for="siteSel" class="lab">Saved Sites</label><div class="srow2"><select id="siteSel" aria-label="Saved Sites"${has?'':' disabled'}><option value="">${has?'Choose a Saved Site…':'No saved sites yet. Tap Save Site on a report.'}</option>${SITES.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button type="button" class="sec" id="siteDel" disabled>Remove</button></div>`;
 }
 
 $('sites').addEventListener('change',ev=>{
@@ -1360,15 +1357,6 @@ function mergeSites(a){
 }
 idbOpen().then(d=>{const r=d.transaction('kv').objectStore('kv').get('sites');r.onsuccess=()=>{try{if(r.result)mergeSites(JSON.parse(r.result))}catch(e){}}}).catch(()=>{});
 try{if(navigator.storage&&navigator.storage.persist)navigator.storage.persist()}catch(e){}
-$('sites').addEventListener('click',async ev=>{
- if(ev.target.id==='siteBak'){
-  const text='DIVE-SITES '+JSON.stringify(SITES);
-  try{if(navigator.share)await navigator.share({text});else{await navigator.clipboard.writeText(text);ev.target.textContent='Copied'}}catch(e){if(!e||e.name!=='AbortError')prompt('Copy this backup:',text)}
- }else if(ev.target.id==='siteRes'){
-  const t=prompt('Paste your saved sites backup:');if(!t)return;
-  try{const n=mergeSites(JSON.parse(t.replace(/^\s*DIVE-SITES\s*/,'')));ev.target.textContent=n?'Restored '+n:'Nothing new'}catch(e){ev.target.textContent='Not a valid backup'}
- }
-});
 renderSites();
 
 /* ---------- 7-day outlook ---------- */
@@ -1439,7 +1427,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.4.3';
+const VERSION='1.4.4';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}

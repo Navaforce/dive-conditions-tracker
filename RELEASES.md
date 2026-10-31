@@ -1,5 +1,9 @@
 # Releases
 
+## v1.4.4 - 2026-10-31
+- The badge next to the title is now the menu button; the separate menu icon is gone.
+- Removed the Back Up Sites and Restore Sites buttons (the automatic IndexedDB copy stays).
+- Float Plan: every field is the same height and the date, time and dropdown fields use the same native-free styling, so left-column fields match Max Planned Depth and right-column fields match Buddy Or Dive Team on iPhone.
 ## v1.4.3 - 2026-10-31
 - Saved sites are now mirrored to IndexedDB and restored automatically if the main storage is emptied; the app asks the browser for persistent storage.
 - New Back Up Sites (share or copy as text) and Restore Sites (paste) buttons under the Saved Sites list, so sites survive removing the app or switching phones.
