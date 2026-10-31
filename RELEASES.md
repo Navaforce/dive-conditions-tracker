@@ -1,5 +1,8 @@
 # Releases
 
+## v1.5.0 - 2026-10-31
+- Plankton (Chlorophyll) gauge and a plankton factor in the Visibility Estimate, from NOAA CoastWatch VIIRS chlorophyll-a (gap-filled, 2 km), median of the pixels within about 0.06 degrees of the site.
+- Uses a small Cloudflare Worker proxy (`worker/chl.js`) because NOAA does not allow browser requests from other sites. The feature stays off until `CHL_URL` in `index.html` is set to the deployed Worker address.
 ## v1.4.4 - 2026-10-31
 - The badge next to the title is now the menu button; the separate menu icon is gone.
 - Removed the Back Up Sites and Restore Sites buttons (the automatic IndexedDB copy stays).
