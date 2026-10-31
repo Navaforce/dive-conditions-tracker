@@ -1,5 +1,9 @@
 # Releases
 
+## v1.3.4 - 2026-10-31
+- Menu: "Refresh to Latest Version" button next to Reset All Settings; re-downloads the page from GitHub Pages bypassing the cache.
+- Fixed the settings toggles swaying up and down: they shared the `.sw` class with the kelp animation; switches now use `.tgl`.
+
 ## v1.3.3 - 2026-10-31
 - Saved sites are a dropdown with a Remove button instead of chips, so the list no longer grows the page.
 
