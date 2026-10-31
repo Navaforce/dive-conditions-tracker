@@ -1,5 +1,9 @@
 # Releases
 
+## v1.3.5 - 2026-10-31
+- Header: badge and title sit on the same row as the menu button (header height unchanged).
+- Hero scene: four tiny shrimp drift on random paths and seven small, faint background fish cross at different speeds.
+
 ## v1.3.4 - 2026-10-31
 - Menu: "Refresh to Latest Version" button next to Reset All Settings; re-downloads the page from GitHub Pages bypassing the cache.
 - Fixed the settings toggles swaying up and down: they shared the `.sw` class with the kelp animation; switches now use `.tgl`.
