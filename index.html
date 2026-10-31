@@ -31,11 +31,11 @@ body{margin:0;font:15px/1.5 "Avenir Next","Segoe UI",Roboto,"Helvetica Neue",Ari
 :focus-visible{outline:3px solid #ffb703;outline-offset:2px;border-radius:6px}
 
 /* hero */
-header.hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;min-height:219px;color:#fff;padding:calc(2px + env(safe-area-inset-top)) var(--s5) 74px;
+header.hero{position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-start;min-height:219px;color:#fff;padding:calc(10px + env(safe-area-inset-top)) var(--s5) 74px;
  background:radial-gradient(1200px 400px at 85% -10%,#12a3a0 0,transparent 60%),linear-gradient(160deg,#031c2b 0,var(--deep) 35%,#0a5f80 100%)}
-header.hero .in{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;display:flex;gap:var(--s4);align-items:center}
-header.hero .logo{flex:none;width:64px;height:64px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
-header.hero h1{margin:0;font-size:clamp(16px,4.9vw,38px);white-space:nowrap;line-height:1.1;letter-spacing:-.02em;font-weight:800}
+header.hero .in{position:relative;z-index:2;width:100%;max-width:1180px;margin:0 auto;display:flex;gap:var(--s3);align-items:center}
+header.hero .logo{flex:none;width:46px;height:46px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
+header.hero h1{margin:0;font-size:clamp(15px,4.6vw,36px);white-space:nowrap;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 header.hero h1 span{color:#ffb703}
 header.hero .scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
 header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:2}
@@ -99,7 +99,7 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .tools{margin-top:var(--s3);padding:var(--s3) var(--s4)}
 .trow{display:flex;gap:8px;flex-wrap:wrap}
 .cmpf{margin-top:var(--s3)}.cmpf[hidden]{display:none}
-.sites{margin-top:var(--s3)}.sites[hidden]{display:none}
+.sites{margin-bottom:var(--s3)}
 .sites .lab{margin-bottom:6px}
 .srow2{display:flex;gap:8px}.srow2 select{flex:1;min-width:0}
 .strip{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
@@ -126,10 +126,10 @@ table.cmp .cl{font-size:34px;font-weight:900;line-height:1}
 .needle{stroke:var(--needle)}.hub{fill:var(--needle)}
 svg.tide{display:block;width:100%;max-width:760px;height:auto;margin:6px auto 0}.t-fill{fill:var(--t-line);opacity:.14}.t-win{fill:var(--t-win)}.t-wint{fill:var(--t-wint)}.t-grid{stroke:var(--t-grid)}.t-tick{fill:var(--t-tick)}.t-line{stroke:var(--t-line)}.t-lbl{fill:var(--t-lbl)}.t-hi{fill:var(--t-hi)}.t-lo{fill:#e8a900}
 html.no-scene header.hero .scene{display:none}
-header.hero .in{padding-right:56px}header.hero .in>div{min-width:0}
-.menu-btn{position:absolute;top:calc(12px + env(safe-area-inset-top));right:14px;z-index:5;width:44px;height:44px;min-height:44px;padding:0;border-radius:12px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);box-shadow:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+header.hero .in>div{min-width:0}
+.menu-btn{position:relative;flex:none;z-index:5;width:38px;height:38px;min-height:38px;padding:0;border-radius:10px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.4);box-shadow:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .menu-btn:hover{background:rgba(255,255,255,.26)}
-.menu-btn i{display:block;width:22px;height:2.5px;border-radius:2px;background:#fff}
+.menu-btn i{display:block;width:18px;height:2.5px;border-radius:2px;background:#fff}
 @keyframes fadeIn{from{opacity:0}}
 @keyframes slideIn{from{opacity:0;transform:translateY(-12px) scale(.98)}}
 .modal{position:fixed;inset:0;z-index:100;display:flex;align-items:flex-start;justify-content:center;padding:calc(16px + env(safe-area-inset-top)) 12px 16px}
@@ -218,13 +218,17 @@ button:disabled{opacity:.6;cursor:wait}
 .fact small{display:block;font-size:11px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;color:var(--mut)}
 .fact b{display:block;font-size:15px;margin-top:1px}
 .fact span{display:block;font-size:12px;color:var(--mut)}
-@media(max-width:520px){.chips{grid-template-columns:repeat(2,1fr)!important}.chips .pill:last-child:nth-child(odd){grid-column:1/-1}.facts{grid-template-columns:1fr}}
+@media(max-width:520px){.chips{grid-template-columns:repeat(2,1fr)!important}.chips .pill:last-child:nth-child(odd){grid-column:1/-1}.facts{gap:8px}.fact{padding:7px 10px}.fact b{font-size:14px}.fact span{font-size:11.5px}}
 .pill{display:inline-block;padding:3px 11px;border-radius:99px;font-size:12px;font-weight:700;color:#fff;letter-spacing:.01em}
 .bg-g{background:var(--g)}.bg-y{background:var(--y);color:#2a1d00}.bg-r{background:var(--r)}.bg-n{background:#6f8591}
 .tc-g{color:var(--gt)}.tc-y{color:var(--tcy)}.tc-r{color:var(--errc)}.tc-n{color:#6f8591}
 
 /* gauges */
-.gauges{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:var(--s4);margin-top:var(--s4)}
+.gauges{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:var(--s3);margin-top:var(--s4)}
+.gauges>:first-child{grid-column:1/-1}
+.gauges>.gcard:not(:first-child){padding:var(--s3)}.gauges>.gcard:not(:first-child) h3{font-size:11px;padding-right:22px}.gauges>.gcard:not(:first-child) .lamp{right:8px;top:8px;padding:4px;gap:3px}.gauges>.gcard:not(:first-child) .lamp i{width:8px;height:8px}
+.gauges>.gcard:not(:first-child) .val{font-size:20px;margin-top:-4px}.gauges>.gcard:not(:first-child) .val small{font-size:12px}.gauges>.gcard:not(:first-child) .note{font-size:11.5px;min-height:0;margin-top:4px}
+@media(min-width:700px){.gauges{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}}
 .gcard{position:relative;padding:var(--s4);transition:transform .15s,box-shadow .15s}
 .gcard:hover{transform:translateY(-2px);box-shadow:0 2px 4px rgba(5,39,58,.08),0 12px 26px rgba(5,39,58,.12)}
 .gcard h3{margin:0;font-size:12px;color:var(--ocean);font-weight:800;text-transform:uppercase;letter-spacing:.09em}
@@ -246,7 +250,7 @@ details[open]>summary::before{transform:rotate(90deg)}
 details table{width:100%;border-collapse:collapse;margin-top:4px}
 details td{padding:4px 6px;border-bottom:1px solid var(--rline)}
 details.hw[open] table{font-size:12.5px}
-.gcard:has(details.hw[open]){grid-column:1/-1}
+.gcard:has(details[open]){grid-column:1/-1}
 
 /* sections + tables */
 h2{font-size:13px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--head);margin:var(--s6) 2px var(--s3);display:flex;align-items:center;gap:var(--s2)}
@@ -295,7 +299,7 @@ html.no-scene footer.floor{height:96px}html.no-scene footer.floor .fscene{displa
 .fpchk{display:flex;align-items:center;gap:8px;text-transform:none;letter-spacing:0;font-size:13px;margin:0;color:var(--ink)}.fpchk input{width:auto;min-height:0;margin:0}
 .fpprev{white-space:pre-wrap;word-break:break-word;font:12.5px/1.45 ui-monospace,Menlo,monospace;background:var(--row);border:1px solid var(--rline);border-radius:var(--r-md);padding:10px;margin:0 0 4px;max-height:200px;overflow:auto;color:var(--ink)}
 @media(max-width:700px){header.hero{min-height:246px}}
-@media(max-width:900px){form.inputs{grid-template-columns:1fr 1fr}.top,.two{grid-template-columns:1fr}header.hero .logo{width:48px;height:48px}header.hero{padding-top:calc(10px + env(safe-area-inset-top))}.grade .letter{font-size:88px}}
+@media(max-width:900px){form.inputs{grid-template-columns:1fr 1fr}.top,.two{grid-template-columns:1fr}header.hero .logo{width:40px;height:40px}.grade .letter{font-size:88px}}
 @media(max-width:520px){main{padding:0 var(--s3) var(--s5)}.card{padding:var(--s3) var(--s4)}form.inputs{grid-template-columns:1fr 1fr}form.inputs>div:nth-child(-n+2),form.inputs>div:nth-child(5),form.inputs>div:last-child{grid-column:1/-1}.btns button{flex:1}}
 @media print{header.hero .scene,header.hero .wave,footer.floor .fscene,button{display:none}body{background:#fff}.card{box-shadow:none}}
 @media(prefers-reduced-motion:reduce){.bub{opacity:.45!important}.fb{opacity:.45!important}.corgi .cbub circle{opacity:.6!important}}
@@ -304,7 +308,6 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
 </head>
 <body>
 <header class="hero">
-<button id="menu" class="menu-btn" type="button" aria-label="Open Menu" aria-haspopup="dialog"><i></i><i></i><i></i></button>
 <svg class="scene" viewBox="0 0 1200 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
  <defs><linearGradient id="ray" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".16"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient></defs>
  <polygon points="760,0 820,0 700,220 560,220" fill="url(#ray)"/><polygon points="940,0 1000,0 930,220 820,220" fill="url(#ray)"/>
@@ -382,6 +385,7 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
  <g opacity=".18" fill="#9fe3e6"><path d="M1130 220c-6-60 8-110 0-160c18 50 14 110 6 160z"/><path d="M1160 220c0-50 14-90 8-130c12 40 8 90-2 130z"/></g>
 </svg>
 <div class="in">
+ <button id="menu" class="menu-btn" type="button" aria-label="Open Menu" aria-haspopup="dialog"><i></i><i></i><i></i></button>
  <svg class="logo" viewBox="0 0 64 64" role="img" aria-label="Spear and fish logo"><circle cx="32" cy="32" r="30" fill="#0a6e8e" stroke="#ffb703" stroke-width="3"/><path d="M10 46L48 14" stroke="#e8f6f8" stroke-width="3.5" stroke-linecap="round"/><path d="M48 14l-3 11-8-8z" fill="#ffb703"/><path d="M42 20l-4 6M45 17l-4 6" stroke="#ffb703" stroke-width="2"/><path d="M20 40c6-8 16-8 22 0c-6 8-16 8-22 0z M42 40l7-6v12z" fill="#7fd6d9"/><circle cx="26" cy="38.5" r="1.6" fill="#05273a"/></svg>
  <div><h1>Spearo's <span>Dive Report</span></h1>
  </div>
@@ -400,9 +404,9 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
 <div class="btns"><button id="go" type="submit">Check the Water</button><button id="wk" type="button">Weekend Outlook</button></div>
 </form>
 <div class="card tools" id="tools">
+ <div id="sites" class="sites"></div>
  <div class="trow"><button id="d7" type="button" class="sec">7-Day Outlook</button><button id="cmp" type="button" class="sec" aria-expanded="false" aria-controls="cmpForm">Compare Sites</button></div>
  <form id="cmpForm" class="cmpf" hidden autocomplete="off"><label for="place2">Compare With (Place Or Lat, Lon)</label><div class="loc"><input id="place2" placeholder="e.g. Catalina Island, CA" enterkeyhint="search"><button id="cmpGo" type="submit">Compare</button></div><div class="hint" style="margin-top:6px">Compares this site with the one above for the date and dive window selected.</div></form>
- <div id="sites" class="sites" hidden></div>
 </div>
 <div class="hint">Forecast data covers about 16 days ahead; past dates use model hindcasts, and tide/water-temp observations come from NOAA (US stations only). Times are local to the site.</div>
 <div id="candBox"></div>
@@ -956,7 +960,7 @@ function render(R,C,h0,h1){
 
  if(C.V&&C.V.score!=null){
   const V=C.V;
-  G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'about '+V.range),'Estimated from recent rain, sea state, wind and tides. Not a measurement, and not part of the grade.',
+  G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'about '+V.range),'Estimate from rain, seas, wind and tides. Not in the grade.',
    V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')).replace('Cross-Check &amp; Sources','What Drives This'));
  }
  const o=C.overall,L=o==null?'?':grade(o),ob=band(o);
@@ -966,7 +970,7 @@ function render(R,C,h0,h1){
  <div class="sub" style="margin-top:8px">${placeLine(R.place)}${R.date} &middot; ${h0}:00–${h1}:00 local${R.tz?' ('+esc(R.tz)+')':''}</div>
 
  <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
- <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="fplan">Float Plan</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
+ <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="sharecard">Share Card</button><button class="sec" type="button" id="fplan">Float Plan</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
  <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C,R,h0,h1)}</div>
  ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No Grade Given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
@@ -1088,7 +1092,7 @@ function shareText(R,C,h0,h1){
  if(R.sun)timing.push(`Sunrise ${R.sun.rise} · Sunset ${R.sun.set}`);
  timing.push(`Moon: ${C.moon.name} (${C.moon.pct}% lit), ${C.moon.strength.toLowerCase()} tides`);
  if(timing.length)ln.push('','TIMING',...timing);
- ln.push('','Planning aid only. Never dive alone.','https://navaforce.github.io/dive-conditions-tracker/');
+ ln.push('','Planning aid only. Never dive alone.',"Sent from Spearo's Dive Report");
  return ln.join('\n');
 }
 
@@ -1171,13 +1175,15 @@ $('out').addEventListener('click',ev=>{
 $('out').addEventListener('click',async ev=>{
  if(ev.target.id==='save'&&CTX){toggleSite(CTX.R.place);ev.target.textContent=isSaved(CTX.R.place)?'★ Saved':'☆ Save Site';return}
  if(ev.target.id==='fplan'&&CTX){fpOpen();return}
- if(ev.target.id!=='share'||!CTX)return;
- const text=shareText(CTX.R,compute(CTX.R,CTX.h0,CTX.h1),CTX.h0,CTX.h1),btn=ev.target;
+ if((ev.target.id!=='share'&&ev.target.id!=='sharecard')||!CTX)return;
+ const text=shareText(CTX.R,compute(CTX.R,CTX.h0,CTX.h1),CTX.h0,CTX.h1),btn=ev.target,lab=btn.textContent,card=btn.id==='sharecard';
  try{
-  const file=CTX.gif?new File([CTX.gif],'dive-report.gif',{type:'image/gif'}):null;
-  if(navigator.share&&file&&navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({title:"Spearo's Dive Report",text,files:[file]});
-  else if(navigator.share)await navigator.share({title:"Spearo's Dive Report",text});
-  else{await navigator.clipboard.writeText(text);btn.textContent='Copied';setTimeout(()=>btn.textContent='Share Report',1800)}
+  if(card){
+   const file=CTX.gif?new File([CTX.gif],'dive-report.gif',{type:'image/gif'}):null;
+   if(navigator.share&&file&&navigator.canShare&&navigator.canShare({files:[file]}))await navigator.share({files:[file]});
+   else{btn.textContent='Card not ready';setTimeout(()=>btn.textContent=lab,1800)}
+  }else if(navigator.share)await navigator.share({text});
+  else{await navigator.clipboard.writeText(text);btn.textContent='Copied';setTimeout(()=>btn.textContent=lab,1800)}
  }catch(e){if(e&&e.name!=='AbortError')prompt('Copy this:',text)}
 });
 $('loc').addEventListener('click',()=>{
@@ -1327,9 +1333,10 @@ function toggleSite(p){
  safeLS.set('dive-sites',JSON.stringify(SITES));renderSites();
 }
 function renderSites(){
- const b=$('sites');b.hidden=!SITES.length;
- b.innerHTML=SITES.length?`<label for="siteSel" class="lab">Saved Sites</label><div class="srow2"><select id="siteSel" aria-label="Saved Sites"><option value="">Choose a Saved Site…</option>${SITES.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button type="button" class="sec" id="siteDel" disabled>Remove</button></div>`:'';
+ const b=$('sites'),has=SITES.length>0;
+ b.innerHTML=`<label for="siteSel" class="lab">Saved Sites</label><div class="srow2"><select id="siteSel" aria-label="Saved Sites"${has?'':' disabled'}><option value="">${has?'Choose a Saved Site…':'No saved sites yet. Tap Save Site on a report.'}</option>${SITES.map((s,i)=>`<option value="${i}">${esc(s.name)}</option>`).join('')}</select><button type="button" class="sec" id="siteDel" disabled>Remove</button></div>`;
 }
+
 $('sites').addEventListener('change',ev=>{
  if(ev.target.id!=='siteSel')return;
  $('siteDel').disabled=ev.target.value==='';
@@ -1411,7 +1418,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.4.0';
+const VERSION='1.4.1';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}

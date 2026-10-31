@@ -1,5 +1,10 @@
 # Releases
 
+## v1.4.1 - 2026-10-31
+- Menu button moved to the left of the header, with a smaller badge and menu tile so badge, title and menu fit on one line.
+- Saved Sites dropdown is always visible (above 7-Day Outlook), with an empty-state message when nothing is saved.
+- Share Report is now the full text report with no bare link; the animated card is a separate Share Card button.
+- Gauges are compact and side by side (weather stays full width); the summary fact tiles stay two across on phones. Tide diagram and everything below unchanged.
 ## v1.4.0 - 2026-10-31
 - Visibility Estimate gauge and summary chip: rough clear/fair/poor with an approximate range, from the last 3 days of rain (Open-Meteo), sea state, swell, wind chop and tide range. Advisory only, not part of the grade.
 - New Dive Type (Shore/Boat) and Site Faces (N-NW) fields in the search form; Dive Type default in Settings; Site Faces is saved with saved sites and remembered with the last search.
