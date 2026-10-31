@@ -823,11 +823,11 @@ $('f').addEventListener('submit',async ev=>{
   const place=await geocode(q);
   $('status').textContent=`Resolved to ${place.name} (${place.lat.toFixed(4)}, ${place.lon.toFixed(4)}). Fetching forecast models, marine data and NOAA tides…`;
   const R=await loadAll(place,date);
-  if(!R.wx.length&&!R.mar.length&&!R.tide)throw new Error('No data sources responded. Check your internet connection (open this file in a normal browser, not a restricted preview). See the request log below for details.');
-  LAST=R;$('status').innerHTML=failBanner();rerender(R,h0,h1);
+  if(!R.wx.length&&!R.mar.length&&!R.tide)throw new Error('No data sources responded. Check your internet connection. See the request log below for details.');
+  LAST=R;$('status').innerHTML=failBanner();rerender(R,h0,h1);showOut();
  }catch(e){$('status').innerHTML=`<span class="err">${esc(e.message||e)}</span>`;
   if(DIAG.length)$('out').innerHTML=`<div class="card"><table class="diag">${DIAG.map(d=>`<tr><td>${d.ok?'✅':'❌'}</td><td>${esc(d.name)}</td><td>${esc(d.msg)}</td></tr>`).join('')}</table></div>`}
- $('go').disabled=false;
+ setBusy(false);
 });
 $('wk').addEventListener('click',weekend);
 (function init(){
