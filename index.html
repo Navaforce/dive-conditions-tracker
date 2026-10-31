@@ -774,10 +774,8 @@ function compute(R,h0,h1){
   [[3,45,'severe weather alert'],[2,65,'weather watch/warning'],[1,79,'weather advisory']].forEach(([t,lim,lab])=>{const hit=al.filter(a=>a.tier===t);if(hit.length)caps.push([lim,lab+': '+hit.map(a=>a.event).join(', ')])});
   const lim=Math.min(...caps.map(c=>c[0]),Infinity);
   if(overall>lim){overall=lim;capped=caps.filter(c=>c[0]===lim).map(c=>c[1]).join('; ')+' (limits the grade to '+grade(lim)+')'}}
- let adj=null;const CI=chlInfo(R);
- if(overall!=null&&CI&&CI.pen>=1){overall=Math.max(0,overall-CI.pen);adj=`Plankton (chlorophyll ${R.chl.v.toFixed(2)} mg/m3, ${CI.age===0?'today':CI.age+' d old'}) lowered the grade by ${Math.round(CI.pen)} points for reduced visibility`}
  const core=['wind','gust','hs'].filter(k=>M[k].score==null);
- if(core.length){overall=null;capped=null;adj=null}
+ if(core.length){overall=null;capped=null}
  const missing=Object.values(M).filter(m=>m.score==null).map(m=>m.name);
  // hourly blended
  const hb=(list,key)=>Array.from({length:24},(_,i)=>{const v=list.map(s=>s.s[key]&&s.s[key][i]).filter(ok);return v.length?mean(v):null});
@@ -796,7 +794,7 @@ function compute(R,h0,h1){
  const tw=H.temp.slice(h0,h1+1).filter(ok);WXI.airMin=tw.length?Math.min(...tw):null;WXI.airMax=tw.length?Math.max(...tw):null;
  const pw=H.precip.slice(h0,h1+1);WXI.peak=pw.filter(ok).length?Math.max(...pw.filter(ok)):null;
  const wdir=circMean(R.wx.map(s=>circMean(win(s.s.wdir)))),moon=moonInfo(R.date),V=visibility(R,M,wdir,moon);
- return{M,WXI,overall,capped,adj,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length,wdir,moon,V};
+ return{M,WXI,overall,capped,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length,wdir,moon,V};
 }
 
 /* ---------- v1.4 : moon, visibility estimate, site notes ---------- */
@@ -816,16 +814,11 @@ function moonInfo(iso){
 }
 const RAIN_PEN=[[0,0],[2,4],[6,14],[15,32],[30,52],[60,70]];
 const VIS_FT=[[0,3],[40,10],[60,25],[80,50],[92,80]];
-function visRange(s){
- const ft=interp(VIS_FT,s),lo=ft*.75,hi=ft*1.35;
- if(UNITS==='imperial'){const r=x=>x<20?Math.max(1,Math.round(x)):Math.round(x/5)*5;return r(lo)+'–'+r(hi)+' ft'}
- const m=x=>Math.max(1,Math.round(x*.3048)),a=m(lo),b=m(hi);return a===b?'~'+a+' m':a+'–'+b+' m';
-}
 function chlInfo(R){
  if(!R.chl)return null;
  const now=Date.now(),age=Math.max(0,Math.round((now-Date.parse(R.chl.date+'T12:00:00Z'))/864e5)),gap=Math.abs(Math.round((Date.parse(R.date+'T12:00:00Z')-now)/864e5));
  const fresh=age<=3&&gap<=3;
- return{age,fresh,pen:fresh?interp([[1,0],[3,6],[8,15]],R.chl.v):0,badge:`<span class="cbadge ${fresh?'cb-f':'cb-s'}" title="${fresh?'Recent enough to affect the grade':age>3?'Older than 3 days, so information only':'Dive date is too far from the satellite pass, so information only'}">Plankton data ${age===0?'today':age+' d old'} &middot; ${fresh?'in grade':'info only'}</span>`};
+ return{age,fresh,badge:`<span class="cbadge ${fresh?'cb-f':'cb-s'}" title="${fresh?'Recent enough to count in the visibility estimate':age>3?'Older than 3 days, so information only':'Dive date is too far from the satellite pass, so information only'}">Plankton data ${age===0?'today':age+' d old'} &middot; ${fresh?'in estimate':'info only'}</span>`};
 }
 function visibility(R,M,wdir,moon){
  const shore=R.mode!=='boat',face=R.face;
@@ -860,7 +853,7 @@ function visibility(R,M,wdir,moon){
   add(p,`Plankton: chlorophyll ${c.toFixed(2)} mg/m3 on ${R.chl.date}. Plankton and algae turn the water green and cut sight distance`,'low plankton');
  }
  const score=Math.max(5,Math.min(92,92-Math.round(pen)));
- return{score,label:score>=80?'Excellent':score>=60?'Good':score>=40?'Fair':'Poor',range:visRange(score),bad:bad.sort((a,b)=>b.p-a.p).map(x=>x.t),good};
+ return{score,label:score>=80?'Excellent':score>=60?'Good':score>=40?'Fair':'Poor',bad:bad.sort((a,b)=>b.p-a.p).map(x=>x.t),good};
 }
 function siteCard(R,C,h0,h1){
  const M=C.M,shore=R.mode!=='boat',face=R.face,hasF=face!=null,fd=hasF?(FACE_NAMES[face]||compass(face)):'';
@@ -978,8 +971,8 @@ function render(R,C,h0,h1){
 
  if(C.V&&C.V.score!=null){
   const V=C.V;
-  G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'about '+V.range),'Estimate from rain, seas, wind, tides and plankton. Not in the grade.'+(R.chl?'<br>'+chlInfo(R).badge:''),
-   (R.chl?`<tr><td colspan="2">Plankton: satellite chlorophyll-a ${R.chl.v.toFixed(2)} mg/m&sup3; (${R.chl.v<.3?'clear':R.chl.v<1?'moderate':R.chl.v<3?'green':'bloom'}) on ${esc(R.chl.date)}, 2 km pixels, NOAA CoastWatch. Counts toward the visibility estimate and grade only when 3 days old or newer.</td></tr>`:'')+V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')).replace('Cross-Check &amp; Sources','What Drives This'));
+  G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'rating'),'Estimate from rain, seas, wind, tides and plankton. Not in the grade.'+(R.chl?'<br>'+chlInfo(R).badge:''),
+   (R.chl?`<tr><td colspan="2">Plankton: satellite chlorophyll-a ${R.chl.v.toFixed(2)} mg/m&sup3; (${R.chl.v<.3?'clear':R.chl.v<1?'moderate':R.chl.v<3?'green':'bloom'}) on ${esc(R.chl.date)}, 2 km pixels, NOAA CoastWatch. Counts toward the visibility estimate only when 3 days old or newer. Visibility never changes the grade.</td></tr>`:'')+V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')).replace('Cross-Check &amp; Sources','What Drives This'));
  }
  const o=C.overall,L=o==null?'?':grade(o),ob=band(o);
  const gradeColor={A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[L];
@@ -990,7 +983,7 @@ function render(R,C,h0,h1){
  <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
  <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="sharecard">Share Card</button><button class="sec" type="button" id="fplan">Float Plan</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
  <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C,R,h0,h1)}</div>
- ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}${C.adj?`<div class="hint">${esc(C.adj)}.</div>`:''}
+ ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No Grade Given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
  ${C.missing.length?`<div class="warn">No data for: ${C.missing.map(esc).join(', ')}. These are excluded from the grade, not guessed.</div>`:''}
  <details class="how"><summary>How Grades Work</summary><div class="hint" style="margin-top:6px">Stoplight: green = good (score 70+), yellow = marginal (40–69), red = poor (&lt;40). Grade: A 90+, B 80+, C 70+, D 60+, F below 60. Weights: weather, sea state and swell 1.5; wind and gusts 1; tide, temperature and current 0.75. Weather scores model conditions and rain totals, and drops sharply for thunderstorms. Active NWS alerts (US) override it: warnings such as flash flood, storm surge, tornado, hurricane/tropical storm or special marine warning limit the grade to F (45); watches, flood or coastal-flood warnings, gale and high-surf alerts limit it to D (65); advisories such as small craft, rip current, dense fog or wind limit it to C (79). Any red wind, gust, sea-state, swell or weather reading, or a forecast thunderstorm, also caps the grade at D. The visibility estimate and moon/tide-strength notes are advisory and do not change the grade.</div></details></div></div>`;
@@ -1095,13 +1088,12 @@ function shareText(R,C,h0,h1){
  ln.push(`${dn} · ${h0}:00–${h1}:00 local`,`Dive type: ${R.mode==='boat'?'Boat':'Shore'}${R.face!=null?', '+(FACE_NAMES[R.face]||compass(R.face)).toLowerCase()+'-facing':''}`,'',
   o==null?'Overall: no grade':`Overall: ${L} (${Math.round(o)}/100), ${GRADE_WORD[L]}`);
  if(C.capped)ln.push('Limited by: '+C.capped);
- if(C.adj)ln.push(C.adj);
  ln.push('','CONDITIONS',
   `Wind: ${v(M.wind,x=>fmtSpd(x).join(' '))}, gusts ${v(M.gust,x=>fmtSpd(x).join(' '))}`,
   `Waves: ${v(M.hs,x=>fmtLen(x).join(' '))}`,
   `Swell: ${v(M.swell,x=>fmtLen(x).join(' '))}`+(M.swell.value!=null&&ok(M.swell.period)?` @ ${M.swell.period.toFixed(0)} s`:'')+(M.swell.value!=null&&ok(M.swell.dir)?` from ${compass(M.swell.dir)}`:''),
   `Water: ${v(M.sst,x=>fmtTemp(x).join(' '))}`);
- if(C.V&&C.V.score!=null)ln.push(`Visibility (estimate): ${C.V.label}, about ${C.V.range}`);
+ if(C.V&&C.V.score!=null)ln.push(`Visibility (estimate, not in the grade): ${C.V.label}`);
  if(X.code!=null)ln.push(`Weather: ${codeInfo(X.code)[1]}`+(X.air&&X.air.value!=null?`, ${fmtTemp(X.air.value).join(' ')}`:''));
  if(M.cur.value!=null)ln.push(`Current: ${fmtSpd(M.cur.value).join(' ')}`+(ok(M.cur.dir)?` toward ${compass(M.cur.dir)}`:''));
  if(M.tide.events&&M.tide.events.length)ln.push('Tide: '+M.tide.events.slice().sort((a,b)=>a.hr-b.hr).map(e=>`${e.type==='H'?'High':'Low'} ${fmtHr(e.hr)} (${fmtLen(e.h).join(' ')})`).join(' · '));
@@ -1449,7 +1441,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.6.0';
+const VERSION='1.6.1';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
@@ -1527,7 +1519,7 @@ function fpText(){
   const C=compute(CTX.R,CTX.h0,CTX.h1),M=C.M,o=C.overall,vv=(mm,f)=>mm.value!=null?f(mm.value):'no data',tw=tideWindow(CTX.R,C,CTX.h0,CTX.h1);
   L.push('','FORECAST (for the original '+CTX.h0+':00–'+CTX.h1+':00 window)',
    o==null?'Overall: no grade':`Overall: ${grade(o)} (${Math.round(o)}/100)`);
-  if(C.V&&C.V.score!=null)L.push(`Visibility (estimate): ${C.V.label}, about ${C.V.range}`);
+  if(C.V&&C.V.score!=null)L.push(`Visibility (estimate, not in the grade): ${C.V.label}`);
   L.push(`Wind: ${vv(M.wind,x=>fmtSpd(x).join(' '))}, gusts ${vv(M.gust,x=>fmtSpd(x).join(' '))}`,`Waves: ${vv(M.hs,x=>fmtLen(x).join(' '))}`,`Water: ${vv(M.sst,x=>fmtTemp(x).join(' '))}`);
   if(tw)L.push(`Slack tide: ${fmtHr(tw.a)}–${fmtHr(tw.b)}`);
   if(CTX.R.sun)L.push(`Sunset: ${CTX.R.sun.set}`);

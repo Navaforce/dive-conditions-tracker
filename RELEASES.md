@@ -1,5 +1,8 @@
 # Releases
 
+## v1.6.1 - 2026-10-31
+- Visibility Estimate shows only the rating (Excellent, Good, Fair, Poor); the estimated feet or metres range is removed from the tile and from Share Report and Float Plan text.
+- Visibility, including plankton, never changes the grade. The v1.6.0 plankton grade penalty is removed; plankton feeds the visibility rating only, when the data is 3 days old or newer. The badge reads "in estimate" or "info only".
 ## v1.6.0 - 2026-10-31
 - Plankton is merged into the Visibility Estimate tile (the separate Plankton gauge is gone); its drivers list shows the chlorophyll reading, label and satellite date.
 - Fresh plankton data (3 days old or newer, and a dive date within 3 days of today) now lowers the overall grade: 0 points up to 1 mg/m3, 6 at 3, 15 at 8, with a "lowered the grade by N points" note and a line in Share Report. Older data is information only and does not touch the grade or the visibility score.
