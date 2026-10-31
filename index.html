@@ -184,7 +184,7 @@ a{color:var(--ocean);text-underline-offset:2px}a:hover{color:var(--spear)}
 .diag td{font-size:12px;padding:3px 8px;border-bottom:1px solid #e6eff2;word-break:break-word}
 
 /* footer */
-footer{max-width:1180px;margin:0 auto;padding:var(--s5) var(--s4) var(--s6);text-align:center;color:var(--mut);font-size:12.5px}
+footer{max-width:1180px;margin:0 auto;padding:var(--s5) var(--s4) calc(var(--s6) + env(safe-area-inset-bottom));text-align:center;color:var(--mut);font-size:12.5px}
 footer b{color:var(--deep)}
 
 @media(max-width:900px){form.inputs{grid-template-columns:1fr 1fr}.top,.two{grid-template-columns:1fr}header.hero .logo{width:48px;height:48px}.grade .letter{font-size:88px}}
