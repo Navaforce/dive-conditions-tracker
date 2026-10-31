@@ -24,7 +24,7 @@ body{margin:0;font:15px/1.5 "Avenir Next","Segoe UI",Roboto,"Helvetica Neue",Ari
 :focus-visible{outline:3px solid #ffb703;outline-offset:2px;border-radius:6px}
 
 /* hero */
-header.hero{position:relative;overflow:hidden;color:#fff;padding:var(--s6) var(--s5) 74px;
+header.hero{position:relative;overflow:hidden;color:#fff;padding:calc(var(--s6) + env(safe-area-inset-top)) var(--s5) 74px;
  background:radial-gradient(1200px 400px at 85% -10%,#12a3a0 0,transparent 60%),linear-gradient(160deg,#031c2b 0,var(--deep) 35%,#0a5f80 100%)}
 header.hero .in{position:relative;z-index:2;max-width:1180px;margin:0 auto;display:flex;gap:var(--s4);align-items:center}
 header.hero .logo{flex:none;width:64px;height:64px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
