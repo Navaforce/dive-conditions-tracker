@@ -45,10 +45,10 @@ header.hero .scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;po
 header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:2}
 .bub{animation:rise 9s linear infinite;opacity:0}
 @keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.7}100%{transform:translateY(-190px);opacity:0}}
-.fish{animation:fishL 120s linear infinite}
-@keyframes fishL{0%,22.5%{transform:translateX(1500px)}44.2%,100%{transform:translateX(-170px)}}
-.shark{animation:sharkL 120s linear infinite}
-@keyframes sharkL{0%,.8%{transform:translateX(1500px)}12.8%,100%{transform:translateX(-270px)}}
+.fish{animation:fishL 109.6s linear infinite}
+@keyframes fishL{0%,24.635%{transform:translateX(1500px)}48.394%,100%{transform:translateX(-170px)}}
+.shark{animation:sharkL 109.6s linear infinite}
+@keyframes sharkL{0%,.876%{transform:translateX(1500px)}14.015%,100%{transform:translateX(-270px)}}
 .shark{will-change:transform}
 .shark .glide,.shark .pitch{transform-box:fill-box;transform-origin:50% 50%}
 .shark .glide{animation:glide 9s ease-in-out infinite}
@@ -60,14 +60,14 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .shark .tail{transform-box:fill-box;transform-origin:0 50%;animation:wag 2.2s ease-in-out -.35s infinite}
 @keyframes wag{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 .react{transform-box:fill-box;transform-origin:50% 50%}
-.shark>.react{animation:sharkJolt 120s linear infinite}
-@keyframes sharkJolt{0%,6.6%{transform:none;animation-timing-function:ease-out}7.25%{transform:translateY(-16px) rotate(-6deg);animation-timing-function:ease-in-out}9%,100%{transform:none}}
-.fish>.react{animation:fishJolt 120s linear infinite}
-@keyframes fishJolt{0%,33.5%{transform:none}33.8%{transform:translateY(-36px) rotate(-18deg)}35%,100%{transform:none}}
-.turtle .react{animation:turtleRoll 120s linear infinite}
-@keyframes turtleRoll{0%,60%{transform:rotate(0)}60.5%{transform:translateY(-22px) rotate(120deg)}61.3%{transform:translateY(-26px) rotate(260deg)}62.4%,100%{transform:rotate(360deg)}}
-.crab{animation:crabX 120s linear infinite}
-@keyframes crabX{0%,13.3%{transform:translateX(-150px)}17.1%,20%{transform:translateX(560px)}25%,100%{transform:translateX(1560px)}}
+.shark>.react{animation:sharkJolt 109.6s linear infinite}
+@keyframes sharkJolt{0%,7.226%{transform:none;animation-timing-function:ease-out}7.938%{transform:translateY(-16px) rotate(-6deg);animation-timing-function:ease-in-out}9.854%,100%{transform:none}}
+.fish>.react{animation:fishJolt 109.6s linear infinite}
+@keyframes fishJolt{0%,36.679%{transform:none}37.007%{transform:translateY(-36px) rotate(-18deg)}38.321%,100%{transform:none}}
+.turtle .react{animation:turtleRoll 109.6s linear infinite}
+@keyframes turtleRoll{0%,65.693%{transform:rotate(0)}66.241%{transform:translateY(-22px) rotate(120deg)}67.117%{transform:translateY(-26px) rotate(260deg)}68.321%,100%{transform:rotate(360deg)}}
+.crab{animation:crabX 109.6s linear infinite}
+@keyframes crabX{0%,14.562%{transform:translateX(-150px)}18.723%,21.898%{transform:translateX(560px)}27.372%,100%{transform:translateX(1560px)}}
 .crab .leg{transform-box:fill-box;transform-origin:50% 0;animation:legs .35s ease-in-out infinite alternate}
 .crab .leg.b{animation-delay:-.17s}
 @keyframes legs{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
@@ -76,34 +76,38 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 @keyframes waveC{from{transform:rotate(-12deg)}to{transform:rotate(16deg)}}
 .crab .hop{animation:hop .7s ease-in-out infinite alternate}
 @keyframes hop{from{transform:translateY(0)}to{transform:translateY(-2px)}}
-.octo{animation:octoUp 120s linear infinite}
-@keyframes octoUp{0%,3.75%{transform:translateY(130px)}4.58%,10%{transform:translateY(0)}10.83%,30%{transform:translateY(130px)}30.83%,37.5%{transform:translateY(0)}38.33%,56.67%{transform:translateY(130px)}57.5%,64.17%{transform:translateY(0)}65%,85.83%{transform:translateY(130px)}86.67%,93.33%{transform:translateY(0)}94.17%,100%{transform:translateY(130px)}}
+.octo{animation:octoUp 109.6s linear infinite}
+@keyframes octoUp{0%,4.106%{transform:translateY(130px)}5.015%,10.949%{transform:translateY(0)}11.858%,32.847%{transform:translateY(130px)}33.755%,41.058%{transform:translateY(0)}41.967%,62.047%{transform:translateY(130px)}62.956%,70.259%{transform:translateY(0)}71.168%,87.588%{transform:translateY(130px)}88.507%,95.799%{transform:translateY(0)}96.719%,100%{transform:translateY(130px)}}
 .octo .head{transform-box:fill-box;transform-origin:50% 100%;animation:osway 2.8s ease-in-out infinite alternate}
 @keyframes osway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
-.octo .tent{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.12);animation:tent 120s linear infinite}
-@keyframes tent{0%,6.42%{transform:scaleY(.12)}6.92%,7.67%{transform:scaleY(1)}8.5%,33%{transform:scaleY(.12)}33.58%,34.33%{transform:scaleY(1)}35.17%,59.42%{transform:scaleY(.12)}60%,60.75%{transform:scaleY(1)}61.58%,89.83%{transform:scaleY(.12)}90.42%,91.17%{transform:scaleY(1)}92%,100%{transform:scaleY(.12)}}
-.corgi{animation:corgiR 120s linear infinite}
-@keyframes corgiR{0%,82.5%{transform:translateX(-250px)}99.2%,100%{transform:translateX(1560px)}}
-.corgi>.react{animation:corgiJolt 120s linear infinite}
-@keyframes corgiJolt{0%,90.4%{transform:none}90.7%{transform:translateY(-34px) rotate(-22deg)}92.2%,100%{transform:none}}
+.octo .tent{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.12);animation:tent 109.6s linear infinite}
+@keyframes tent{0%,7.029%{transform:scaleY(.12)}7.577%,8.398%{transform:scaleY(1)}9.307%,36.131%{transform:scaleY(.12)}36.766%,37.588%{transform:scaleY(1)}38.507%,65.058%{transform:scaleY(.12)}65.693%,66.515%{transform:scaleY(1)}67.423%,91.967%{transform:scaleY(.12)}92.613%,93.434%{transform:scaleY(1)}94.343%,100%{transform:scaleY(.12)}}
+.corgi{animation:corgiR 109.6s linear infinite}
+@keyframes corgiR{0%,83.942%{transform:translateX(-250px)}100%{transform:translateX(1340px)}}
+.corgi>.react{animation:corgiJolt 109.6s linear infinite}
+@keyframes corgiJolt{0%,92.591%{transform:none}92.92%{transform:translateY(-34px) rotate(-22deg)}94.562%,100%{transform:none}}
 .corgi .cbob{animation:cbob 1.4s ease-in-out infinite alternate}
 @keyframes cbob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
 .corgi .kick{transform-box:fill-box;transform-origin:50% 0;animation:kick .9s ease-in-out infinite alternate}
 .corgi .kick.b{animation-delay:-.45s}
 @keyframes kick{from{transform:rotate(-22deg)}to{transform:rotate(22deg)}}
+.corgi .bsay{transform-box:fill-box;transform-origin:50% 100%;opacity:0;animation:woof 2.6s ease-out infinite}
+@keyframes woof{0%{opacity:0;transform:scale(.4)}7%{opacity:1;transform:scale(1.18)}13%{transform:scale(1)}16%{transform:scale(1.12)}22%,58%{opacity:1;transform:scale(1)}72%,100%{opacity:0;transform:scale(.92)}}
+.corgi .bmouth{transform-box:fill-box;transform-origin:50% 0;transform:scaleY(0);animation:jaw 2.6s ease-out infinite}
+@keyframes jaw{0%{transform:scaleY(0)}5%{transform:scaleY(1)}11%{transform:scaleY(.15)}15%{transform:scaleY(1)}22%,100%{transform:scaleY(0)}}
 .corgi .ctail{transform-box:fill-box;transform-origin:100% 80%;animation:ctail .34s ease-in-out infinite alternate}
 @keyframes ctail{from{transform:rotate(-14deg)}to{transform:rotate(16deg)}}
 .corgi .cbub circle{fill:none;stroke:#d8f3f8;stroke-width:1.8;opacity:0;animation:cb 2.4s linear infinite}
 .corgi .cbub circle:nth-child(2){animation-delay:-.8s}.corgi .cbub circle:nth-child(3){animation-delay:-1.6s}
 @keyframes cb{0%{transform:translate(0,0);opacity:0}15%{opacity:.95}100%{transform:translate(10px,-42px);opacity:0}}
-.turtle{animation:turtleR 120s linear infinite}
-@keyframes turtleR{0%,39.2%{transform:translateX(-190px)}80.8%,100%{transform:translateX(1500px)}}
+.turtle{animation:turtleR 109.6s linear infinite}
+@keyframes turtleR{0%,42.92%{transform:translateX(-190px)}88.467%,100%{transform:translateX(1500px)}}
 .turtle .bob{animation:bob 6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 .turtle .flip{transform-box:fill-box;transform-origin:0 0;animation:flap 2.6s ease-in-out infinite}
 .turtle .flip.b{animation-delay:-1.3s}
 @keyframes flap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(24deg)}}
-@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.shark .glide,.shark .pitch,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.shark .glide,.shark .pitch,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .bsay,.corgi .bmouth,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
 
 /* tools, sites, strip, compare */
 .tools{margin-top:var(--s3);padding:var(--s3) var(--s4)}
@@ -384,9 +388,11 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
   <ellipse cx="122" cy="26" rx="22" ry="18" fill="#e8a04a"/>
   <ellipse cx="136" cy="35" rx="15" ry="10" fill="#f6efe2"/><circle cx="148" cy="31" r="4" fill="#1b1b22"/>
   <path d="M132 40q7 5 14 0" stroke="#3a2a22" stroke-width="2.2" fill="none" stroke-linecap="round"/><rect x="134" y="38" width="9" height="6" rx="3" fill="#8a97a3"/>
+  <g class="bmouth"><path d="M132.5 40.5Q139 55 145.5 40.5Z" fill="#4a1d2a"/><path d="M135.5 47q3.5 4.5 7 0q-3.500-2.200-7 0z" fill="#ff7f8f"/></g>
   <path d="M96 9C112 -8 138 -2 140 36" stroke="#2a2f36" stroke-width="2.6" fill="none" stroke-linecap="round"/><path d="M118 20L102 19" stroke="#1f3a4a" stroke-width="3" stroke-linecap="round"/>
   <rect x="118" y="14" width="26" height="18" rx="7" fill="#c6edf3" stroke="#1f3a4a" stroke-width="3"/>
   <circle cx="127" cy="23" r="3.4" fill="#1b1b22"/><circle cx="136" cy="23" r="3.4" fill="#1b1b22"/><circle cx="128" cy="22" r="1.1" fill="#fff"/><circle cx="137" cy="22" r="1.1" fill="#fff"/>
+  <g class="bsay"><path d="M136 -16l5 9l7-9z" fill="#fff" stroke="#1f3a4a" stroke-width="2" stroke-linejoin="round"/><rect x="108" y="-46" width="68" height="30" rx="15" fill="#fff" stroke="#1f3a4a" stroke-width="2.4"/><path d="M137 -17.200l3.800 6.800l5.200-6.800z" fill="#fff"/><text x="142" y="-25" text-anchor="middle" font-family="system-ui,-apple-system,sans-serif" font-size="17" font-weight="800" fill="#1f3a4a">Woof!</text></g>
   <g class="cbub"><circle cx="146" cy="38" r="3"/><circle cx="146" cy="38" r="2.2"/><circle cx="146" cy="38" r="3.6"/></g>
  </g></g></g></g>
  <g class="octo"><g transform="translate(720,162)">
@@ -1527,7 +1533,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.7.2';
+const VERSION='1.7.3';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
