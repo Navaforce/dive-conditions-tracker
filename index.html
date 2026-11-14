@@ -37,6 +37,10 @@ header.hero .in{position:relative;z-index:2;width:100%;max-width:1180px;margin:0
 header.hero .logo{flex:none;width:46px;height:46px;filter:drop-shadow(0 4px 8px rgba(0,0,0,.35))}
 header.hero h1{margin:0;font-size:clamp(15px,4.6vw,36px);white-space:nowrap;line-height:1.1;letter-spacing:-.02em;font-weight:800}
 header.hero h1 span{color:#ffb703}
+.hvr{margin-left:auto;flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:4px;position:relative;z-index:5}
+.hvr .hv{font-size:12px;font-weight:700;color:#e8f6f8;opacity:.9;letter-spacing:.02em}
+.hvr button{width:auto;min-height:0;padding:5px 11px;border:1px solid rgba(255,255,255,.55);border-radius:999px;background:rgba(3,28,43,.35);color:#fff;font-size:12px;font-weight:700;line-height:1.2;box-shadow:none;cursor:pointer;white-space:nowrap}
+.hvr button:active{transform:scale(.96)}.hvr button:disabled{opacity:.7}
 header.hero .scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;pointer-events:none}
 header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:2}
 .bub{animation:rise 9s linear infinite;opacity:0}
@@ -387,6 +391,7 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
  <button id="menu" class="logo-btn" type="button" aria-label="Open Menu" aria-haspopup="dialog"><svg class="logo" viewBox="0 0 64 64" role="img" aria-hidden="true"><circle cx="32" cy="32" r="30" fill="#0a6e8e" stroke="#ffb703" stroke-width="3"/><path d="M10 46L48 14" stroke="#e8f6f8" stroke-width="3.5" stroke-linecap="round"/><path d="M48 14l-3 11-8-8z" fill="#ffb703"/><path d="M42 20l-4 6M45 17l-4 6" stroke="#ffb703" stroke-width="2"/><path d="M20 40c6-8 16-8 22 0c-6 8-16 8-22 0z M42 40l7-6v12z" fill="#7fd6d9"/><circle cx="26" cy="38.5" r="1.6" fill="#05273a"/></svg></button>
  <div><h1>Spearo's <span>Dive Report</span></h1>
  </div>
+ <div class="hvr"><span class="hv" id="hver"></span><button id="hrefresh" type="button" aria-label="Refresh to the latest version">&#8635; Refresh</button></div>
 </div>
 <svg class="wave" viewBox="0 0 1200 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 28c150 30 300 30 450 6s300-30 450-6 220 22 300 4V56H0z" fill="#e8f3f5"/></svg>
 </header>
@@ -511,8 +516,9 @@ const SC={
  sst:[[0,0],[8,10],[12,30],[16,55],[20,80],[24,100],[31,100],[34,70]], // deg C comfort
  cur:[[0,100],[.3,100],[.8,70],[1.5,30],[2.5,0]],        // knots surface current
 };
-const W={wind:1,gust:1,hs:1.5,swell:1.5,weather:1.5,tide:.75,sst:.75,cur:.75};
-const CRIT=['wind','gust','hs','swell','weather'];            // a red here caps the grade
+const W={wind:1,gust:1,hs:1,swell:1,weather:1.5,tide:.5,sst:.25,cur:.75};
+const CRIT=['wind','gust','hs','swell','weather'];            // a red (<40) here caps the grade; the worst one also pulls the mean down
+const RED=40,WORST_BLEND=.4,TIDE_RATE=0.2534; // m/h peak flow per metre of range on a 6.2 h semidiurnal tide
 const AGREE={wind:[2,5],gust:[3,7],hs:[.2,.5],swell:[.2,.5],sst:[.8,2],cur:[.2,.5]};
 
 /* NWS alert severity tiers: 3 = dive-cancelling, 2 = serious, 1 = caution */
@@ -669,9 +675,9 @@ async function loadAll(place,date){
    return{st,events,range:Math.max(...hs)-Math.min(...hs)};
   }))).filter(Boolean);
   if(!cands.length)return;
-  // Open-coast stations see the full tide; lagoon/river stations are damped and late. Among stations close to the nearest one, default to the largest range.
-  const near=cands.filter(c=>c.st.km<=cands[0].st.km+25);
-  R.tideCands=cands;R.tide=near.reduce((a,b)=>b.range>a.range+0.05?b:a,near[0]);
+  // Use the nearest station. Lagoon/river stations are damped and late, so only switch to a slightly farther one (within 15 km) when it sees at least 1.6x the range.
+  const near=cands.filter(c=>c.st.km<=cands[0].st.km+15),big=near.reduce((a,b)=>b.range>a.range?b:a,near[0]);
+  R.tideCands=cands;R.tide=cands[0].range*1.6<big.range?big:cands[0];
  })();
  const tempP=(async()=>{
   const sts=await nearestStations('watertemp',lat,lon,150);
@@ -701,6 +707,26 @@ const alP=(async()=>{
 
 
 /* ---------- computation ---------- */
+/* site exposure for the grade: shore divers feel surf and onshore chop, boat divers feel chop and a lee shore */
+function exposure(R,M,wdir){
+ const face=R.face,shore=R.mode!=='boat',sd=M.swell.dir;
+ let sw=1,ww=1,note=[];
+ if(face!=null&&ok(sd)){const d=angDiff(sd,face);sw=d<=60?(shore?1.25:1.1):d<=120?1:(shore?.6:.75);if(sw!==1)note.push(sw>1?'site is open to the swell (scored harder)':'land shelters the site from the swell (scored easier)')}
+ if(face!=null&&ok(wdir)){const d=angDiff(wdir,face);ww=d<=60?(shore?1.2:1.15):d>=120?(shore?1:.9):1;if(ww>1)note.push('wind is onshore at this site (scored harder)')}
+ return{sw,ww,hs:(1+sw)/2,note};
+}
+/* peak tidal flow inside the dive window, as the tide range that would give the same flow (cosine hi/lo interpolation) */
+function tideFlowRange(ev,h0,h1){
+ if(!ev||ev.length<2)return null;
+ const e=ev.slice().sort((a,b)=>a.hr-b.hr);let peak=null;
+ for(let i=1;i<e.length;i++){
+  const a=e[i-1],b=e[i],dt=b.hr-a.hr;if(dt<=0)continue;
+  const lo=Math.max(a.hr,h0),hi=Math.min(b.hr,h1+1);if(hi<=lo)continue;
+  const k=Math.PI/2*Math.abs(b.h-a.h)/dt;
+  for(let t=lo;t<=hi+1e-6;t+=.25){const r=k*Math.sin(Math.PI*(t-a.hr)/dt);if(peak==null||r>peak)peak=r}
+ }
+ return peak==null?null:peak/TIDE_RATE;
+}
 function compute(R,h0,h1){
  const win=a=>a?a.slice(h0,h1+1).filter(ok):[];
  const per=(list,key,fn)=>list.map(s=>{const w=win(s.s[key]);return w.length?{label:s.label,val:fn(w),url:s.url}:null}).filter(Boolean);
@@ -712,14 +738,18 @@ function compute(R,h0,h1){
   let agree='single';if(srcs.length>1){const t=AGREE[key]||[Infinity,Infinity];agree=spread<=t[0]?'high':spread<=t[1]?'mod':'low'}
   M[key]={key,name,value,srcs,spread,agree,...extra};
  };
- mk('wind','Average wind',per(R.wx,'wind',mean));
- mk('gust','Peak gust',per(R.wx,'gust',maxf));
- mk('hs','Sea state (wave height)',per(R.mar,'hs',mean));
- const shS=per(R.mar,'sh',mean);mk('swell','Swell',shS);
- const sp=mean(per(R.mar,'sp',mean).map(x=>x.val));
- const sd=circMean(R.mar.map(s=>circMean(win(s.s.sd))));
+ const mw=k=>{const f=R.mar.filter(s=>s.id!=='best_match'&&hasData(s.s[k]));return f.length?f:R.mar}; // best-match duplicates one of the named wave models
+ const blend=a=>.5*mean(a)+.5*Math.max(...a);
+ const cons=(list,key,fn)=>{const v=per(list,key,fn).map(x=>x.val);return v.length?mean(v)+.5*(Math.max(...v)-Math.min(...v)):null}; // scoring value: leans conservative when models disagree
+ const wdir=circMean(R.wx.map(s=>circMean(win(s.s.wdir)))),moon=moonInfo(R.date);
+ mk('wind','Average wind',per(R.wx,'wind',mean));M.wind.sval=cons(R.wx,'wind',blend);
+ mk('gust','Peak gust',per(R.wx,'gust',maxf));M.gust.sval=cons(R.wx,'gust',maxf);
+ mk('hs','Sea state (wave height)',per(mw('hs'),'hs',mean));M.hs.sval=cons(mw('hs'),'hs',blend);
+ const shS=per(mw('sh'),'sh',mean);mk('swell','Swell',shS);M.swell.sval=cons(mw('sh'),'sh',blend);
+ const sp=mean(per(mw('sp'),'sp',mean).map(x=>x.val));
+ const sd=circMean(mw('sd').map(s=>circMean(win(s.s.sd))));
  M.swell.period=sp;M.swell.dir=sd;
- const hp=mean(per(R.mar,'tp',mean).map(x=>x.val));M.hs.period=hp;M.hs.dir=circMean(R.mar.map(s=>circMean(win(s.s.hd))));
+ const hp=mean(per(mw('tp'),'tp',mean).map(x=>x.val));M.hs.period=hp;M.hs.dir=circMean(mw('hd').map(s=>circMean(win(s.s.hd))));
  // sea temperature: a measured NOAA reading is the reference; a model value is only blended in if it agrees with it (within 3 C)
  const sstModel=per(R.mar,'sst',mean);let sstS=[],sstNote='';
  if(R.wtemp){
@@ -745,10 +775,13 @@ function compute(R,h0,h1){
  if(tev&&tev.length>1){range=Math.max(...tev.map(e=>e.h))-Math.min(...tev.map(e=>e.h))}
  else if(sl&&sl.filter(ok).length>12){range=Math.max(...sl.filter(ok))-Math.min(...sl.filter(ok));tev=mev;tsrc='Open-Meteo Marine sea-level model (approximate, hourly resolution)'}
  M.tide={key:'tide',name:'Tide',value:range,srcs:[],events:tev,modelEvents:mev,tsrc,agree:'single'};
+ M.tide.flow=range!=null?tideFlowRange(tev,h0,h1):null;
  // scores
- for(const k of Object.keys(SC)){const m=M[k];m.score=m.value==null?null:interp(SC[k==='swell'?'swell':k],k==='swell'?m.power:m.value);m.weight=W[k]}
+ const EX=exposure(R,M,wdir);
+ const eff={wind:M.wind.sval*EX.ww,gust:M.gust.sval*EX.ww,hs:M.hs.sval*EX.hs,swell:M.swell.value!=null?0.49*M.swell.sval**2*(ok(sp)?sp:8)*EX.sw:null,tide:M.tide.value==null?null:(M.tide.flow!=null?M.tide.flow:M.tide.value),sst:M.sst.value,cur:M.cur.value};
+ for(const k of Object.keys(SC)){const m=M[k];m.eff=eff[k];m.score=m.value==null||!ok(m.eff)?null:interp(SC[k],m.eff);m.weight=W[k]}
  // thunderstorm flag
- const thunder=R.wx.some(s=>win(s.code).some(c=>c>=95));
+ const tN=R.wx.filter(s=>win(s.s.code).some(c=>c>=95)).length,thunder=tN>0&&tN>=Math.min(2,R.wx.length);
  // weather factor: model conditions + precipitation + active NWS alerts that overlap the date
  {
   const cd=per(R.wx,'code',maxf),pr=per(R.wx,'precip',a=>a.reduce((x,y)=>x+y,0));
@@ -765,11 +798,16 @@ function compute(R,h0,h1){
  // overall
  const used=Object.values(M).filter(m=>m.score!=null);
  let overall=null,capped=null;
- if(used.length){const wsum=used.reduce((a,m)=>a+m.weight,0);overall=used.reduce((a,m)=>a+m.score*m.weight,0)/wsum;
+ if(used.length){
+  const wsum=used.reduce((a,m)=>a+m.weight,0),wm=used.reduce((a,m)=>a+m.score*m.weight,0)/wsum;
+  const crit=used.filter(m=>CRIT.includes(m.key)),worst=crit.length?Math.min(...crit.map(m=>m.score)):wm;
+  overall=wm*(1-WORST_BLEND)+Math.min(wm,worst)*WORST_BLEND;
   const caps=[];
-  const reds=used.filter(m=>CRIT.includes(m.key)&&m.score<25);
+  const reds=crit.filter(m=>m.score<RED);
   if(reds.length)caps.push([65,reds.map(m=>m.name+' is red').join(', ')]);
-  if(thunder)caps.push([65,'thunderstorm forecast']);
+  if(thunder)caps.push([65,'thunderstorm forecast ('+tN+' of '+R.wx.length+' models)']);
+  const unver=CRIT.filter(k=>M[k].score==null&&!['wind','gust','hs'].includes(k));
+  if(unver.length)caps.push([79,'no data for '+unver.map(k=>M[k].name.toLowerCase()).join(', ')+', so conditions are unverified']);
   const al=M.weather.alertsOn;
   [[3,45,'severe weather alert'],[2,65,'weather watch/warning'],[1,79,'weather advisory']].forEach(([t,lim,lab])=>{const hit=al.filter(a=>a.tier===t);if(hit.length)caps.push([lim,lab+': '+hit.map(a=>a.event).join(', ')])});
   const lim=Math.min(...caps.map(c=>c[0]),Infinity);
@@ -779,13 +817,17 @@ function compute(R,h0,h1){
  const missing=Object.values(M).filter(m=>m.score==null).map(m=>m.name);
  // hourly blended
  const hb=(list,key)=>Array.from({length:24},(_,i)=>{const v=list.map(s=>s.s[key]&&s.s[key][i]).filter(ok);return v.length?mean(v):null});
- const H={wind:hb(R.wx,'wind'),gust:hb(R.wx,'gust'),hs:hb(R.mar,'hs'),sh:hb(R.mar,'sh'),sp:hb(R.mar,'sp'),sd:Array.from({length:24},(_,i)=>circMean(R.mar.map(s=>s.s.sd&&s.s.sd[i]))),temp:hb(R.wx,'temp'),precip:hb(R.wx,'precip')};
+ const H={wind:hb(R.wx,'wind'),gust:hb(R.wx,'gust'),hs:hb(mw('hs'),'hs'),sh:hb(mw('sh'),'sh'),sp:hb(mw('sp'),'sp'),sd:Array.from({length:24},(_,i)=>circMean(mw('sd').map(s=>s.s.sd&&s.s.sd[i]))),temp:hb(R.wx,'temp'),precip:hb(R.wx,'precip')};
  H.code=Array.from({length:24},(_,i)=>{const v=R.wx.map(s=>s.s.code&&s.s.code[i]).filter(ok);if(!v.length)return null;const cnt={};v.forEach(c=>cnt[c]=(cnt[c]||0)+1);return +Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||b-a)[0]});
+ const wxh=i=>{const a=[];if(ok(H.code[i]))a.push(codeScore(H.code[i]));if(ok(H.precip[i]))a.push(interp(PRECIP_SC,H.precip[i]*3));return a.length?Math.min(...a):null};
  H.score=H.wind.map((_,i)=>{const parts=[];
-  if(ok(H.wind[i]))parts.push([interp(SC.wind,H.wind[i]),1]);if(ok(H.gust[i]))parts.push([interp(SC.gust,H.gust[i]),1]);
-  if(ok(H.hs[i]))parts.push([interp(SC.hs,H.hs[i]),1.5]);if(ok(H.sh[i]))parts.push([interp(SC.swell,0.49*H.sh[i]**2*(ok(H.sp[i])?H.sp[i]:8)),1.5]);
+  if(ok(H.wind[i]))parts.push([interp(SC.wind,H.wind[i]*EX.ww),W.wind]);if(ok(H.gust[i]))parts.push([interp(SC.gust,H.gust[i]*EX.ww),W.gust]);
+  if(ok(H.hs[i]))parts.push([interp(SC.hs,H.hs[i]*EX.hs),W.hs]);if(ok(H.sh[i]))parts.push([interp(SC.swell,0.49*H.sh[i]**2*(ok(H.sp[i])?H.sp[i]:8)*EX.sw),W.swell]);
+  const wx=wxh(i);if(wx!=null)parts.push([wx,W.weather]);
   if(!parts.length)return null;const w=parts.reduce((a,p)=>a+p[1],0);return parts.reduce((a,p)=>a+p[0]*p[1],0)/w});
- let best=null;for(let i=6;i<=16;i++){const s=[H.score[i],H.score[i+1],H.score[i+2]];if(s.every(ok)){const a=mean(s);if(!best||a>best.score)best={start:i,score:a}}}
+ // best 3-hour block: daylight only (6-19h when sunrise/sunset are unknown)
+ const hm=t=>+t.slice(0,2)+ +t.slice(3,5)/60,sr=R.sun?hm(R.sun.rise):6,ss=R.sun?hm(R.sun.set):19;
+ let best=null;for(let i=Math.max(0,Math.ceil(sr));i+3<=ss&&i<=21;i++){const s=[H.score[i],H.score[i+1],H.score[i+2]];if(s.every(ok)){const a=mean(s);if(!best||a>best.score)best={start:i,score:a}}}
  const sumf=a=>a.reduce((x,y)=>x+y,0);
  const airS=per(R.wx,'temp',mean),prS=per(R.wx,'precip',sumf),cdS=per(R.wx,'code',maxf);
  const bl=l=>l.length?{value:mean(l.map(x=>x.val)),srcs:l,spread:Math.max(...l.map(x=>x.val))-Math.min(...l.map(x=>x.val))}:{value:null,srcs:[]};
@@ -793,8 +835,17 @@ function compute(R,h0,h1){
  if(cdS.length){const cnt={};cdS.forEach(c=>cnt[c.val]=(cnt[c.val]||0)+1);WXI.code=+Object.keys(cnt).sort((a,b)=>cnt[b]-cnt[a]||b-a)[0];WXI.worst=Math.max(...cdS.map(c=>c.val))}
  const tw=H.temp.slice(h0,h1+1).filter(ok);WXI.airMin=tw.length?Math.min(...tw):null;WXI.airMax=tw.length?Math.max(...tw):null;
  const pw=H.precip.slice(h0,h1+1);WXI.peak=pw.filter(ok).length?Math.max(...pw.filter(ok)):null;
- const wdir=circMean(R.wx.map(s=>circMean(win(s.s.wdir)))),moon=moonInfo(R.date),V=visibility(R,M,wdir,moon);
- return{M,WXI,overall,capped,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length,wdir,moon,V};
+ const V=visibility(R,M,wdir,moon);
+ // confidence: lead time, distance to the ocean model cell, model disagreement
+ const lead=daysFromToday(R.date),cwhy=[];let cp=0;
+ if(lead>10){cp+=3;cwhy.push(lead+' days out')}else if(lead>7){cp+=2;cwhy.push(lead+' days out')}else if(lead>3){cp+=1;cwhy.push(lead+' days out')}
+ if(R.marPt&&R.marPt.km>30){cp+=2;cwhy.push('wave model cell '+R.marPt.km.toFixed(0)+' km from the site')}else if(R.marPt&&R.marPt.km>10){cp+=1;cwhy.push('wave model cell '+R.marPt.km.toFixed(0)+' km from the site')}
+ const dis=CRIT.filter(k=>M[k].agree==='low');if(dis.length){cp+=dis.length>1?2:1;cwhy.push('models disagree on '+dis.map(k=>M[k].name.toLowerCase()).join(', '))}
+ const conf={level:cp>=3?'Low':cp>=1?'Medium':'High',why:cwhy};
+ const notes=[...EX.note];
+ if(tN>0&&!thunder)notes.push('one of '+R.wx.length+' weather models shows thunderstorms (not enough to limit the grade)');
+ if(M.tide.flow!=null&&M.tide.value!=null&&M.tide.flow<M.tide.value*.6)notes.push('tidal flow is gentle during your dive window');
+ return{M,WXI,overall,capped,missing,core,thunder,H,best,used:used.length,total:Object.keys(M).length,wdir,moon,V,conf,notes,EX};
 }
 
 /* ---------- v1.4 : moon, visibility estimate, site notes ---------- */
@@ -972,7 +1023,7 @@ function render(R,C,h0,h1){
  if(C.V&&C.V.score!=null){
   const V=C.V;
   G.push(gcard({key:'vis',name:'Visibility Estimate',score:V.score,srcs:[],value:null,agree:'single'},vnum(V.label,'rating'),'Estimate from rain, seas, wind, tides and plankton. Not in the grade.'+(R.chl?'<br>'+chlInfo(R).badge:''),
-   (R.chl?`<tr><td colspan="2">Plankton: satellite chlorophyll-a ${R.chl.v.toFixed(2)} mg/m&sup3; (${R.chl.v<.3?'clear':R.chl.v<1?'moderate':R.chl.v<3?'green':'bloom'}) on ${esc(R.chl.date)}, 2 km pixels, NOAA CoastWatch. Counts toward the visibility estimate only when 3 days old or newer. Visibility never changes the grade.</td></tr>`:'')+V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')).replace('Cross-Check &amp; Sources','What Drives This'));
+   (R.chl?`<tr><td colspan="2">Plankton: satellite chlorophyll-a ${R.chl.v.toFixed(2)} mg/m&sup3; (${R.chl.v<.3?'clear':R.chl.v<1?'moderate':R.chl.v<3?'green':'bloom'}) on ${esc(R.chl.date)}, 2 km pixels, NOAA CoastWatch. Counts toward the visibility estimate only when 3 days old or newer. Visibility never changes the grade.</td></tr>`:'')+V.bad.map(t=>`<tr><td colspan="2">${esc(t)}</td></tr>`).join('')+(V.good.length?`<tr><td colspan="2">Not a factor: ${esc(V.good.join(', '))}</td></tr>`:'')+`<tr><td colspan="2"><label for="vl-sel">After the dive, log the visibility you saw:</label> <select id="vl-sel"><option value="">Choose&hellip;</option><option value="90">Excellent</option><option value="70">Good</option><option value="50">Fair</option><option value="25">Poor</option></select> <button type="button" class="sec" id="vl-save">Save</button><div class="hint" id="vl-note">${esc(vlSummary())}</div></td></tr>`).replace('Cross-Check &amp; Sources','What Drives This'));
  }
  const o=C.overall,L=o==null?'?':grade(o),ob=band(o);
  const gradeColor={A:'g',B:'g',C:'y',D:'y',F:'r','?':'n'}[L];
@@ -981,12 +1032,14 @@ function render(R,C,h0,h1){
  <div class="sub" style="margin-top:8px">${placeLine(R.place)}${R.date} &middot; ${h0}:00–${h1}:00 local${R.tz?' ('+esc(R.tz)+')':''}</div>
 
  <div class="sub" style="margin-top:6px">Based on ${C.used} of ${C.total} factors</div>
+ <div class="sub" style="margin-top:4px" title="${esc(C.conf.why.length?C.conf.why.join('; '):'Near-term forecast, models agree')}">Confidence: <b>${C.conf.level}</b>${C.conf.why.length?' &middot; '+esc(C.conf.why.join(', ')):''}</div>
  <div class="gbtns"><button class="sec" type="button" id="share">Share Report</button><button class="sec" type="button" id="sharecard">Share Card</button><button class="sec" type="button" id="fplan">Float Plan</button><button class="sec" type="button" id="save">${isSaved(R.place)?'★ Saved':'☆ Save Site'}</button></div></div>
  <div class="card"><b>Summary</b><div style="margin-top:6px">${summary(C,R,h0,h1)}</div>
  ${C.capped?`<div class="warn"><b>Grade Limited:</b> ${esc(C.capped)}.</div>`:''}
+ ${C.notes.length?`<div class="hint">Grade adjusted for: ${C.notes.map(esc).join('; ')}.</div>`:''}
  ${C.core.length?`<div class="warn"><b>No Grade Given:</b> core data missing (${C.core.map(k=>C.M[k].name).join(', ')}). A grade needs wind, gusts and wave height. See the request log at the bottom.</div>`:''}
  ${C.missing.length?`<div class="warn">No data for: ${C.missing.map(esc).join(', ')}. These are excluded from the grade, not guessed.</div>`:''}
- <details class="how"><summary>How Grades Work</summary><div class="hint" style="margin-top:6px">Stoplight: green = good (score 70+), yellow = marginal (40–69), red = poor (&lt;40). Grade: A 90+, B 80+, C 70+, D 60+, F below 60. Weights: weather, sea state and swell 1.5; wind and gusts 1; tide, temperature and current 0.75. Weather scores model conditions and rain totals, and drops sharply for thunderstorms. Active NWS alerts (US) override it: warnings such as flash flood, storm surge, tornado, hurricane/tropical storm or special marine warning limit the grade to F (45); watches, flood or coastal-flood warnings, gale and high-surf alerts limit it to D (65); advisories such as small craft, rip current, dense fog or wind limit it to C (79). Any red wind, gust, sea-state, swell or weather reading, or a forecast thunderstorm, also caps the grade at D. The visibility estimate and moon/tide-strength notes are advisory and do not change the grade.</div></details></div></div>`;
+ <details class="how"><summary>How Grades Work</summary><div class="hint" style="margin-top:6px">Stoplight: green = good (score 70+), yellow = marginal (40–69), red = poor (&lt;40). Grade: A 90+, B 80+, C 70+, D 60+, F below 60. Weights: weather 1.5; wind, gusts, sea state and swell 1; current 0.75; tide 0.5; temperature 0.25. The grade is 60% weighted average and 40% the worst of the five critical factors, so one bad factor cannot hide behind good ones. Wind, sea state and swell blend the window average with the worst hour and lean cautious when the models disagree. If you set which way the site faces, swell and wind are scored for exposure (open or sheltered, onshore), differently for shore and boat dives. Tide is scored on the tidal flow during your window. A missing swell or weather reading caps the grade at B, and a thunderstorm cap needs 2 of 3 weather models to agree. Weather scores model conditions and rain totals, and drops sharply for thunderstorms. Active NWS alerts (US) override it: warnings such as flash flood, storm surge, tornado, hurricane/tropical storm or special marine warning limit the grade to F (45); watches, flood or coastal-flood warnings, gale and high-surf alerts limit it to D (65); advisories such as small craft, rip current, dense fog or wind limit it to C (79). Any red (below 40) wind, gust, sea-state, swell or weather reading, or a forecast thunderstorm, also caps the grade at D. The visibility estimate and moon/tide-strength notes are advisory and do not change the grade.</div></details></div></div>`;
  h+=siteCard(R,C,h0,h1);
  h+=`<div class="gauges">${G.join('')}</div>`;
  h+=tidePanel(R,C,h0,h1)+hourly(R,C,h0,h1)+cites(R,C);
@@ -1088,6 +1141,7 @@ function shareText(R,C,h0,h1){
  ln.push(`${dn} · ${h0}:00–${h1}:00 local`,`Dive type: ${R.mode==='boat'?'Boat':'Shore'}${R.face!=null?', '+(FACE_NAMES[R.face]||compass(R.face)).toLowerCase()+'-facing':''}`,'',
   o==null?'Overall: no grade':`Overall: ${L} (${Math.round(o)}/100), ${GRADE_WORD[L]}`);
  if(C.capped)ln.push('Limited by: '+C.capped);
+ ln.push('Confidence: '+C.conf.level+(C.conf.why.length?' ('+C.conf.why.join(', ')+')':''));
  ln.push('','CONDITIONS',
   `Wind: ${v(M.wind,x=>fmtSpd(x).join(' '))}, gusts ${v(M.gust,x=>fmtSpd(x).join(' '))}`,
   `Waves: ${v(M.hs,x=>fmtLen(x).join(' '))}`,
@@ -1234,7 +1288,7 @@ function summary(C,R,h0,h1){
   const tw=tideWindow(R,C,h0,h1);
   const out=R.sun&&(h0*60<+R.sun.rise.slice(0,2)*60+ +R.sun.rise.slice(3,5)||(h1+1)*60>+R.sun.set.slice(0,2)*60+ +R.sun.set.slice(3,5));
   t+=`<div class="facts">`+
-   fact('Best 3-Hour Window',C.best?`${C.best.start}:00–${C.best.start+3}:00`:'No data',C.best?`Wind, waves and swell score ${Math.round(C.best.score)}`:'')+
+   fact('Best 3-Hour Window',C.best?`${C.best.start}:00–${C.best.start+3}:00`:'No data',C.best?`Wind, waves, swell and weather score ${Math.round(C.best.score)}`:'')+
    fact('Slack-Tide Window',tw?`${fmtHr(tw.a)}–${fmtHr(tw.b)}`:'No tide data',tw?`Around ${tw.ev.type==='H'?'high':'low'} tide at ${fmtHr(tw.ev.hr)}${tw.score!=null?', hourly score '+Math.round(tw.score):''}`:'Needs NOAA tide predictions')+
    fact('Sunrise',R.sun?R.sun.rise:'No data','Open-Meteo')+
    fact('Sunset',R.sun?R.sun.set:'No data',out?'<span class="tc-y">Dive window runs outside daylight</span>':'')+
@@ -1312,8 +1366,23 @@ function failBanner(){
 let LAST=null;
 let CTX=null;
 function pickTide(i){CTX.R.tide=CTX.R.tideCands[+i];rerender(CTX.R,CTX.h0,CTX.h1)}
+/* post-dive visibility log: records estimate vs what you saw, shows the average bias (advisory, nothing is auto-adjusted) */
+const VLKEY='dive-vislog';let VISCTX=null;
+const vlGet=()=>{try{const a=JSON.parse(safeLS.get(VLKEY)||'[]');return Array.isArray(a)?a:[]}catch(e){return[]}};
+function vlSummary(){
+ const a=vlGet();if(!a.length)return'Logging a few dives lets the app show how far the estimate runs from what you actually saw.';
+ if(a.length<3)return a.length+' dive'+(a.length>1?'s':'')+' logged. Log 3 or more to see the estimate bias.';
+ const b=Math.round(mean(a.map(x=>x.act-x.est)));
+ return a.length+' dives logged: the estimate ran '+(Math.abs(b)<5?'about right':Math.abs(b)+' points '+(b>0?'too low (you saw better water)':'too high (you saw worse water)'))+' on average.';
+}
+document.addEventListener('click',e=>{
+ if(!e.target||e.target.id!=='vl-save'||!VISCTX)return;
+ const v=parseInt($('vl-sel').value,10);if(!isFinite(v)){$('vl-note').textContent='Choose what you saw first.';return}
+ const a=vlGet().filter(x=>!(x.date===VISCTX.date&&x.place===VISCTX.place));a.push({...VISCTX,act:v});
+ safeLS.set(VLKEY,JSON.stringify(a.slice(-60)));$('vl-note').textContent='Saved. '+vlSummary();
+});
 function rerender(R,h0,h1){
- const me=CTX={R,h0,h1,gif:null};const C=compute(R,h0,h1);render(R,C,h0,h1);
+ const me=CTX={R,h0,h1,gif:null};const C=compute(R,h0,h1);VISCTX=C.V&&C.V.score!=null?{place:R.place.name,date:R.date,est:C.V.score}:null;render(R,C,h0,h1);
  setTimeout(()=>{makeShareGif(R,C,h0,h1).then(b=>{if(CTX===me)me.gif=b}).catch(()=>{})},400);
 }
 $('f').addEventListener('submit',async ev=>{
@@ -1441,7 +1510,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.6.1';
+const VERSION='1.7.0';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
@@ -1466,8 +1535,19 @@ $('s-mode').onchange=e=>{setS('mode',e.target.value);$('mode').value=e.target.va
 $('s-units').onchange=e=>{setS('units',e.target.value);$('units').value=e.target.value};
 ['h0','h1'].forEach(k=>$('s-'+k).onchange=e=>{setS(k,clampH(e.target.value,DEF[k]));$(k).value=S[k]});
 $('s-reset').onclick=()=>{safeLS.del(SKEY);safeLS.del('dive-last');S={...DEF};applyS();$('units').value=S.units;$('mode').value=S.mode;$('face').value='';$('h0').value=S.h0;$('h1').value=S.h1};
-$('s-refresh').onclick=async e=>{const b=e.target;b.disabled=true;b.textContent='Refreshing…';try{await fetch(location.pathname,{cache:'reload'})}catch(x){}location.replace(location.pathname+'?r='+Date.now())};
-$('ver').textContent='v'+VERSION;
+async function pullLatest(b){
+ const t=b.textContent;b.disabled=true;b.textContent='Checking…';
+ let msg='Reloading…';
+ try{
+  const r=await fetch(location.pathname+'?v='+Date.now(),{cache:'reload'}),txt=await r.text(),m=txt.match(/const VERSION='([^']+)'/);
+  if(m)msg=m[1]===VERSION?'Up to date (v'+VERSION+')':'Updating to v'+m[1]+'…';
+ }catch(x){msg='Offline: reloading'}
+ b.textContent=msg;
+ setTimeout(()=>location.replace(location.pathname+'?r='+Date.now()),700);
+}
+$('s-refresh').onclick=e=>pullLatest(e.target);
+$('hrefresh').onclick=e=>pullLatest(e.target);
+$('ver').textContent='v'+VERSION;$('hver').textContent='v'+VERSION;
 const MODAL=$('modal');let _lastFocus=null;
 function openMenu(){_lastFocus=document.activeElement;MODAL.hidden=false;document.body.classList.add('mopen');$('mclose').focus()}
 function closeMenu(){MODAL.hidden=true;document.body.classList.remove('mopen');if(_lastFocus&&_lastFocus.focus)_lastFocus.focus()}
