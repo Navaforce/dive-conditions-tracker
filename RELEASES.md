@@ -1,5 +1,15 @@
 # Releases
 
+## v1.7.0 - 2026-11-14
+- Grade accuracy: the grade now uses site exposure (shore vs boat, which way the site faces) for swell and wind; blends 60% weighted mean with 40% worst critical factor; red threshold is 40 (matching the explainer, was 25); weights are wind/gust/sea state/swell 1, weather 1.5, current .75, tide .5, temperature .25.
+- Wind, sea state and swell score a blend of the window average and worst hour, leaning cautious when models disagree; the marine best-match model no longer double-counts with the named wave models.
+- Tide is scored on peak tidal flow inside the dive window, and the nearest station is used unless a close one sees 1.6x the range.
+- Missing swell or weather caps the grade at C. Thunderstorm cap now works (it read the wrong field before) and needs 2 of 3 weather models.
+- Confidence line (lead time, wave-cell distance, model disagreement) on the grade card and in Share Report.
+- Best 3-hour window is daylight only and includes weather.
+- Post-dive visibility log (localStorage `dive-vislog`) with average bias readout; advisory only.
+- Version and Refresh button top right of the header; Refresh checks the live version and reloads.
+
 ## v1.6.1 - 2026-10-31
 - Visibility Estimate shows only the rating (Excellent, Good, Fair, Poor); the estimated feet or metres range is removed from the tile and from Share Report and Float Plan text.
 - Visibility, including plankton, never changes the grade. The v1.6.0 plankton grade penalty is removed; plankton feeds the visibility rating only, when the data is 3 days old or newer. The badge reads "in estimate" or "info only".
