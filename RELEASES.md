@@ -92,3 +92,7 @@
 
 ## v1.0.0 - 2026-10-31
 - Initial import of dive-conditions.html as index.html; added home-screen meta tags.
+
+## v1.7.4 - 2026-11-14
+- Turtle redrawn: domed shell with scute pattern, tapered head with eye, four flippers (rear flipper flaps via `.rflip`).
+- New happy starfish rides on the octopus's head (inside `.octo .head`): jitters constantly with googly eyes and a chattering grin; when the octopus's tentacle shoots (about 8, 39.9, 71.6, 101.1s on the 109.6s loop) it is flicked into a spinning flight and lands back with a squash. Classes `.starfly` (cycle flight, cumulative rotation 4320deg so the loop is seamless), `.starjit`, `.sp`, `.sm`; all in the reduced-motion list.
