@@ -96,3 +96,9 @@
 ## v1.7.4 - 2026-11-14
 - Turtle redrawn: domed shell with scute pattern, tapered head with eye, four flippers (rear flipper flaps via `.rflip`).
 - New happy starfish rides on the octopus's head (inside `.octo .head`): jitters constantly with googly eyes and a chattering grin; when the octopus's tentacle shoots (about 8, 39.9, 71.6, 101.1s on the 109.6s loop) it is flicked into a spinning flight and lands back with a squash. Classes `.starfly` (cycle flight, cumulative rotation 4320deg so the loop is seamless), `.starjit`, `.sp`, `.sm`; all in the reduced-motion list.
+
+## v1.7.5 - 2026-11-14
+- Turtle: the shading lines on the front flipper now flap with the fin (they were left behind as a stray line).
+- Animal spacing retimed for the phone view (the centre ~350px of the scene): each animal now enters the visible centre 5s after the previous one leaves it (was 13-21s). Speeds unchanged. Loop is now 68.05s; each animal runs on its own delay of that loop, so on wide screens animals can overlap.
+- Octopus peeks, tentacle shots and the starfish were shifted with their animals.
+- Starfish now lives on the seabed beside the octopus, dancing; the tentacle flings him onto the octopus's head, and he hops back to the floor before the octopus sinks. Classes moved from `.octo` to `.starw`.

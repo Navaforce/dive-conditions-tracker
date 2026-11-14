@@ -45,10 +45,10 @@ header.hero .scene{position:absolute;inset:0;z-index:1;width:100%;height:100%;po
 header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height:56px;z-index:2}
 .bub{animation:rise 9s linear infinite;opacity:0}
 @keyframes rise{0%{transform:translateY(0);opacity:0}10%{opacity:.7}100%{transform:translateY(-190px);opacity:0}}
-.fish{animation:fishL 109.6s linear infinite}
-@keyframes fishL{0%,24.635%{transform:translateX(1500px)}48.394%,100%{transform:translateX(-170px)}}
-.shark{animation:sharkL 109.6s linear infinite}
-@keyframes sharkL{0%,.876%{transform:translateX(1500px)}14.015%,100%{transform:translateX(-270px)}}
+.fish{animation:fishL 68.051s linear -55.780s infinite}
+@keyframes fishL{0%{transform:translateX(1500px)}38.265%{transform:translateX(-170px)}100%{transform:translateX(-170px)}}
+.shark{animation:sharkL 68.051s linear -4.148s infinite}
+@keyframes sharkL{0%{transform:translateX(1500px)}21.161%{transform:translateX(-270px)}100%{transform:translateX(-270px)}}
 .shark{will-change:transform}
 .shark .glide,.shark .pitch{transform-box:fill-box;transform-origin:50% 50%}
 .shark .glide{animation:glide 9s ease-in-out infinite}
@@ -60,14 +60,14 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .shark .tail{transform-box:fill-box;transform-origin:0 50%;animation:wag 2.2s ease-in-out -.35s infinite}
 @keyframes wag{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 .react{transform-box:fill-box;transform-origin:50% 50%}
-.shark>.react{animation:sharkJolt 109.6s linear infinite}
-@keyframes sharkJolt{0%,7.226%{transform:none;animation-timing-function:ease-out}7.938%{transform:translateY(-16px) rotate(-6deg);animation-timing-function:ease-in-out}9.854%,100%{transform:none}}
-.fish>.react{animation:fishJolt 109.6s linear infinite}
-@keyframes fishJolt{0%,36.679%{transform:none}37.007%{transform:translateY(-36px) rotate(-18deg)}38.321%,100%{transform:none}}
-.turtle .react{animation:turtleRoll 109.6s linear infinite}
-@keyframes turtleRoll{0%,65.693%{transform:rotate(0)}66.241%{transform:translateY(-22px) rotate(120deg)}67.117%{transform:translateY(-26px) rotate(260deg)}68.321%,100%{transform:rotate(360deg)}}
-.crab{animation:crabX 109.6s linear infinite}
-@keyframes crabX{0%,14.562%{transform:translateX(-150px)}18.723%,21.898%{transform:translateX(560px)}27.372%,100%{transform:translateX(1560px)}}
+.shark>.react{animation:sharkJolt 68.051s linear -4.148s infinite}
+@keyframes sharkJolt{0%{transform:none}10.228%{transform:none;animation-timing-function:ease-out}11.374%{transform:translateY(-16px) rotate(-6deg);animation-timing-function:ease-in-out}14.46%{transform:none}100%{transform:none}}
+.fish>.react{animation:fishJolt 68.051s linear -55.780s infinite}
+@keyframes fishJolt{0%{transform:none}19.397%{transform:none}19.926%{transform:translateY(-36px) rotate(-18deg)}22.042%{transform:none}100%{transform:none}}
+.turtle .react{animation:turtleRoll 68.051s linear -43.695s infinite}
+@keyframes turtleRoll{0%{transform:rotate(0)}36.678%{transform:rotate(0)}37.56%{transform:translateY(-22px) rotate(120deg)}38.971%{transform:translateY(-26px) rotate(260deg)}40.91%{transform:rotate(360deg)}100%{transform:rotate(360deg)}}
+.crab{animation:crabX 68.051s linear -58.913s infinite}
+@keyframes crabX{0%{transform:translateX(-150px)}6.701%{transform:translateX(560px)}11.815%{transform:translateX(560px)}20.632%{transform:translateX(1560px)}100%{transform:translateX(1560px)}}
 .crab .leg{transform-box:fill-box;transform-origin:50% 0;animation:legs .35s ease-in-out infinite alternate}
 .crab .leg.b{animation-delay:-.17s}
 @keyframes legs{from{transform:rotate(-9deg)}to{transform:rotate(9deg)}}
@@ -76,25 +76,25 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 @keyframes waveC{from{transform:rotate(-12deg)}to{transform:rotate(16deg)}}
 .crab .hop{animation:hop .7s ease-in-out infinite alternate}
 @keyframes hop{from{transform:translateY(0)}to{transform:translateY(-2px)}}
-.octo{animation:octoUp 109.6s linear infinite}
-@keyframes octoUp{0%,4.106%{transform:translateY(130px)}5.015%,10.949%{transform:translateY(0)}11.858%,32.847%{transform:translateY(130px)}33.755%,41.058%{transform:translateY(0)}41.967%,62.047%{transform:translateY(130px)}62.956%,70.259%{transform:translateY(0)}71.168%,87.588%{transform:translateY(130px)}88.507%,95.799%{transform:translateY(0)}96.719%,100%{transform:translateY(130px)}}
-.octo .starfly,.octo .starjit,.octo .sp,.octo .sm{transform-box:fill-box;transform-origin:50% 50%}
-.octo .starfly{animation:starfly 109.6s linear infinite}
-@keyframes starfly{0%{transform:none}7.208%{transform:translate(0,0) rotate(0deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}7.71%{transform:translate(-6px,-82px) rotate(540deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}8.349%{transform:translate(0,2px) rotate(1080deg) scale(1.3,.65)}8.668%{transform:translate(0,0) rotate(1080deg) scale(1,1)}36.314%{transform:translate(0,0) rotate(1080deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}36.816%{transform:translate(-6px,-82px) rotate(1620deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}37.454%{transform:translate(0,2px) rotate(2160deg) scale(1.3,.65)}37.774%{transform:translate(0,0) rotate(2160deg) scale(1,1)}65.237%{transform:translate(0,0) rotate(2160deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}65.739%{transform:translate(-6px,-82px) rotate(2700deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}66.378%{transform:translate(0,2px) rotate(3240deg) scale(1.3,.65)}66.697%{transform:translate(0,0) rotate(3240deg) scale(1,1)}92.153%{transform:translate(0,0) rotate(3240deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}92.655%{transform:translate(-6px,-82px) rotate(3780deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}93.294%{transform:translate(0,2px) rotate(4320deg) scale(1.3,.65)}93.613%{transform:translate(0,0) rotate(4320deg) scale(1,1)}100%{transform:rotate(4320deg)}}
-.octo .starjit{animation:starjit .9s ease-in-out infinite}
+.octo{animation:octoUp 68.051s linear infinite}
+@keyframes octoUp{0%{transform:translateY(130px)}1.017%{transform:translateY(130px)}2.486%{transform:translateY(0px)}10.128%{transform:translateY(0px)}11.597%{transform:translateY(130px)}33.168%{transform:translateY(130px)}34.637%{transform:translateY(0px)}44.483%{transform:translateY(0px)}45.952%{transform:translateY(130px)}66.591%{transform:translateY(130px)}68.06%{transform:translateY(0px)}79.816%{transform:translateY(0px)}81.286%{transform:translateY(130px)}84.288%{transform:translateY(130px)}85.758%{transform:translateY(0px)}97.514%{transform:translateY(0px)}98.983%{transform:translateY(130px)}100%{transform:translateY(130px)}}
+.starw .starfly,.starw .starjit,.starw .sp,.starw .sm{transform-box:fill-box;transform-origin:50% 50%}
+.starw .starfly{animation:starfly 68.051s linear infinite}
+@keyframes starfly{0%{transform:none}4.103%{transform:translate(0,0) rotate(0deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}4.911%{transform:translate(30px,-110px) rotate(540deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}5.94%{transform:translate(63px,-30px) rotate(1080deg) scale(1.3,.65)}6.454%{transform:translate(63px,-32px) rotate(1080deg) scale(1,1)}8.805%{transform:translate(63px,-32px) rotate(1080deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}9.54%{transform:translate(30px,-88px) rotate(1260deg) scale(1.1);animation-timing-function:cubic-bezier(.6,0,.9,.5)}10.275%{transform:translate(0,2px) rotate(1440deg) scale(1.3,.65)}10.716%{transform:translate(0,0) rotate(1440deg) scale(1,1)}36.841%{transform:translate(0,0) rotate(1440deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}37.649%{transform:translate(30px,-110px) rotate(1980deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}38.678%{transform:translate(63px,-30px) rotate(2520deg) scale(1.3,.65)}39.192%{transform:translate(63px,-32px) rotate(2520deg) scale(1,1)}43.16%{transform:translate(63px,-32px) rotate(2520deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}43.895%{transform:translate(30px,-88px) rotate(2700deg) scale(1.1);animation-timing-function:cubic-bezier(.6,0,.9,.5)}44.63%{transform:translate(0,2px) rotate(2880deg) scale(1.3,.65)}45.07%{transform:translate(0,0) rotate(2880deg) scale(1,1)}71.734%{transform:translate(0,0) rotate(2880deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}72.542%{transform:translate(30px,-110px) rotate(3420deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}73.571%{transform:translate(63px,-30px) rotate(3960deg) scale(1.3,.65)}74.085%{transform:translate(63px,-32px) rotate(3960deg) scale(1,1)}78.494%{transform:translate(63px,-32px) rotate(3960deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}79.228%{transform:translate(30px,-88px) rotate(4140deg) scale(1.1);animation-timing-function:cubic-bezier(.6,0,.9,.5)}79.963%{transform:translate(0,2px) rotate(4320deg) scale(1.3,.65)}80.404%{transform:translate(0,0) rotate(4320deg) scale(1,1)}91.636%{transform:translate(0,0) rotate(4320deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}92.444%{transform:translate(30px,-110px) rotate(4860deg) scale(1.12);animation-timing-function:cubic-bezier(.6,0,.9,.5)}93.472%{transform:translate(63px,-30px) rotate(5400deg) scale(1.3,.65)}93.987%{transform:translate(63px,-32px) rotate(5400deg) scale(1,1)}96.191%{transform:translate(63px,-32px) rotate(5400deg) scale(1,1);animation-timing-function:cubic-bezier(.2,.7,.3,1)}96.926%{transform:translate(30px,-88px) rotate(5580deg) scale(1.1);animation-timing-function:cubic-bezier(.6,0,.9,.5)}97.66%{transform:translate(0,2px) rotate(5760deg) scale(1.3,.65)}98.101%{transform:translate(0,0) rotate(5760deg) scale(1,1)}100%{transform:rotate(5760deg)}}
+.starw .starjit{animation:starjit .9s ease-in-out infinite}
 @keyframes starjit{0%{transform:rotate(-16deg) scale(1,1)}25%{transform:rotate(6deg) scale(1.1,.92) translateY(-2px)}50%{transform:rotate(18deg) scale(.95,1.06)}75%{transform:rotate(-6deg) scale(1.08,.94)}100%{transform:rotate(-16deg) scale(1,1)}}
-.octo .sp{animation:sp .35s ease-in-out infinite alternate}
+.starw .sp{animation:sp .35s ease-in-out infinite alternate}
 @keyframes sp{from{transform:translate(-1.2px,.8px)}to{transform:translate(1.2px,-.8px)}}
-.octo .sm{transform-origin:50% 0;animation:sm .5s ease-in-out infinite alternate}
+.starw .sm{transform-origin:50% 0;animation:sm .5s ease-in-out infinite alternate}
 @keyframes sm{from{transform:scaleY(.6)}to{transform:scaleY(1.05)}}
 .octo .head{transform-box:fill-box;transform-origin:50% 100%;animation:osway 2.8s ease-in-out infinite alternate}
 @keyframes osway{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
-.octo .tent{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.12);animation:tent 109.6s linear infinite}
-@keyframes tent{0%,7.029%{transform:scaleY(.12)}7.577%,8.398%{transform:scaleY(1)}9.307%,36.131%{transform:scaleY(.12)}36.766%,37.588%{transform:scaleY(1)}38.507%,65.058%{transform:scaleY(.12)}65.693%,66.515%{transform:scaleY(1)}67.423%,91.967%{transform:scaleY(.12)}92.613%,93.434%{transform:scaleY(1)}94.343%,100%{transform:scaleY(.12)}}
-.corgi{animation:corgiR 109.6s linear infinite}
-@keyframes corgiR{0%,83.942%{transform:translateX(-250px)}100%{transform:translateX(1340px)}}
-.corgi>.react{animation:corgiJolt 109.6s linear infinite}
-@keyframes corgiJolt{0%,92.591%{transform:none}92.92%{transform:translateY(-34px) rotate(-22deg)}94.562%,100%{transform:none}}
+.octo .tent{transform-box:fill-box;transform-origin:50% 100%;transform:scaleY(.12);animation:tent 68.051s linear infinite}
+@keyframes tent{0%{transform:scaleY(.12)}3.809%{transform:scaleY(0.12)}4.691%{transform:scaleY(1)}6.013%{transform:scaleY(1)}7.483%{transform:scaleY(0.12)}36.547%{transform:scaleY(0.12)}37.576%{transform:scaleY(1)}38.899%{transform:scaleY(1)}40.368%{transform:scaleY(0.12)}71.44%{transform:scaleY(0.12)}72.469%{transform:scaleY(1)}73.791%{transform:scaleY(1)}75.261%{transform:scaleY(0.12)}91.342%{transform:scaleY(0.12)}92.37%{transform:scaleY(1)}93.693%{transform:scaleY(1)}95.162%{transform:scaleY(0.12)}100%{transform:scaleY(.12)}}
+.corgi{animation:corgiR 68.051s linear -14.692s infinite}
+@keyframes corgiR{0%{transform:translateX(-250px)}25.863%{transform:translateX(1340px)}100%{transform:translateX(1340px)}}
+.corgi>.react{animation:corgiJolt 68.051s linear -14.692s infinite}
+@keyframes corgiJolt{0%{transform:none}13.931%{transform:none}14.46%{transform:translateY(-34px) rotate(-22deg)}17.105%{transform:none}100%{transform:none}}
 .corgi .cbob{animation:cbob 1.4s ease-in-out infinite alternate}
 @keyframes cbob{from{transform:translateY(0)}to{transform:translateY(-4px)}}
 .corgi .kick{transform-box:fill-box;transform-origin:50% 0;animation:kick .9s ease-in-out infinite alternate}
@@ -109,8 +109,8 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .corgi .cbub circle{fill:none;stroke:#d8f3f8;stroke-width:1.8;opacity:0;animation:cb 2.4s linear infinite}
 .corgi .cbub circle:nth-child(2){animation-delay:-.8s}.corgi .cbub circle:nth-child(3){animation-delay:-1.6s}
 @keyframes cb{0%{transform:translate(0,0);opacity:0}15%{opacity:.95}100%{transform:translate(10px,-42px);opacity:0}}
-.turtle{animation:turtleR 109.6s linear infinite}
-@keyframes turtleR{0%,42.92%{transform:translateX(-190px)}88.467%,100%{transform:translateX(1500px)}}
+.turtle{animation:turtleR 68.051s linear -43.695s infinite}
+@keyframes turtleR{0%{transform:translateX(-190px)}73.357%{transform:translateX(1500px)}100%{transform:translateX(1500px)}}
 .turtle .bob{animation:bob 6s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
 .turtle .flip{transform-box:fill-box;transform-origin:0 0;animation:flap 2.6s ease-in-out infinite}
@@ -118,7 +118,7 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .turtle .rflip{transform-box:fill-box;transform-origin:100% 0;animation:rflap 2.6s ease-in-out -.6s infinite}
 @keyframes rflap{0%,100%{transform:rotate(10deg)}50%{transform:rotate(-12deg)}}
 @keyframes flap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(24deg)}}
-@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.turtle .rflip,.shark,.shark .sway,.shark .tail,.shark .glide,.shark .pitch,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.octo .starfly,.octo .starjit,.octo .sp,.octo .sm,.corgi,.corgi>.react,.corgi .cbob,.corgi .bsay,.corgi .bmouth,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.turtle .rflip,.shark,.shark .sway,.shark .tail,.shark .glide,.shark .pitch,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.starw .starfly,.starw .starjit,.starw .sp,.starw .sm,.corgi,.corgi>.react,.corgi .cbob,.corgi .bsay,.corgi .bmouth,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
 
 /* tools, sites, strip, compare */
 .tools{margin-top:var(--s3);padding:var(--s3) var(--s4)}
@@ -390,7 +390,7 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
   <ellipse cx="79" cy="26.500" rx="10" ry="7.500" fill="#7aa86e"/><path d="M72 31C78 35 87 34 89.500 29.500C85 33 76 33.500 72 31z" fill="#dfe8a8"/>
   <path d="M81 30.500Q87 31.500 90 28.500" stroke="#355b3a" stroke-width="1.100" fill="none" stroke-linecap="round"/><circle cx="87.500" cy="25" r=".9" fill="#355b3a"/>
   <circle cx="80.500" cy="23.500" r="3.100" fill="#17251c"/><circle cx="79.700" cy="22.600" r="1" fill="#fff"/><path d="M77 21.200Q80.500 18.800 84 21.500" stroke="#4a7650" stroke-width="1.100" fill="none"/>
-  <path class="flip" d="M44 32C57 33 71 46 77 61C64 61 50 51 38 39Z" fill="#6f9a63"/><path d="M46 36q8 2 16 12M42 38q8 4 14 14" stroke="#4a7650" stroke-width="1.200" fill="none" opacity=".6"/><path d="M44 32C57 33 71 46 77 61" stroke="#a7c98a" stroke-width="1.200" fill="none" opacity=".8"/>
+  <g class="flip"><path d="M44 32C57 33 71 46 77 61C64 61 50 51 38 39Z" fill="#6f9a63"/><path d="M46 36q8 2 16 12M42 38q8 4 14 14" stroke="#4a7650" stroke-width="1.200" fill="none" opacity=".6"/><path d="M44 32C57 33 71 46 77 61" stroke="#a7c98a" stroke-width="1.200" fill="none" opacity=".8"/></g>
  </g></g></g></g>
 <g class="corgi"><g class="react"><g transform="translate(0,88)"><g class="cbob">
   <g transform="translate(40,50)"><g class="kick b"><rect x="-4" y="-10" width="8" height="14" rx="4" fill="#b9782e"/><g transform="translate(0,3)"><path d="M-6 0L6 0L11 13Q0 19 -11 13Z" fill="#162c39"/><path d="M-8 7L8 7" stroke="#ffb703" stroke-width="2.4" stroke-linecap="round"/></g></g></g>
@@ -423,16 +423,18 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
    <path d="M-17 -14L-3 -10" stroke="#3a2058" stroke-width="3" stroke-linecap="round"/><path d="M3 -12Q11 -22 19 -13" stroke="#3a2058" stroke-width="3" stroke-linecap="round" fill="none"/>
    <path d="M-10 12Q2 20 14 8" stroke="#3a2058" stroke-width="2.6" stroke-linecap="round" fill="none"/><path d="M10 11l3-3l1 5z" fill="#fff"/>
    <circle cx="-19" cy="8" r="4" fill="#d98ac9"/><circle cx="21" cy="7" r="4" fill="#d98ac9"/>
-  <g transform="translate(-2,-38)"><g class="starfly"><g class="starjit">
+  </g>
+ </g></g>
+<g class="starw"><g transform="translate(655,156)">
+  <g class="starfly"><g class="starjit">
    <path d="M0.0 -14.0L4.2 -5.8L13.3 -4.3L6.8 2.2L8.2 11.3L0.0 7.2L-8.2 11.3L-6.8 2.2L-13.3 -4.3L-4.2 -5.8Z" fill="#ff8a5b" stroke="#ff8a5b" stroke-width="5" stroke-linejoin="round"/>
    <g fill="#ffd2a8"><circle cx="0" cy="-12" r="1.3"/><circle cx="11.500" cy="-3.500" r="1.300"/><circle cx="7" cy="9.500" r="1.300"/><circle cx="-7" cy="9.500" r="1.300"/><circle cx="-11.500" cy="-3.500" r="1.300"/><circle cx="0" cy="-7" r=".9"/></g>
    <circle cx="-4" cy="-2" r="3.400" fill="#fff"/><circle cx="4" cy="-2" r="3.400" fill="#fff"/>
    <g class="sp"><circle cx="-4" cy="-2" r="1.600" fill="#1e1030"/><circle cx="4" cy="-2" r="1.600" fill="#1e1030"/></g>
    <circle cx="-7.500" cy="2.500" r="1.800" fill="#ff5f7a" opacity=".6"/><circle cx="7.500" cy="2.500" r="1.800" fill="#ff5f7a" opacity=".6"/>
    <g class="sm"><path d="M-4 3Q0 10 4 3Z" fill="#7a1f2b"/><path d="M-2 6Q0 8.500 2 6Q0 5 -2 6Z" fill="#ff7f8f"/></g>
-  </g></g></g>
-  </g>
- </g></g>
+  </g></g>
+</g></g>
  <g opacity=".18" fill="#9fe3e6"><path d="M1130 220c-6-60 8-110 0-160c18 50 14 110 6 160z"/><path d="M1160 220c0-50 14-90 8-130c12 40 8 90-2 130z"/></g>
 </svg>
 <div class="in">
@@ -1558,7 +1560,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.7.4';
+const VERSION='1.7.5';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
