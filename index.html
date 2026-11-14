@@ -49,13 +49,19 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 @keyframes fishL{0%,22.5%{transform:translateX(1500px)}44.2%,100%{transform:translateX(-170px)}}
 .shark{animation:sharkL 120s linear infinite}
 @keyframes sharkL{0%,.8%{transform:translateX(1500px)}12.8%,100%{transform:translateX(-270px)}}
-.shark .sway{transform-box:fill-box;transform-origin:100% 50%;animation:sway 1.9s ease-in-out infinite}
-@keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
-.shark .tail{transform-box:fill-box;transform-origin:0 50%;animation:wag 1.1s ease-in-out infinite}
-@keyframes wag{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+.shark{will-change:transform}
+.shark .glide,.shark .pitch{transform-box:fill-box;transform-origin:50% 50%}
+.shark .glide{animation:glide 9s ease-in-out infinite}
+.shark .pitch{animation:pitch 9s ease-in-out -6.75s infinite}
+@keyframes glide{0%,100%{transform:translateY(-5px)}50%{transform:translateY(5px)}}
+@keyframes pitch{0%,100%{transform:rotate(-1.3deg)}50%{transform:rotate(1.3deg)}}
+.shark .sway{transform-box:fill-box;transform-origin:100% 50%;animation:sway 2.2s ease-in-out infinite}
+@keyframes sway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.shark .tail{transform-box:fill-box;transform-origin:0 50%;animation:wag 2.2s ease-in-out -.35s infinite}
+@keyframes wag{0%,100%{transform:rotate(-8deg)}50%{transform:rotate(8deg)}}
 .react{transform-box:fill-box;transform-origin:50% 50%}
 .shark>.react{animation:sharkJolt 120s linear infinite}
-@keyframes sharkJolt{0%,7%{transform:none}7.25%{transform:translateY(-30px) rotate(-12deg)}8.4%,100%{transform:none}}
+@keyframes sharkJolt{0%,6.6%{transform:none;animation-timing-function:ease-out}7.25%{transform:translateY(-16px) rotate(-6deg);animation-timing-function:ease-in-out}9%,100%{transform:none}}
 .fish>.react{animation:fishJolt 120s linear infinite}
 @keyframes fishJolt{0%,33.5%{transform:none}33.8%{transform:translateY(-36px) rotate(-18deg)}35%,100%{transform:none}}
 .turtle .react{animation:turtleRoll 120s linear infinite}
@@ -97,7 +103,7 @@ header.hero .wave{position:absolute;left:0;right:0;bottom:-1px;width:100%;height
 .turtle .flip{transform-box:fill-box;transform-origin:0 0;animation:flap 2.6s ease-in-out infinite}
 .turtle .flip.b{animation-delay:-1.3s}
 @keyframes flap{0%,100%{transform:rotate(-16deg)}50%{transform:rotate(24deg)}}
-@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
+@media(prefers-reduced-motion:reduce){.shr,.sfi,.bub,.fish,.turtle,.turtle .bob,.turtle .flip,.shark,.shark .sway,.shark .tail,.shark .glide,.shark .pitch,.react,.crab,.crab .leg,.crab .claw,.crab .hop,.octo,.octo .head,.octo .tent,.corgi,.corgi>.react,.corgi .cbob,.corgi .kick,.sw,.fb,.sch,.sfin,.pulse,.corgi .ctail,.corgi .cbub circle{animation:none!important}.corgi{transform:translateX(860px)}.crab{transform:translateX(300px)}.octo{transform:translateY(130px)}.shark{transform:translateX(980px)}.turtle{transform:translateX(420px)}.fish{transform:translateX(760px)}.bub{opacity:.4}html{scroll-behavior:auto}}
 
 /* tools, sites, strip, compare */
 .tools{margin-top:var(--s3);padding:var(--s3) var(--s4)}
@@ -330,19 +336,21 @@ html.no-anim .shr,html.no-anim .sfi,html.no-anim .sw,html.no-anim .fb,html.no-an
   <circle cx="-17" cy="3" r="3.8" fill="#ff9c8c"/><circle cx="17" cy="3" r="3.8" fill="#ff9c8c"/>
   <path d="M-9 1Q0 12 9 1" stroke="#5a1a12" stroke-width="2.6" fill="none" stroke-linecap="round"/>
  </g></g></g>
- <g class="shark"><g class="react"><g transform="translate(0,80) scale(1.25)"><g class="sway">
-  <path class="tail" d="M154 30L186 2L177 32L188 60L154 37Z" fill="#547482"/>
-  <path d="M84 17L104 -10L109 19Z" fill="#547482"/><path d="M122 21L129 11L133 22Z" fill="#547482"/>
-  <path d="M56 44L92 70L74 44Z" fill="#547482"/>
-  <path d="M2 34C22 18 70 12 112 18C132 21 146 27 156 30L156 36C146 39 132 44 112 46C72 54 24 50 2 34Z" fill="#688b9a"/>
-  <path d="M6 38C30 50 72 52 112 45C72 47 30 46 6 38Z" fill="#c4dae0"/>
-  <path d="M52 20L50 31M68 16L66 29M84 17L82 31M100 18L98 32M116 21L114 33M132 25L131 34" stroke="#3f5b69" stroke-width="3" stroke-linecap="round"/>
-  <path d="M46 29q-3 6 0 12M52 28q-3 6 0 13M58 28q-3 6 0 13" stroke="#3f5b69" stroke-width="1.6" fill="none"/>
-  <path d="M4 37C14 42 26 45 40 44" stroke="#1b2f3a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
-  <path d="M7 38l3 5l3-4l3 5l3-4l3 5l3-4l3 5l3-4l3 5l3-4l3 4" fill="#fff"/>
-  <path d="M14 23L32 29" stroke="#1b2f3a" stroke-width="3" stroke-linecap="round"/>
-  <circle cx="25" cy="31" r="4.2" fill="#0c1a22"/><circle cx="23.8" cy="29.8" r="1.2" fill="#fff"/>
- </g></g></g></g>
+ <g class="shark"><g class="react"><g class="glide"><g class="pitch"><g transform="translate(0,80) scale(1.25)"><g class="sway">
+  <path d="M52 45C58 57 74 68 94 73C88 62 80 52 74 46Z" fill="#4f7080"/><path d="M118 46l9 9l-14-3z" fill="#547482"/><path d="M137 38l8 7l-12-3z" fill="#547482"/>
+  <path class="tail" d="M154 30C166 22 178 8 195 -9C190 5 188 18 190 28C187 34 186 43 181 53C170 46 162 41 154 36Z" fill="#547482"/>
+  <path d="M80 16C88 4 98 -6 105 -11C106 0 108 10 111 18Z" fill="#547482"/><path d="M125 22C129 16 133 13 137 13C137 17 137 21 135 24Z" fill="#547482"/>
+  <path d="M2 36C3 29 14 22 34 18C60 13 96 13 120 20C136 24 148 28 158 31L158 35C148 38 136 42 120 46C96 53 60 55 36 51C16 48 4 43 2 36Z" fill="#6f909d"/>
+  <path d="M2 36C3 29 14 22 34 18C60 13 96 13 120 20C136 24 148 28 158 31C130 28 100 25 70 25C40 25 14 29 2 36Z" fill="#587a89"/>
+  <path d="M3 37C10 46 30 52 62 53C92 53 120 46 157 36C120 44 92 47 62 46C32 46 12 43 3 37Z" fill="#dbe9ec"/>
+  <path d="M48 19q3 9 0 17M60 15q3 10 0 19M72 14q3 11-1 20M84 14q3 10 0 19M96 14.5q3 9 0 18M108 17q3 8 0 16M120 21q2 7 0 13M132 25q2 6 0 10M144 28q2 4 0 7" stroke="#34505d" stroke-width="3" stroke-linecap="round" fill="none" opacity=".62"/>
+  <path d="M54 17q2 6 0 11M66 14.5q2 7 0 13M78 14q2 7-1 14M90 14q2 7 0 13M102 15.5q2 6 0 11M114 18.5q2 5 0 10M126 22.5q1 4 0 8" stroke="#34505d" stroke-width="2" stroke-linecap="round" fill="none" opacity=".32"/>
+  <path d="M38 27q-2 7 0 14M43 26q-2 7 0 15M48 26q-2 7 0 15M53 27q-2 7 0 14M58 27.5q-2 6 0 13" stroke="#2b4350" stroke-width="1.3" fill="none"/>
+  <path d="M4 38C14 43 28 46 42 45" stroke="#1b2f3a" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <path d="M8 39l2.5 4l2.5-3.5l2.5 4l2.5-3.5l2.5 4l2.5-3.5l2.5 4l2.5-3.5l2.5 3.5" fill="#fff"/>
+  <circle cx="7" cy="31" r="1" fill="#2b4350"/><path d="M146 33q5 .6 11-.4" stroke="#44606d" stroke-width="1.2" fill="none"/>
+  <circle cx="23" cy="30.5" r="3.7" fill="#0a141a"/><circle cx="22" cy="29.4" r="1.1" fill="#fff"/>
+ </g></g></g></g></g></g>
  <g class="shr shr1" style="transform:translate(400px,120px) scaleX(1);animation-delay:-11s"><g fill="none" stroke-linecap="round"><path d="M-8 3C-8 -4 2 -6 7 -1" stroke="#ffb3a0" stroke-width="3"/><path d="M-8 3l-4-2l1 5z" fill="#ff9d86" stroke="none"/><path d="M7 -2q4-4 9-3M6 -3q3-5 7-5" stroke="#ffd0c4" stroke-width=".8"/><path d="M-4 5l-1 3M0 4l0 3M3 3l1 3" stroke="#ffcfc3" stroke-width=".8"/></g><circle cx="6" cy="-2" r="1" fill="#2b1a1a"/></g><g class="shr shr2" style="transform:translate(780px,140px) scaleX(-1);animation-delay:-3s"><g fill="none" stroke-linecap="round"><path d="M-8 3C-8 -4 2 -6 7 -1" stroke="#ffb3a0" stroke-width="3"/><path d="M-8 3l-4-2l1 5z" fill="#ff9d86" stroke="none"/><path d="M7 -2q4-4 9-3M6 -3q3-5 7-5" stroke="#ffd0c4" stroke-width=".8"/><path d="M-4 5l-1 3M0 4l0 3M3 3l1 3" stroke="#ffcfc3" stroke-width=".8"/></g><circle cx="6" cy="-2" r="1" fill="#2b1a1a"/></g><g class="shr shr3" style="transform:translate(500px,90px) scaleX(1);animation-delay:-2s"><g fill="none" stroke-linecap="round"><path d="M-8 3C-8 -4 2 -6 7 -1" stroke="#ffb3a0" stroke-width="3"/><path d="M-8 3l-4-2l1 5z" fill="#ff9d86" stroke="none"/><path d="M7 -2q4-4 9-3M6 -3q3-5 7-5" stroke="#ffd0c4" stroke-width=".8"/><path d="M-4 5l-1 3M0 4l0 3M3 3l1 3" stroke="#ffcfc3" stroke-width=".8"/></g><circle cx="6" cy="-2" r="1" fill="#2b1a1a"/></g><g class="shr shr4" style="transform:translate(450px,150px) scaleX(1);animation-delay:-10s"><g fill="none" stroke-linecap="round"><path d="M-8 3C-8 -4 2 -6 7 -1" stroke="#ffb3a0" stroke-width="3"/><path d="M-8 3l-4-2l1 5z" fill="#ff9d86" stroke="none"/><path d="M7 -2q4-4 9-3M6 -3q3-5 7-5" stroke="#ffd0c4" stroke-width=".8"/><path d="M-4 5l-1 3M0 4l0 3M3 3l1 3" stroke="#ffcfc3" stroke-width=".8"/></g><circle cx="6" cy="-2" r="1" fill="#2b1a1a"/></g><g class="sfi sfL" style="animation-duration:46s;animation-delay:-12s"><g transform="translate(0,62) scale(0.8) scale(-1,1)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfR" style="animation-duration:58s;animation-delay:-30s"><g transform="translate(0,88) scale(0.7)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfL" style="animation-duration:40s;animation-delay:-5s"><g transform="translate(0,118) scale(0.6) scale(-1,1)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfR" style="animation-duration:70s;animation-delay:-48s"><g transform="translate(0,148) scale(0.9)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfL" style="animation-duration:52s;animation-delay:-20s"><g transform="translate(0,104) scale(0.55) scale(-1,1)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfR" style="animation-duration:44s;animation-delay:-8s"><g transform="translate(0,135) scale(0.65)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g><g class="sfi sfL" style="animation-duration:64s;animation-delay:-38s"><g transform="translate(0,74) scale(0.7) scale(-1,1)"><path d="M0 0c5-6 13-6 18 0c-5 6-13 6-18 0z M18 0l6-5v10z" fill="#bfe9ee"/><circle cx="5" cy="-1" r="1" fill="#05273a"/></g></g>
  <g class="fish"><g class="react"><defs><linearGradient id="fshG" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27607a"/><stop offset=".42" stop-color="#6fb0bf"/><stop offset=".62" stop-color="#b9dde0"/><stop offset="1" stop-color="#eef8f6"/></linearGradient></defs>
   <path d="M30 105l8-11 8 4 4-5 8 7 4 5z" fill="#2f6f86"/><path d="M66 107q10-11 22 8q-10-5-22-8z" fill="#3a7d90"/>
@@ -1519,7 +1527,7 @@ $('cmpForm').addEventListener('submit',async ev=>{
  setBusy(false);
 });
 /* ---------- settings + menu ---------- */
-const VERSION='1.7.1';
+const VERSION='1.7.2';
 const SKEY='dive-settings',DEF={dark:null,scene:true,anim:true,remember:true,units:'imperial',mode:'shore',h0:8,h1:14,auto:false};
 let S={...DEF};
 try{Object.assign(S,JSON.parse(safeLS.get(SKEY)||'{}'))}catch(e){}
